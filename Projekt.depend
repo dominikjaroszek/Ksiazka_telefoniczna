@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1650729126 source:c:\users\dominik\desktop\ksiazka telefoniczna\projekt\main.c
+	<stdio.h>
+	<windows.h>
+	<conio.h>
+	<ctype.h>
+	<string.h>
+	<stdlib.h>
+
