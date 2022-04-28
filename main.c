@@ -730,9 +730,28 @@ int addPerson()
         if(strlen(t.adress)>30||strlen(t.adress)<4)
         {
             printf("\n\t Blad! Wprowadz adres z przedzialu od 4 do 30 liter :>");
-            valid=0;
+
         }
-        valid=1;
+         else
+        {
+            for (i=0; i<strlen(t.adress); i++)
+            {
+                if (isalnum(t.adress[i]))
+                {
+                    valid=1;
+                }
+                else
+                {
+                    valid=0;
+                    break;
+                }
+            }
+            if(!valid)
+            {
+                printf("\n\t\t Uzyj poprawnych znakow przy adresie :(  Sproboj ponownie :)");
+
+            }
+    }
     }
     fflush(stdin);
     valid=0;
