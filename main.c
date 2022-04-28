@@ -63,22 +63,27 @@ void displayPerson()
 void modifyPerson()
 {
     system("cls");
+        int choose,valid=0,i;
+    while(!valid){
     Title();
     displayPerson();
     Person t;
     int waga=0;
+int idss;
     printf ("\n\nWprowadz ID osoby do modyfikacji : ");
-    scanf("%d", &t.personid) ;
+    scanf("%d", &idss) ;
+current_Person=head_Person;
     while (current_Person!=NULL&&waga==0)
     {
-        if(current_Person->personid == t.personid)
+        if(current_Person->next->personid == idss)
         {
             waga=1;
         }
         current_Person = current_Person->next;
     }
 
-    int choose,valid=0,i;
+
+
     printf("Po jakim polu chcesz edytowac?");
     printf("\n\n\n\n\n\t\t\t\t0. Wroc\n");
     printf("\n\t\t\t\t1. Imie\n");
@@ -86,13 +91,14 @@ void modifyPerson()
     printf("\n\t\t\t\t3. Adres\n");
     printf("\n\t\t\t\t4. Numer telefonu\n");
     printf("\n\n\n \n\t\t\t\tWprowadz opcje od 0 a 4:");
-    scanf("%i", &choose);
-    current_Person = head_Person;
+    scanf("%d", &choose);
+    fflush(stdin);
     switch(choose)
 {
 
 
 case 0:
+    valid=1;
     break;
     case 1:
         {
@@ -142,8 +148,8 @@ while(!(ans=='T'||ans=='N'))
     if(ans=='T')
     {
          strcpy(current_Person->name,t.name);
+          writePersonFile();
     }
-                fflush(stdin);
 break;
         }
 
@@ -184,7 +190,7 @@ valid=0;
                 }
             }
             char ans;
-    while(!(ans=='T'||ans=='N'))
+    while(!(ans=='T'||ans=='N'||valid==0))
     {
     printf("Czy na pewno chcesz zapisac ta osobe? T/N :");
     fflush(stdin);
@@ -194,6 +200,7 @@ valid=0;
     if(ans=='T')
     {
          strcpy(current_Person->last_name,t.last_name);
+          writePersonFile();
     }
             fflush(stdin);
             break;
@@ -224,8 +231,11 @@ while(!(ans=='T'||ans=='N'))
     }
     if(ans=='T')
     {
-         strcpy(current_Person->contact,t.contact);
+        strcpy(current_Person->adress,t.adress);
+          writePersonFile();
     }
+    fflush(stdin);
+break;
                 }
             case 4:
                 {
@@ -264,8 +274,7 @@ while(!(ans=='T'||ans=='N'))
                 }
 
             }
-                }
-                char ans;
+                            char ans;
 while(!(ans=='T'||ans=='N'))
     {
     printf("Czy na pewno chcesz zapisac ta osobe? T/N :");
@@ -275,26 +284,43 @@ while(!(ans=='T'||ans=='N'))
     }
     if(ans=='T')
     {
-         strcpy(current_Person->adress,t.adress);
+        strcpy(current_Person->contact,t.contact);
+         writePersonFile();
     }
 fflush(stdin);
 break;
-        }
-        writePersonFile();
+                }
+                        default:
+                            {
+
+
+printf("\n\t\t\t\tBlad! Podaj poprawna opcje z menu\n");
+fflush(stdin);
+getch();
+system("cls");
+                            }
+}
+    }
+
+
+
+
     printf("\nWcisnij dowolny klawisz zeby kontynuowac......\n");
     getch();
 }
 void searchPerson()
 {
     system("cls");
-    Title();
-    displayPerson();
+
     int pid;
     char pname[30];
     char plast_name[30];
     char padress[30];
     char pcontact[9];
-    int choose;
+    int choose,valid=0;
+    while(!valid){
+                Title();
+    displayPerson();
     printf("Po jakim polu chcesz znalezc?");
     printf("\n\n\n\n\n\t\t\t\t0. Wroc\n");
     printf("\n\t\t\t\t1. Id\n");
@@ -303,12 +329,14 @@ void searchPerson()
     printf("\n\t\t\t\t4. Adres\n");
     printf("\n\t\t\t\t5. Numer telefonu\n");
     printf("\n\n\n \n\t\t\t\tWprowadz opcje od 0 a 5:");
-    scanf("%i", &choose);
+    scanf("%d", &choose);
     switch(choose)
     {
 
     case 0:
+        valid=1;
         break;
+
     case 1:
     {
         printf ("Wprowadz id : ");
@@ -325,8 +353,10 @@ void searchPerson()
             current_Person = current_Person->next;
         }
         printf("--------------------------------------------------------------------------------------------\n");
-    }
+    valid=1;
     break;
+    }
+
 
     case 2:
     {
@@ -376,9 +406,11 @@ void searchPerson()
             current_Person = current_Person->next;
         }
         printf("--------------------------------------------------------------------------------------------\n");
+      valid=1;
+    break;
     }
 
-    break;
+
 
     case 4:
     {
@@ -405,7 +437,8 @@ void searchPerson()
             current_Person = current_Person->next;
         }
         printf("--------------------------------------------------------------------------------------------\n");
-        break;
+    valid=1;
+    break;
     }
     case 5:
     {
@@ -429,15 +462,25 @@ void searchPerson()
             current_Person = current_Person->next;
         }
         printf("--------------------------------------------------------------------------------------------\n");
+    valid=1;
+    break;
+    }
+                            default:
+                            {
+
+
+printf("\n\t\t\t\tBlad! Podaj poprawna opcje z menu\n");
+fflush(stdin);
+getch();
 
     }
 
-    break;
 
-
+    }
     }
     printf("\nWcisnij dowolny klawisz zeby kontynuowac......\n");
     getch();
+
 }
 void sort_help()
 {
@@ -807,6 +850,8 @@ void readPersonFile()
 void sort()
 {
     system("cls");
+    int valid = 0;
+    while(!valid){
     Title();
 
     int choose;
@@ -821,6 +866,7 @@ void sort()
     switch(choose)
     {
     case 0:
+        valid=1;
         break;
     case 1:
     {
@@ -848,6 +894,7 @@ void sort()
             //end = temp;
         }
         temp = head_Person;
+        valid=1;
         break;
     }
     case 2:
@@ -875,6 +922,7 @@ void sort()
             //end = temp;
         }
         temp = head_Person;
+        valid=1;
         break;
     }
     case 3:
@@ -902,6 +950,7 @@ void sort()
             //end = temp;
         }
         temp = head_Person;
+        valid=1;
         break;
     }
     case 4:
@@ -921,11 +970,20 @@ void sort()
             //end = temp;
         }
         temp = head_Person;
+        valid=1;
         break;
     }
+                        default:
+                            {
 
+
+printf("\n\t\t\t\tBlad! Podaj poprawna opcje z menu\n");
+fflush(stdin);
+getch();
+system("cls");
     }
-
+    }
+    }
     displayPerson();
     current_Person = head_Person;
     printf("\nWcisnij dowolny klawisz zeby kontynuowac......\n");

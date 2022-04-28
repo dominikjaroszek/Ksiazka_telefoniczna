@@ -3,7 +3,7 @@
 3; Gii; Dii; 432123333; Podsss
 4; Michal; Jasinski; 111111111; Gdansk
 5; Pawel; Gibson; 200221321; Podraj
-6; Adam; Adamczyk; 999999999; Adann
+6; Adam; Adamczyk; 343459879; Niedzielsko 999-999
 7; Kacper; Kaczmarczyk; 345654567; Biden
 8; Janek; Koralski; 543234567; Jinson
 9; Kibol; Jeden; 501889999; Dwa
