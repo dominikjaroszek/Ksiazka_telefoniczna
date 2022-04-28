@@ -950,7 +950,7 @@ void MainMenu(void)
         printf("\n\t\t\t\t6. Sortuj osoby w ksiazce po danym polu\n");
         printf("\n\t\t\t\t7. Wyjscie\n");
         printf("\n\n\n \n\t\t\t\tWybierz od 1 do 7:");
-        scanf("%i", &choose);
+        scanf("%d", &choose);
         switch(choose)
         {
 
@@ -985,7 +985,8 @@ void MainMenu(void)
             break;
 
         default:
-
+printf("\n\t\t\t\tBlad! Podaj poprawna opcje z menu\n");
+fflush(stdin);
             getch();
         }
 
