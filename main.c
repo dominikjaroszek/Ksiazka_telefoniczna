@@ -208,19 +208,39 @@ valid=0;
             case 3:
                 {
             valid=0;
-            while(!valid)
+                fflush(stdin);
+    while(!valid)
+    {
+        printf("\n\t\t\tWprowadz adres : ");
+        fgets(t.adress, 30, stdin);
+        strtok(t.adress,"\n");
+        t.adress[0]=toupper(t.adress[0]);
+        if(strlen(t.adress)>30||strlen(t.adress)<4)
+        {
+            printf("\n\t Blad! Wprowadz adres z przedzialu od 4 do 30 liter :>");
+
+        }
+         else
+        {
+            for (i=0; i<strlen(t.adress); i++)
             {
-                printf("\n\t\t\tWprowadz adres : ");
-                fgets(t.adress, 30, stdin);
-                strtok(t.adress,"\n");
-                t.adress[0]=toupper(t.adress[0]);
-                if(strlen(t.adress)>30||strlen(t.adress)<4)
+                if (isalnum(t.adress[i]))
                 {
-                    printf("\n\t Blad! Wprowadz adres z przedzialu od 4 do 30 liter :>");
-                    valid=0;
+                    valid=1;
                 }
-                valid=1;
+                else
+                {
+                    valid=0;
+                    break;
+                }
             }
+            if(!valid)
+            {
+                printf("\n\t\t Uzyj poprawnych znakow przy adresie :(  Sproboj ponownie :)");
+
+            }
+    }
+    }
                         char ans;
 while(!(ans=='T'||ans=='N'))
     {
