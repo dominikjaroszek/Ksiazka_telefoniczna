@@ -170,12 +170,15 @@ while(!(ans=='T'||ans=='N'))
     fflush(stdin);
     scanf("%c",&ans);
     ans = toupper(ans);
-    }
+
     if(ans=='T')
     {
          strcpy(current_Person->name,t.name);
           writePersonFile();
     }
+    else
+fflush(stdin);
+        }
 break;
         }
 
@@ -734,7 +737,7 @@ while(!(ans=='T'||ans=='N'))
     fflush(stdin);
     scanf("%c",&ans);
     ans = toupper(ans);
-    }
+
         if(ans=='T')
         {
             current_Person = head_Person;
@@ -772,6 +775,9 @@ while(!(ans=='T'||ans=='N'))
 
             }
         }
+        else
+fflush(stdin);
+    }
     }
 
     printf("\nWcisnij dowolny klawisz zeby kontynuowac......\n");
@@ -1014,7 +1020,7 @@ int addPerson()
     printf("Czy na pewno chcesz zapisac ta osobe? T/N :");
     scanf("%c",&ans);
     ans = toupper(ans);
-    }
+
     if(ans=='T')
     {
         node = (Person*)malloc (sizeof (Person));
@@ -1038,6 +1044,9 @@ int addPerson()
         }
     id_sort();
         writePersonFile();
+    }
+    else
+        fflush(stdin);
     }
 
     printf("\nWcisnij dowolny klawisz zeby kontynuowac......\n");
