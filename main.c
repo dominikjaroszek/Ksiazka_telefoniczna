@@ -871,7 +871,7 @@ int addPerson()
             getch();
             return 2;
         }
-        if(strlen(t.name)>20||strlen(t.name)<2)
+        if(strlen(t.name)<20&&strlen(t.name)>2)
         {
             printf("\n\t Blad! Wprowadz imie z przedzialu od 2 do 20 liter");
 
@@ -896,6 +896,7 @@ int addPerson()
 
             }
         }
+        fflush(stdin);
     }
 
     //fflush(stdin);
@@ -908,7 +909,7 @@ int addPerson()
         scanf("%s",t.last_name);
         fflush(stdin);
         t.last_name[0]=toupper(t.last_name[0]);
-        if(strlen(t.last_name)>20||strlen(t.last_name)<2)
+        if(strlen(t.last_name)<20&&strlen(t.last_name)>2)
         {
             printf("\n\t Blad! Wprowadz nazwisko z przedzialu od 2 do 20 liter :>");
 
@@ -933,6 +934,7 @@ int addPerson()
 
             }
         }
+        fflush(stdin);
     }
     fflush(stdin);
     valid=0;
@@ -942,7 +944,7 @@ int addPerson()
         fgets(t.adress, 30, stdin);
         strtok(t.adress,"\n");
         t.adress[0]=toupper(t.adress[0]);
-        if(strlen(t.adress)>30||strlen(t.adress)<4)
+        if(strlen(t.adress)<30&&strlen(t.adress)>4)
         {
             printf("\n\t Blad! Wprowadz adres z przedzialu od 4 do 30 liter :>");
 
@@ -967,6 +969,7 @@ int addPerson()
 
             }
     }
+        fflush(stdin);
     }
     fflush(stdin);
     valid=0;
@@ -975,13 +978,13 @@ int addPerson()
         printf("\n\t\t\tWprowadz numer telefonu : ");
         scanf ("%s", t.contact);
         fflush(stdin);
-        if(strlen(t.contact)>9||strlen(t.contact)!=9)
+        if(strlen(t.contact)!=9)
 
 
         {
             printf("\n\t Blad! Wprowadz numer telefonu o dlugosci 9 cyfr");
 
-            continue;
+
 
         }
 
@@ -1011,7 +1014,7 @@ int addPerson()
         }
 
 
-
+    fflush(stdin);
     }
     fflush(stdin);
     char ans;
