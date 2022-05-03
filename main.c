@@ -60,6 +60,17 @@ void displayPerson()
     printf("--------------------------------------------------------------------------------------------\n");
 
 }
+int maxpersonid()
+{
+    current_Person=head_Person;
+    int max=0;
+    while (current_Person->next!=NULL)
+    {
+max=max+1;
+        current_Person = current_Person->next;
+    }
+return max+1;
+}
 void modifyPerson()
 {
     system("cls");
@@ -70,18 +81,33 @@ void modifyPerson()
     Person t;
     int waga=0;
 int idss;
-    printf ("\n\nWprowadz ID osoby do modyfikacji : ");
-    scanf("%d", &idss) ;
 current_Person=head_Person;
-    while (current_Person!=NULL&&waga==0)
+while(!valid)
+{    printf ("\n\nWprowadz ID osoby do modyfikacji : ");
+    scanf("%d", &idss) ;
+    if(idss>=1&&idss<=maxpersonid())
     {
-        if(current_Person->next->personid == idss)
+        valid =1;
+    }
+    else
+    {
+
+
+        printf("Podaj poprawne id osoby");
+        fflush(stdin);
+    }
+
+}
+    while (current_Person->next!=NULL&&waga==0)
+    {
+        if(current_Person->personid == idss)
         {
             waga=1;
         }
+        else
         current_Person = current_Person->next;
     }
-
+valid=0;
 
 
     printf("Po jakim polu chcesz edytowac?");
@@ -359,8 +385,22 @@ void searchPerson()
 
     case 1:
     {
-        printf ("Wprowadz id : ");
-        scanf("%d", &pid) ;
+        while(!valid)
+{    printf ("\n\nWprowadz ID osoby do modyfikacji : ");
+    scanf("%d", &pid) ;
+    if(pid>=1&&pid<=maxpersonid())
+    {
+        valid =1;
+    }
+    else
+    {
+
+
+        printf("Podaj poprawne id osoby");
+        fflush(stdin);
+    }
+
+}
         current_Person = head_Person;
         printf("%-5s%-21s%-21s%-31s%-10s\n","ID","Imie","Nazwisko","Adres","Numer_Telefonu");
         printf("--------------------------------------------------------------------------------------------\n");
@@ -666,10 +706,24 @@ void deletePerson()
     system("cls");
     Title();
     displayPerson();
-    int pid, found=0;
+    int pid, found=0,valid=0;
     printf("\n\t\t\t\tW przypadku checi powrotu wstecz wpisz 0");
-    printf ("\n\n\t\tWprowadz Id osoby do usuniecia : ");
+while(!valid)
+{    printf ("\n\nWprowadz ID osoby do modyfikacji : ");
     scanf("%d", &pid) ;
+    if(pid>=1&&pid<=maxpersonid())
+    {
+        valid =1;
+    }
+    else
+    {
+
+
+        printf("Podaj poprawne id osoby");
+        fflush(stdin);
+    }
+
+}
     if(pid !=0)
     {
 

@@ -1,5 +1,5 @@
-1; Jozefa; Wysocka; 451225395; Agrestowa 81, Gdynia
-2; Bonifacy; Kowalczyk; 501023660; Witolda 31, Warszawa
+1; Joanna; Wysocka; 451225395; Agrestowa 81, Gdynia
+2; Nikola; Kowalczyk; 501023660; Witolda 31, Warszawa
 3; Jowita; Sawicka; 550813221; Gromadzka 7, Kielce
 4; Michal; Jasinski; 760401584; Wilanowska 132, Warszawa
 5; Weronika; Ostrowska; 981974284; Jadzwingow 108, Krakow
