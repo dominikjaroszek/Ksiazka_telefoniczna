@@ -381,8 +381,41 @@ void searchPerson()
     case 2:
     {
 
-        printf ("Wprowadz imie : ");
-        scanf("%s", pname) ;
+
+    int valid=0,i;
+    while(!valid)
+    {
+
+        printf("\n\n\n\t\t\tWprowadz imie: ");
+        scanf("%s",pname);
+        fflush(stdin);
+
+        if(strlen(pname)>20)
+        {
+            printf("\n\t Blad! Wprowadz imie do 20 liter");
+
+        }
+        else
+        {
+            for (i=0; i<strlen(pname); i++)
+            {
+                if (isalpha(pname[i]))
+                {
+                    valid=1;
+                }
+                else
+                {
+                    valid=0;
+                    break;
+                }
+            }
+            if(!valid)
+            {
+                printf("\n\t\t Uzyj poprawnych liter przy imieniu :(  Sproboj ponownie :)");
+
+            }
+        }
+    }
         current_Person = head_Person;
         printf("%-5s%-21s%-21s%-31s%-10s\n","ID","Imie","Nazwisko","Adres","Numer_Telefonu");
         printf("--------------------------------------------------------------------------------------------\n");
@@ -407,8 +440,41 @@ void searchPerson()
 
     case 3:
     {
-        printf ("Wprowadz nazwisko : ");
-        scanf("%s", plast_name) ;
+ valid=0;
+ int i;
+    while(!valid)
+    {
+
+
+        printf("\n\t\t\tWprowadz nazwisko: ");
+        scanf("%s",plast_name);
+        fflush(stdin);
+        if(strlen(plast_name)>20)
+        {
+            printf("\n\t Blad! Wprowadz nazwisko do 20 liter :>");
+
+        }
+        else
+        {
+            for (i=0; i<strlen(plast_name); i++)
+            {
+                if (isalpha(plast_name[i]))
+                {
+                    valid=1;
+                }
+                else
+                {
+                    valid=0;
+                    break;
+                }
+            }
+            if(!valid)
+            {
+                printf("\n\t\t Uzyj poprawnych liter przy nazwisku :(  Sproboj ponownie :)");
+
+            }
+        }
+    }
         current_Person = head_Person;
         printf("%-5s%-21s%-21s%-31s%-10s\n","ID","Imie","Nazwisko","Adres","Numer_Telefonu");
         printf("--------------------------------------------------------------------------------------------\n");
@@ -435,11 +501,40 @@ void searchPerson()
 
     case 4:
     {
-        printf ("Wprowadz adres : ");
-        fflush(stdin);
+fflush(stdin);
+    valid=0;
+    int i;
+    while(!valid)
+    {
+        printf("\n\t\t\tWprowadz adres : ");
         fgets(padress, 30, stdin);
         strtok(padress,"\n");
-        //fflush(stdin);
+        if(strlen(padress)>30)
+        {
+            printf("\n\t Blad! Wprowadz adres do 30 liter :>");
+
+        }
+         else
+        {
+            for (i=0; i<strlen(padress); i++)
+            {
+                if (isalnum(padress[i]))
+                {
+                    valid=1;
+                }
+                else
+                {
+                    valid=0;
+                    break;
+                }
+            }
+            if(!valid)
+            {
+                printf("\n\t\t Uzyj poprawnych znakow przy adresie :(  Sproboj ponownie :)");
+
+            }
+    }
+    }
         current_Person = head_Person;
 
         printf("%-5s%-21s%-21s%-31s%-10s\n","ID","Imie","Nazwisko","Adres","Numer_Telefonu");
@@ -463,12 +558,51 @@ void searchPerson()
     }
     case 5:
     {
-        printf ("Wprowadz numer telefonu : ");
-        //scanf("%s", pcontact) ;
+        int i;
+valid=0;
+    while(!valid)
+    {
+        printf("\n\t\t\tWprowadz numer telefonu : ");
+        scanf ("%s", pcontact);
         fflush(stdin);
-        fgets(pcontact, 10, stdin);
-        strtok(pcontact,"\n");
-        fflush(stdin);
+        if(strlen(pcontact)>9||strlen(pcontact)!=9)
+
+
+        {
+            printf("\n\t Blad! Wprowadz numer telefonu o dlugosci 9 cyfr");
+
+            continue;
+
+        }
+
+        else
+        {
+            for (i=0; i<strlen(pcontact); i++)
+            {
+                if (!isalpha(pcontact[i]))
+                {
+                    valid=1;
+
+                }
+                else
+                {
+                    valid=0;
+                    break;
+                }
+
+
+
+            }
+            if(!valid)
+            {
+                printf("\n\t\t Uzyj cyfer przy wprowadzaniu numeru telefonu :(  Sproboj ponownie :)");
+
+            }
+        }
+
+
+
+    }
         current_Person = head_Person;
         printf("%-5s%-21s%-21s%-31s%-10s\n","ID","Imie","Nazwisko","Adres","Numer_Telefonu");
         printf("--------------------------------------------------------------------------------------------\n");
