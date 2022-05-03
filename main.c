@@ -857,21 +857,22 @@ int addPerson()
     Title();
     Person t, * node;
     int valid=0,i;
+            printf("\n\t\t\t\tW przypadku checi powrotu wstecz wpisz 0");
     while(!valid)
     {
 
-        printf("\n\t\t\t\tW przypadku checi powrotu wstecz wpisz 0");
+
         printf("\n\n\n\t\t\tWprowadz imie: ");
         scanf("%s",t.name);
         fflush(stdin);
-        t.name[0]=toupper(t.name[0]);
+
         if( !strcmp(t.name,"0"))
         {
             printf("\nWcisnij dowolny klawisz zeby kontynuowac......\n");
             getch();
             return 2;
         }
-        if(strlen(t.name)<20&&strlen(t.name)>2)
+        if(!((strlen(t.name)<=20)&&(strlen(t.name)>=2)))
         {
             printf("\n\t Blad! Wprowadz imie z przedzialu od 2 do 20 liter");
 
@@ -909,7 +910,7 @@ int addPerson()
         scanf("%s",t.last_name);
         fflush(stdin);
         t.last_name[0]=toupper(t.last_name[0]);
-        if(strlen(t.last_name)<20&&strlen(t.last_name)>2)
+        if(!(strlen(t.last_name)<20&&strlen(t.last_name)>2))
         {
             printf("\n\t Blad! Wprowadz nazwisko z przedzialu od 2 do 20 liter :>");
 
@@ -941,10 +942,10 @@ int addPerson()
     while(!valid)
     {
         printf("\n\t\t\tWprowadz adres : ");
-        fgets(t.adress, 30, stdin);
+        fgets(t.adress, 32, stdin);
         strtok(t.adress,"\n");
         t.adress[0]=toupper(t.adress[0]);
-        if(strlen(t.adress)<30&&strlen(t.adress)>4)
+        if((strlen(t.adress)>30||strlen(t.adress)<4))
         {
             printf("\n\t Blad! Wprowadz adres z przedzialu od 4 do 30 liter :>");
 
@@ -973,17 +974,17 @@ int addPerson()
     }
     fflush(stdin);
     valid=0;
+
     while(!valid)
     {
         printf("\n\t\t\tWprowadz numer telefonu : ");
         scanf ("%s", t.contact);
         fflush(stdin);
-        if(strlen(t.contact)!=9)
+        if(!(strlen(t.contact)>=9&&strlen(t.contact)<=9))
 
 
         {
             printf("\n\t Blad! Wprowadz numer telefonu o dlugosci 9 cyfr");
-
 
 
         }
