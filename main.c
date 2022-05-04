@@ -974,22 +974,21 @@ int addPerson()
     while(!valid)
     {
         printf("\n\t\t\tWprowadz numer telefonu : ");
-        fflush(stdin);
         scanf("%s",pcontact);
         if(!(strlen(pcontact)==9))
 
 
          {
             printf("\n\t Blad! Wprowadz numer telefonu o dlugosci 9 cyfr");
-
+fflush(stdin);
 
         }
 
         else
         {
-            for (i=0; i<strlen(t.contact); i++)
+            for (i=0; i<strlen(pcontact); i++)
             {
-                if (!isalpha(t.contact[i]))
+                if (!isalpha(pcontact[i]))
                 {
                     valid=1;
                     strcpy(node->contact,pcontact);
