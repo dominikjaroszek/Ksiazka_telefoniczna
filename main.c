@@ -954,7 +954,7 @@ int addPerson()
         fgets(t.adress, 32, stdin);
         strtok(t.adress,"\n");
         t.adress[0]=toupper(t.adress[0]);
-        if(!(strlen(t.adress)<30&&strlen(t.adress)>4))
+        if(!(strlen(t.adress)<=30&&strlen(t.adress)>=4))
         {
             printf("\n\t Blad! Wprowadz adres z przedzialu od 4 do 30 liter :>");
                 fflush(stdin);
