@@ -857,7 +857,8 @@ int addPerson()
     Title();
     Person t, * node;
     int valid=0,i;
-            printf("\n\t\t\t\tW przypadku checi powrotu wstecz wpisz 0");
+    printf("\n\t\t\t\tW przypadku checi powrotu wstecz wpisz 0");
+    node = (Person*)malloc (sizeof (Person));
     while(!valid)
     {
 
@@ -865,14 +866,14 @@ int addPerson()
         printf("\n\n\n\t\t\tWprowadz imie: ");
         scanf("%s",t.name);
         fflush(stdin);
-
+        t.name[0]=toupper(t.name[0]);
         if( !strcmp(t.name,"0"))
         {
             printf("\nWcisnij dowolny klawisz zeby kontynuowac......\n");
             getch();
             return 2;
         }
-        if(!((strlen(t.name)<=20)&&(strlen(t.name)>=2)))
+        if(strlen(t.name)>20||strlen(t.name)<3)
         {
             printf("\n\t Blad! Wprowadz imie z przedzialu od 2 do 20 liter");
 
@@ -884,6 +885,7 @@ int addPerson()
                 if (isalpha(t.name[i]))
                 {
                     valid=1;
+                    strcpy(node->name,t.name);
                 }
                 else
                 {
@@ -897,7 +899,6 @@ int addPerson()
 
             }
         }
-        fflush(stdin);
     }
 
     //fflush(stdin);
@@ -910,7 +911,7 @@ int addPerson()
         scanf("%s",t.last_name);
         fflush(stdin);
         t.last_name[0]=toupper(t.last_name[0]);
-        if(!(strlen(t.last_name)<20&&strlen(t.last_name)>2))
+        if(strlen(t.last_name)>20||strlen(t.last_name)<2)
         {
             printf("\n\t Blad! Wprowadz nazwisko z przedzialu od 2 do 20 liter :>");
 
@@ -922,6 +923,7 @@ int addPerson()
                 if (isalpha(t.last_name[i]))
                 {
                     valid=1;
+                            strcpy(node->last_name,t.last_name);
                 }
                 else
                 {
@@ -935,7 +937,6 @@ int addPerson()
 
             }
         }
-        fflush(stdin);
     }
     fflush(stdin);
     valid=0;
@@ -945,45 +946,30 @@ int addPerson()
         fgets(t.adress, 32, stdin);
         strtok(t.adress,"\n");
         t.adress[0]=toupper(t.adress[0]);
-        if((strlen(t.adress)>30||strlen(t.adress)<4))
+        if(strlen(t.adress)>30||strlen(t.adress)<4)
         {
             printf("\n\t Blad! Wprowadz adres z przedzialu od 4 do 30 liter :>");
-
+            valid=0;
         }
-         else
+        else
         {
-            for (i=0; i<strlen(t.adress); i++)
-            {
-                if (isalnum(t.adress[i]))
-                {
-                    valid=1;
-                }
-                else
-                {
-                    valid=0;
-                    break;
-                }
-            }
-            if(!valid)
-            {
-                printf("\n\t\t Uzyj poprawnych znakow przy adresie :(  Sproboj ponownie :)");
 
-            }
-    }
-        fflush(stdin);
+
+            valid=1;
+            strcpy(node->adress,t.adress);
+        }
     }
     fflush(stdin);
     valid=0;
-
+    char pcontact[9];
     while(!valid)
     {
         printf("\n\t\t\tWprowadz numer telefonu : ");
-        scanf ("%s", t.contact);
-        fflush(stdin);
-        if(!(strlen(t.contact)>=9&&strlen(t.contact)<=9))
+        scanf("%s",pcontact);
+        if(!(strlen(pcontact)==9))
 
 
-        {
+         {
             printf("\n\t Blad! Wprowadz numer telefonu o dlugosci 9 cyfr");
 
 
@@ -996,6 +982,7 @@ int addPerson()
                 if (!isalpha(t.contact[i]))
                 {
                     valid=1;
+                    strcpy(node->contact,pcontact);
 
                 }
                 else
@@ -1014,9 +1001,9 @@ int addPerson()
             }
         }
 
-
-    fflush(stdin);
     }
+
+
     fflush(stdin);
     char ans;
     while(!(ans=='T'||ans=='N'))
@@ -1024,15 +1011,15 @@ int addPerson()
     printf("Czy na pewno chcesz zapisac ta osobe? T/N :");
     scanf("%c",&ans);
     ans = toupper(ans);
-
+    }
     if(ans=='T')
     {
-        node = (Person*)malloc (sizeof (Person));
+
         node->personid = autoIncrementPerson();
-        strcpy(node->name,t.name);
-        strcpy(node->adress,t.adress);
-        strcpy(node->last_name,t.last_name);
-        strcpy(node->contact,t.contact);
+
+
+
+
         node->next = NULL;
 
         if(head_Person==NULL)
@@ -1048,9 +1035,6 @@ int addPerson()
         }
     id_sort();
         writePersonFile();
-    }
-    else
-        fflush(stdin);
     }
 
     printf("\nWcisnij dowolny klawisz zeby kontynuowac......\n");
@@ -1111,6 +1095,11 @@ void sort()
         break;
     case 1:
     {
+    //printf("\n\n\n\n\n\t\t\t\t1. W gore\n");
+   // printf("\n\t\t\t\t2. W dol\n");
+   // scanf("%d",choose);
+    //switch(choose)
+    //case 2:
         temp = head_Person;
         //struct node* end = NULL;
 

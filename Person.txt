@@ -13,3 +13,6 @@
 13; Miroslaw; Dabrowski; 720698531; Wilhelma 13, Gdansk
 14; Eliasz; Pawlowski; 810291673; Tomickiego 69, Poznan
 15; Seweryn; Ostrowski; 870660458; Kolejowa 122, Raciborz
+16; Adam; Traoe; 501747030; Podraje 2
+17; Asdsad; Asddsa; 999999999; Dsadda
+18; Aaa; Kkkkkk; 222222222; Podraje 2
