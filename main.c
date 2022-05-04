@@ -389,7 +389,7 @@ void searchPerson()
     case 1:
     {
         while(!valid)
-{    printf ("\n\nWprowadz ID osoby do modyfikacji : ");
+{    printf ("\n\nWprowadz ID szukanej osoby : ");
     scanf("%d", &pid) ;
     if(pid>=1&&pid<=maxpersonid())
     {
