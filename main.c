@@ -919,7 +919,7 @@ int addPerson()
         scanf("%s",t.last_name);
         fflush(stdin);
         t.last_name[0]=toupper(t.last_name[0]);
-        if(strlen(t.last_name)>20||strlen(t.last_name)<2)
+        if(strlen(t.last_name)>20||strlen(t.last_name)<3)
         {
             printf("\n\t Blad! Wprowadz nazwisko z przedzialu od 2 do 20 liter :>");
 
@@ -1006,6 +1006,7 @@ fflush(stdin);
             if(!valid)
             {
                 printf("\n\t\t Uzyj cyfer przy wprowadzaniu numeru telefonu :(  Sproboj ponownie :)");
+                fflush(stdin);
 
             }
         }
