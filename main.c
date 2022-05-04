@@ -704,7 +704,7 @@ void sort_help()
     strcpy(temp->contact,temp->next->contact);
     strcpy(temp->next->contact,x);
 }
-void deletePerson()
+int deletePerson()
 {
     system("cls");
     Title();
@@ -713,7 +713,15 @@ void deletePerson()
     printf("\n\t\t\t\tW przypadku checi powrotu wstecz wpisz 0");
 while(!valid)
 {    printf ("\n\nWprowadz ID osoby do modyfikacji : ");
+
     scanf("%d", &pid) ;
+            if( pid==0)
+        {
+            valid=1;
+            break;
+            return 2;
+
+        }
     if(pid>=1&&pid<=maxpersonid())
     {
         valid =1;
@@ -779,7 +787,7 @@ while(!(ans=='T'||ans=='N'))
 fflush(stdin);
     }
     }
-
+return 1;
     printf("\nWcisnij dowolny klawisz zeby kontynuowac......\n");
     getch();
 }
@@ -946,9 +954,10 @@ int addPerson()
         fgets(t.adress, 32, stdin);
         strtok(t.adress,"\n");
         t.adress[0]=toupper(t.adress[0]);
-        if(strlen(t.adress)>30||strlen(t.adress)<4)
+        if(!(strlen(t.adress)<30&&strlen(t.adress)>4))
         {
             printf("\n\t Blad! Wprowadz adres z przedzialu od 4 do 30 liter :>");
+                fflush(stdin);
             valid=0;
         }
         else
@@ -965,6 +974,7 @@ int addPerson()
     while(!valid)
     {
         printf("\n\t\t\tWprowadz numer telefonu : ");
+        fflush(stdin);
         scanf("%s",pcontact);
         if(!(strlen(pcontact)==9))
 

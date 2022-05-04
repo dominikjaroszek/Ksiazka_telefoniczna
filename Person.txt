@@ -16,3 +16,4 @@
 16; Adam; Traoe; 501747030; Podraje 2
 17; Asdsad; Asddsa; 999999999; Dsadda
 18; Aaa; Kkkkkk; 222222222; Podraje 2
+19; Dominik; Jaroszek; 501747038; Podraje 2
