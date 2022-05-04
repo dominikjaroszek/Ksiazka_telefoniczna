@@ -881,7 +881,7 @@ int addPerson()
             getch();
             return 2;
         }
-        if(strlen(t.name)>20||strlen(t.name)<3)
+        if(!(strlen(t.name)<=20&&strlen(t.name)>=2))
         {
             printf("\n\t Blad! Wprowadz imie z przedzialu od 2 do 20 liter");
 
@@ -919,7 +919,7 @@ int addPerson()
         scanf("%s",t.last_name);
         fflush(stdin);
         t.last_name[0]=toupper(t.last_name[0]);
-        if(strlen(t.last_name)>20||strlen(t.last_name)<3)
+        if(!(strlen(t.last_name)<=20&&strlen(t.last_name)>=2))
         {
             printf("\n\t Blad! Wprowadz nazwisko z przedzialu od 2 do 20 liter :>");
 
