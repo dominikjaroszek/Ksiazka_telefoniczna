@@ -1249,6 +1249,7 @@ void MainMenu(void)
         printf("\n\t\t\t\t7. Wyjscie\n");
         printf("\n\n\n \n\t\t\t\tWybierz od 1 do 7:");
         scanf("%d", &choose);
+        fflush(stdin);
         switch(choose)
         {
 
