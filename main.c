@@ -85,7 +85,7 @@ void modifyPerson()
 
         while(!valid)
         {
-            printf ("\n\nWprowadz ID osoby do modyfikacji : ");
+            printf ("\n\n\t\t\t\tWprowadz ID osoby do modyfikacji : ");
             scanf("%d", &idss) ;
             if(idss>=1&&idss<=maxpersonid())
             {
@@ -95,7 +95,7 @@ void modifyPerson()
             {
 
 
-                printf("Podaj poprawne id osoby");
+                printf("\t\t\t\tPodaj poprawne id osoby");
                 fflush(stdin);
             }
 
@@ -110,12 +110,9 @@ void modifyPerson()
             else
                 current_Person = current_Person->next;
         }
-                printf("\n\n%d\n\n",current_Person->personid);
         valid=0;
-
-
-        printf("Po jakim polu chcesz edytowac?");
-        printf("\n\n\n\n\n\t\t\t\t0. Wroc\n");
+        printf("\n\t\t\t\tPo jakim polu chcesz edytowac?");
+        printf("\n\n\t\t\t\t0. Wroc\n");
         printf("\n\t\t\t\t1. Imie\n");
         printf("\n\t\t\t\t2. Nazwisko\n");
         printf("\n\t\t\t\t3. Adres\n");
@@ -375,8 +372,8 @@ void searchPerson()
     {
         Title();
         displayPerson();
-        printf("Po jakim polu chcesz znalezc?");
-        printf("\n\n\n\n\n\t\t\t\t0. Wroc\n");
+        printf("\n\n\t\t\t\tPo jakim polu chcesz znalezc?");
+        printf("\n\n\t\t\t\t0. Wroc\n");
         printf("\n\t\t\t\t1. Id\n");
         printf("\n\t\t\t\t2. Imie\n");
         printf("\n\t\t\t\t3. Nazwisko\n");
@@ -719,7 +716,7 @@ int deletePerson()
     printf("\n\t\t\t\tW przypadku checi powrotu wstecz wpisz 0");
     while(!valid)
     {
-        printf ("\n\nWprowadz ID osoby do modyfikacji : ");
+        printf ("\n\n\t\t\t\tWprowadz ID osoby do modyfikacji : ");
 
         scanf("%d", &pid) ;
         if( pid==0)
@@ -1098,8 +1095,8 @@ void sort()
         Title();
 
         int choose;
-        printf("Po jakim polu chcesz posortowac?");
-        printf("\n\n\n\n\n\t\t\t\t0. Wroc\n");
+        printf("\t\t\t\tPo jakim polu chcesz posortowac?");
+        printf("\n\n\t\t\t\t0. Wroc\n");
         printf("\n\t\t\t\t1. Id w gore\n");
         printf("\n\t\t\t\t2. Id w dol\n");
         printf("\n\t\t\t\t3. Imie alfabetycznie w gore\n");
@@ -1469,7 +1466,7 @@ void MainMenu(void)
 
             break;
         case 7:
-            printf("Dziekuje za skorzystanie z ksiazki");
+            printf("\t\t\t\tDziekuje za skorzystanie z ksiazki");
             getch();
             exit(0);
             break;
