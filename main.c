@@ -1419,6 +1419,8 @@ void sort()
 }
 void MainMenu(void)
 {
+    WelcomeScreen();
+
     readPersonFile();
     while(1)
     {
@@ -1481,7 +1483,6 @@ void MainMenu(void)
 }
 int main()
 {
-    WelcomeScreen();
     MainMenu();
     return 0;
 }
