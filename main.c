@@ -73,11 +73,14 @@ int maxpersonid()
 }
 void modifyPerson()
 {
+
     system("cls");
     int valid=0,i;
     char choose[1];
     while(!valid)
     {
+        choose[0]=' ';
+choose[1]=' ';
         Title();
         displayPerson();
         Person t;
@@ -400,6 +403,8 @@ void searchPerson()
     char choose[1];
     while(!valid)
     {
+        choose[0]=' ';
+choose[1]=' ';
         Title();
         displayPerson();
         printf("\n\n\t\t\t\tPo jakim polu chcesz znalezc?");
@@ -1469,7 +1474,8 @@ void MainMenu(void)
         system("cls");
 
         char choose[1];
-
+choose[0]=' ';
+choose[1]=' ';
         Title();
         printf("\n\n\n\n\n\t\t\t\t1. Dodawanie do ksiazki telefonicznej\n");
         printf("\n\t\t\t\t2. Lista osob z numerami\n");
@@ -1529,8 +1535,6 @@ void MainMenu(void)
         }
         Sleep(500);
     }
-
-
 int main()
 {
     MainMenu();
