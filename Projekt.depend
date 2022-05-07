@@ -7,11 +7,12 @@
 	<string.h>
 	<stdlib.h>
 
-1651926760 source:c:\users\dominik\desktop\ksiazka telefoniczna gitowana\projekt\main.c
+1651928061 source:c:\users\dominik\desktop\ksiazka telefoniczna gitowana\projekt\main.c
 	<stdio.h>
 	<windows.h>
 	<conio.h>
 	<ctype.h>
 	<string.h>
 	<stdlib.h>
+	<Windows.h>
 

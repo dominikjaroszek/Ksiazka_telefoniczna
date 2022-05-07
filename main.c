@@ -4,6 +4,7 @@
 #include<ctype.h>
 #include<string.h>
 #include<stdlib.h>
+#include <Windows.h>
 
 typedef struct Person
 {
@@ -1019,14 +1020,14 @@ int addPerson()
 
 
     fflush(stdin);
-    char ans;
-    while(!(ans=='T'||ans=='N'))
+    char ans[1];
+    while(!(ans[0]=='T'||ans[0]=='N'))
     {
-        printf("Czy na pewno chcesz zapisac ta osobe? T/N :");
-        scanf("%c",&ans);
-        ans = toupper(ans);
+        printf("\n\t\t\tCzy na pewno chcesz zapisac ta osobe? T/N :");
+        scanf("%s",ans);
+        ans[0] = toupper(ans[0]);
     }
-    if(ans=='T')
+    if(ans[0]=='T')
     {
 
         node->personid = autoIncrementPerson();
@@ -1049,6 +1050,7 @@ int addPerson()
         }
         id_sort();
         writePersonFile();
+        fflush(stdin);
     }
 
     printf("\nWcisnij dowolny klawisz zeby kontynuowac......\n");
@@ -1478,8 +1480,9 @@ void MainMenu(void)
             fflush(stdin);
             getch();
         }
-
+sleep(1);
     }
+
 }
 int main()
 {
