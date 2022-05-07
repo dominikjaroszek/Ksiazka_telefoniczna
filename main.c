@@ -82,7 +82,7 @@ void modifyPerson()
         Person t;
         int waga=0;
         int idss;
-        current_Person=head_Person;
+
         while(!valid)
         {
             printf ("\n\nWprowadz ID osoby do modyfikacji : ");
@@ -100,6 +100,7 @@ void modifyPerson()
             }
 
         }
+                current_Person=head_Person;
         while (current_Person->next!=NULL&&waga==0)
         {
             if(current_Person->personid == idss)
@@ -109,6 +110,7 @@ void modifyPerson()
             else
                 current_Person = current_Person->next;
         }
+                printf("\n\n%d\n\n",current_Person->personid);
         valid=0;
 
 
