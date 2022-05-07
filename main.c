@@ -1,9 +1,9 @@
-#include<stdio.h>
-#include<windows.h>
-#include<conio.h>
-#include<ctype.h>
-#include<string.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <windows.h>
+#include <conio.h>
+#include <ctype.h>
+#include <string.h>
+#include <stdlib.h>
 #include <Windows.h>
 
 typedef struct Person
@@ -17,9 +17,9 @@ typedef struct Person
 } Person;
 
 Person *head_Person = NULL,*current_Person = NULL, *temp = NULL;
+
 void WelcomeScreen(void)
 {
-
     printf("\n\n\n\n\n\n\n\t\t\t\t#########################################");
     printf("\n\t\t\t\t#                WITAJ                  #");
     printf("\n\t\t\t\t#         W KSIAZCE TELEFONICZNEJ       #");
@@ -28,7 +28,6 @@ void WelcomeScreen(void)
     printf("\n\n\n\n\n Wcisnij dowolny klawisz, zeby kontynuowac...\n");
     getch();
     system("cls");
-
 }
 
 void Title(void)
@@ -37,6 +36,7 @@ void Title(void)
     printf("\n\t\t\t\t         KSIAZKA TELEFONICZNA        ");
     printf("\n\t\t----------------------------------------------------------------------------------\n\n\n");
 }
+
 void writePersonFile()
 {
     FILE *fp = fopen("Person.txt","w");
@@ -46,10 +46,10 @@ void writePersonFile()
         fprintf (fp, "%d;%s;%s;%s;%s\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->contact, current_Person->adress );
     }
 
-
     fclose (fp);
     printf("\n\n\nZapis sie udal!\n");
 }
+
 void displayPerson()
 {
     system("cls");
@@ -60,6 +60,7 @@ void displayPerson()
         printf ("%-5d%-21s%-21s%-31s%-10s\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->adress,current_Person->contact);
     printf("--------------------------------------------------------------------------------------------\n");
 }
+
 int maxpersonid()
 {
     current_Person=head_Person;
@@ -71,6 +72,7 @@ int maxpersonid()
     }
     return max+1;
 }
+
 void modifyPerson()
 {
 
@@ -80,7 +82,7 @@ void modifyPerson()
     while(!valid)
     {
         choose[0]=' ';
-choose[1]=' ';
+        choose[1]=' ';
         Title();
         displayPerson();
         Person t;
@@ -89,11 +91,11 @@ choose[1]=' ';
 
         while(!valid)
         {
-            printf ("\n\n\t\t\t\tWprowadz ID osoby do modyfikacji : ");
-            scanf("%d", &idss) ;
+            printf ("\n\n\t\t\t\tWprowadz ID osoby do modyfikacji: ");
+            scanf("%d", &idss);
             if(idss>=1&&idss<=maxpersonid())
             {
-                valid =1;
+                valid=1;
             }
             else
             {
@@ -127,7 +129,7 @@ choose[1]=' ';
 
 
 
-         if(choose[0]==48&&choose[1]=='\0')
+        if(choose[0]==48&&choose[1]=='\0')
             valid=1;
 
 
@@ -163,7 +165,7 @@ choose[1]=' ';
                     }
                     if(!valid)
                     {
-                        printf("\n\tUzyj poprawnych liter przy imieniu  Sproboj ponownie :)");
+                        printf("\n\tUzyj poprawnych liter przy imieniu  Sprobuj ponownie");
 
                     }
                 }
@@ -225,7 +227,7 @@ choose[1]=' ';
                     }
                     if(!valid)
                     {
-                        printf("\n\tUzyj poprawnych liter przy nazwisku  Sproboj ponownie :)");
+                        printf("\n\tUzyj poprawnych liter przy nazwisku  Sprobuj ponownie");
 
                     }
                 }
@@ -260,7 +262,7 @@ choose[1]=' ';
             fflush(stdin);
             while(!valid)
             {
-                printf("\n\t\t\tWprowadz adres : ");
+                printf("\n\t\t\tWprowadz adres: ");
                 fgets(t.adress, 32, stdin);
                 strtok(t.adress,"\n");
                 t.adress[0]=toupper(t.adress[0]);
@@ -311,7 +313,7 @@ choose[1]=' ';
             char pcontact[9];
             while(!valid)
             {
-                printf("\n\t\t\tWprowadz numer telefonu : ");
+                printf("\n\t\t\tWprowadz numer telefonu: ");
                 scanf("%s",pcontact);
                 if(!(strlen(pcontact)==9))
 
@@ -342,7 +344,7 @@ choose[1]=' ';
                     }
                     if(!valid)
                     {
-                        printf("\n\tUzyj cyfr przy wprowadzaniu numeru telefonu  Sproboj ponownie :)");
+                        printf("\n\tUzyj cyfr przy wprowadzaniu numeru telefonu  Sprobuj ponownie");
                         fflush(stdin);
 
                     }
@@ -381,15 +383,16 @@ choose[1]=' ';
             getch();
             system("cls");
         }
-        }
+    }
 
 
 
 
 
-    printf("\nWcisnij dowolny klawisz zeby kontynuowac......\n");
+    printf("\nWcisnij dowolny klawisz, zeby kontynuowac...\n");
     getch();
 }
+
 void searchPerson()
 {
     system("cls");
@@ -404,7 +407,7 @@ void searchPerson()
     while(!valid)
     {
         choose[0]=' ';
-choose[1]=' ';
+        choose[1]=' ';
         Title();
         displayPerson();
         printf("\n\n\t\t\t\tPo jakim polu chcesz znalezc?");
@@ -428,11 +431,11 @@ choose[1]=' ';
         {
             while(!valid)
             {
-                printf ("\n\nWprowadz ID szukanej osoby : ");
+                printf ("\n\nWprowadz ID szukanej osoby: ");
                 scanf("%d", &pid) ;
                 if(pid>=1&&pid<=maxpersonid())
                 {
-                    valid =1;
+                    valid=1;
                 }
                 else
                 {
@@ -493,7 +496,7 @@ choose[1]=' ';
                     }
                     if(!valid)
                     {
-                        printf("\n\tUzyj poprawnych liter przy imieniu  Sproboj ponownie :)");
+                        printf("\n\tUzyj poprawnych liter przy imieniu  Sprobuj ponownie");
 
                     }
                 }
@@ -516,8 +519,8 @@ choose[1]=' ';
                 current_Person = current_Person->next;
             }
             printf("--------------------------------------------------------------------------------------------\n");
-                valid=1;
-        break;
+            valid=1;
+            break;
         }
 
 
@@ -553,7 +556,7 @@ choose[1]=' ';
                     }
                     if(!valid)
                     {
-                        printf("\n\tUzyj poprawnych liter przy nazwisku  Sproboj ponownie :)");
+                        printf("\n\tUzyj poprawnych liter przy nazwisku  Sprobuj ponownie");
 
                     }
                 }
@@ -588,7 +591,7 @@ choose[1]=' ';
             valid=0;
             while(!valid)
             {
-                printf("\n\t\t\tWprowadz adres : ");
+                printf("\n\t\t\tWprowadz adres: ");
                 fgets(padress, 32, stdin);
                 strtok(padress,"\n");
                 if(!(strlen(padress)<=30&&strlen(padress)>=4))
@@ -632,7 +635,7 @@ choose[1]=' ';
             valid=0;
             while(!valid)
             {
-                printf("\n\t\t\tWprowadz numer telefonu : ");
+                printf("\n\t\t\tWprowadz numer telefonu: ");
                 scanf("%s",pcontact);
                 if(!(strlen(pcontact)==9))
 
@@ -663,7 +666,7 @@ choose[1]=' ';
                     }
                     if(!valid)
                     {
-                        printf("\n\tUzyj cyfr przy wprowadzaniu numeru telefonu  Sproboj ponownie :)");
+                        printf("\n\tUzyj cyfr przy wprowadzaniu numeru telefonu  Sprobuj ponownie");
                         fflush(stdin);
 
                     }
@@ -700,10 +703,11 @@ choose[1]=' ';
 
 
     }
-    printf("\nWcisnij dowolny klawisz zeby kontynuowac......\n");
+    printf("\nWcisnij dowolny, klawisz zeby kontynuowac...\n");
     getch();
 
 }
+
 void sort_help()
 {
     char x[100];
@@ -728,6 +732,7 @@ void sort_help()
     strcpy(temp->contact,temp->next->contact);
     strcpy(temp->next->contact,x);
 }
+
 int deletePerson()
 {
     system("cls");
@@ -738,7 +743,7 @@ int deletePerson()
     printf("\n\t\t\t\tW przypadku checi powrotu wstecz wpisz 0");
     while(!valid)
     {
-        printf ("\n\n\t\t\t\tWprowadz ID osoby do usuniecia : ");
+        printf ("\n\n\t\t\t\tWprowadz ID osoby do usuniecia: ");
 
         scanf("%d", &t.personid) ;
         if( t.personid==0)
@@ -764,7 +769,7 @@ int deletePerson()
             if(!valid)
             {
 
-            printf("\n\t\t\t\tPodaj poprawne id osoby");
+                printf("\n\t\t\t\tPodaj poprawne id osoby");
             }
         }
         else
@@ -781,59 +786,60 @@ int deletePerson()
         char ans[2];
         while(!(ans[0]=='T'||ans[0]=='N'))
         {
-            printf("\n\t\t\t\tCzy jestes pewny/pewna usuniecia? T/N :");
+            printf("\n\t\t\t\tCzy jestes pewny usuniecia? T/N:");
             fflush(stdin);
             scanf("%s",ans);
             if(ans[1]=='\0')
-            ans[0] = toupper(ans[0]);
+                ans[0] = toupper(ans[0]);
 
         }
-            if(ans[0]=='T')
+        if(ans[0]=='T')
+        {
+            current_Person = head_Person;
+            if(current_Person->personid == t.personid)
             {
-                current_Person = head_Person;
-                if(current_Person->personid == t.personid)
+                head_Person = current_Person -> next;
+                free (current_Person);
+                found=1;
+
+            }
+
+            while (current_Person->next!=NULL)
+            {
+                Person *tmp = current_Person -> next;
+                if(tmp->personid==t.personid)
                 {
-                    head_Person = current_Person -> next;
-                    free (current_Person);
+                    current_Person -> next=tmp->next;
+                    free(tmp);
                     found=1;
-
+                    break;
                 }
+                current_Person = current_Person->next;
+            }
 
-                while (current_Person->next!=NULL)
-                {
-                    Person *tmp = current_Person -> next;
-                    if(tmp->personid==t.personid)
-                    {
-                        current_Person -> next=tmp->next;
-                        free(tmp);
-                        found=1;
-                        break;
-                    }
-                    current_Person = current_Person->next;
-                }
-
-                if (found)
-                {
-                    printf("\n\n\t\t\t\tOsoba usunieta poprawnie....!");
-                    writePersonFile();
-                }
-                else
-                {
-                    printf("\n\n\t\t\t\tNie udalo sie usunac osoby");
-
-
-
-                }
+            if (found)
+            {
+                printf("\n\n\t\t\t\tOsoba usunieta poprawnie!");
+                writePersonFile();
             }
             else
-                fflush(stdin);
+            {
+                printf("\n\n\t\t\t\tNie udalo sie usunac osoby!");
+
+
+
+            }
         }
+        else
+            fflush(stdin);
+    }
 
 
-    printf("\nWcisnij dowolny klawisz zeby kontynuowac......\n");
+    printf("\nWcisnij dowolny klawisz, zeby kontynuowac...\n");
     getch();
-        return 1;
+    return 1;
 }
+
 int autoIncrementPerson()
 {
     int id=1;
@@ -874,6 +880,7 @@ int autoIncrementPerson()
         }
     return id;
 }
+
 void id_sort()
 {
 
@@ -902,6 +909,7 @@ void id_sort()
     }
     temp = head_Person;
 }
+
 int addPerson()
 {
     system("cls");
@@ -920,7 +928,7 @@ int addPerson()
         t.name[0]=toupper(t.name[0]);
         if( !strcmp(t.name,"0"))
         {
-            printf("\nWcisnij dowolny klawisz zeby kontynuowac......\n");
+            printf("\nWcisnij dowolny klawisz, zeby kontynuowac...\n");
             getch();
             return 2;
         }
@@ -946,7 +954,7 @@ int addPerson()
             }
             if(!valid)
             {
-                printf("\n\tUzyj poprawnych liter przy imieniu  Sproboj ponownie :)");
+                printf("\n\tUzyj poprawnych liter przy imieniu  Sprobuj ponownie");
 
             }
         }
@@ -984,7 +992,7 @@ int addPerson()
             }
             if(!valid)
             {
-                printf("\n\tUzyj poprawnych liter przy nazwisku  Sproboj ponownie :)");
+                printf("\n\tUzyj poprawnych liter przy nazwisku  Sprobuj ponownie");
 
             }
         }
@@ -993,7 +1001,7 @@ int addPerson()
     valid=0;
     while(!valid)
     {
-        printf("\n\t\t\tWprowadz adres : ");
+        printf("\n\t\t\tWprowadz adres: ");
         fgets(t.adress, 32, stdin);
         strtok(t.adress,"\n");
         t.adress[0]=toupper(t.adress[0]);
@@ -1016,7 +1024,7 @@ int addPerson()
     char pcontact[9];
     while(!valid)
     {
-        printf("\n\t\t\tWprowadz numer telefonu : ");
+        printf("\n\t\t\tWprowadz numer telefonu: ");
         scanf("%s",pcontact);
         if(!(strlen(pcontact)==9))
 
@@ -1048,7 +1056,7 @@ int addPerson()
             }
             if(!valid)
             {
-                printf("\n\tUzyj cyfr przy wprowadzaniu numeru telefonu  Sproboj ponownie :)");
+                printf("\n\tUzyj cyfr przy wprowadzaniu numeru telefonu  Sprobuj ponownie");
                 fflush(stdin);
 
             }
@@ -1098,10 +1106,11 @@ int addPerson()
         fflush(stdin);
     }
 
-    printf("\nWcisnij dowolny klawisz zeby kontynuowac......\n");
+    printf("\nWcisnij dowolny klawisz, zeby kontynuowac...\n");
     getch();
     return 2;
 }
+
 void readPersonFile()
 {
 
@@ -1133,6 +1142,7 @@ void readPersonFile()
     fclose(fp);
 
 }
+
 void sort()
 {
     system("cls");
@@ -1157,7 +1167,8 @@ void sort()
         printf("\n\n\n \n\t\t\t\tWprowadz opcje pomiedzy 0 a 10:");
         scanf("%s", choose);
 
-        if(choose[0]==48&&choose[1]=='\0'){
+        if(choose[0]==48&&choose[1]=='\0')
+        {
             valid=1;
             falid=1;
             break;
@@ -1313,7 +1324,7 @@ void sort()
             valid=1;
             break;
         }
-       else  if(choose[0]==54&&choose[1]=='\0')
+        else  if(choose[0]==54&&choose[1]=='\0')
         {
             temp = head_Person;
             //struct node* end = NULL;
@@ -1461,9 +1472,10 @@ void sort()
         temp = head_Person;
     }
     current_Person = head_Person;
-    printf("\nWcisnij dowolny klawisz zeby kontynuowac......\n");
+    printf("\nWcisnij dowolny klawisz, zeby kontynuowac...\n");
     getch();
 }
+
 void MainMenu(void)
 {
     WelcomeScreen();
@@ -1474,8 +1486,8 @@ void MainMenu(void)
         system("cls");
 
         char choose[1];
-choose[0]=' ';
-choose[1]=' ';
+        choose[0]=' ';
+        choose[1]=' ';
         Title();
         printf("\n\n\n\n\n\t\t\t\t1. Dodawanie do ksiazki telefonicznej\n");
         printf("\n\t\t\t\t2. Lista osob z numerami\n");
@@ -1500,29 +1512,29 @@ choose[1]=' ';
 
 
             displayPerson();
-            printf("\n\nWcisnij dowolny klawisz zeby kontynuowac......\n");
+            printf("\n\nWcisnij dowolny klawisz, zeby kontynuowac...\n");
             getch();
         }
-         else  if(choose[0]==51&&choose[1]=='\0')
+        else  if(choose[0]==51&&choose[1]=='\0')
             searchPerson();
 
-         else  if(choose[0]==52&&choose[1]=='\0')
+        else  if(choose[0]==52&&choose[1]=='\0')
             modifyPerson();
 
-         else  if(choose[0]==53&&choose[1]=='\0')
+        else  if(choose[0]==53&&choose[1]=='\0')
             deletePerson();
 
         else  if(choose[0]==54&&choose[1]=='\0')
             sort();
 
-         else  if(choose[0]==51&&choose[1]=='\0')
-         {
+        else  if(choose[0]==51&&choose[1]=='\0')
+        {
 
 
             printf("\t\t\t\tDziekuje za skorzystanie z ksiazki");
             getch();
             exit(0);
-         }
+        }
 
         else
         {
@@ -1532,9 +1544,10 @@ choose[1]=' ';
             fflush(stdin);
             getch();
         }
-        }
-        Sleep(500);
     }
+    Sleep(500);
+}
+
 int main()
 {
     MainMenu();
