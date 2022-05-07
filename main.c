@@ -59,7 +59,6 @@ void displayPerson()
     for(current_Person =head_Person; current_Person; current_Person = current_Person->next)
         printf ("%-5d%-21s%-21s%-31s%-10s\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->adress,current_Person->contact);
     printf("--------------------------------------------------------------------------------------------\n");
-
 }
 int maxpersonid()
 {
@@ -1437,7 +1436,7 @@ void MainMenu(void)
     {
         system("cls");
 
-        int choose;
+        int choose=-1;
 
 
         Title();
