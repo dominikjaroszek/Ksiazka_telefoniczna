@@ -887,7 +887,7 @@ int addPerson()
         }
         if(!(strlen(t.name)<=20&&strlen(t.name)>=2))
         {
-            printf("\n\t Blad! Wprowadz imie z przedzialu od 2 do 20 liter");
+            printf("\n\tBlad! Wprowadz imie z przedzialu od 2 do 20 liter");
 
         }
         else
@@ -907,7 +907,7 @@ int addPerson()
             }
             if(!valid)
             {
-                printf("\n\t\t Uzyj poprawnych liter przy imieniu :(  Sproboj ponownie :)");
+                printf("\n\tUzyj poprawnych liter przy imieniu  Sproboj ponownie :)");
 
             }
         }
@@ -925,7 +925,7 @@ int addPerson()
         t.last_name[0]=toupper(t.last_name[0]);
         if(!(strlen(t.last_name)<=20&&strlen(t.last_name)>=2))
         {
-            printf("\n\t Blad! Wprowadz nazwisko z przedzialu od 2 do 20 liter :>");
+            printf("\n\tBlad! Wprowadz nazwisko z przedzialu od 2 do 20 liter");
 
         }
         else
@@ -945,7 +945,7 @@ int addPerson()
             }
             if(!valid)
             {
-                printf("\n\t\t Uzyj poprawnych liter przy nazwisku :(  Sproboj ponownie :)");
+                printf("\n\tUzyj poprawnych liter przy nazwisku  Sproboj ponownie :)");
 
             }
         }
@@ -960,7 +960,7 @@ int addPerson()
         t.adress[0]=toupper(t.adress[0]);
         if(!(strlen(t.adress)<=30&&strlen(t.adress)>=4))
         {
-            printf("\n\t Blad! Wprowadz adres z przedzialu od 4 do 30 liter :>");
+            printf("\n\tBlad! Wprowadz adres z przedzialu od 4 do 30 liter");
             fflush(stdin);
             valid=0;
         }
@@ -983,7 +983,7 @@ int addPerson()
 
 
         {
-            printf("\n\t Blad! Wprowadz numer telefonu o dlugosci 9 cyfr");
+            printf("\n\tBlad! Wprowadz numer telefonu o dlugosci 9 cyfr");
             fflush(stdin);
 
         }
@@ -1009,7 +1009,7 @@ int addPerson()
             }
             if(!valid)
             {
-                printf("\n\t\t Uzyj cyfer przy wprowadzaniu numeru telefonu :(  Sproboj ponownie :)");
+                printf("\n\tUzyj cyfr przy wprowadzaniu numeru telefonu  Sproboj ponownie :)");
                 fflush(stdin);
 
             }
