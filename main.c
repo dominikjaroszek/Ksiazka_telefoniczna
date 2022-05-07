@@ -1022,17 +1022,19 @@ int addPerson()
     fflush(stdin);
     char ans[1];
     ans[0]=' ';
-    ans[1]=' ';
+    ans[1]='!';
     while((!(ans[0]=='T'||ans[0]=='N')))
     {
         printf("\n\t\t\tCzy na pewno chcesz zapisac ta osobe? T/N :");
         scanf("%s",ans);
-        ans[0] = toupper(ans[0]);
-        if(ans[1]!=' ')
+
+        if(ans[1]=='\0')
         {
-            ans[0]=1;
-            fflush(stdin);
+            ans[0] = toupper(ans[0]);
+
         }
+        else
+                fflush(stdin);
     }
     if(ans[0]=='T')
     {
