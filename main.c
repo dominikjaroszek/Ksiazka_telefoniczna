@@ -1021,11 +1021,18 @@ int addPerson()
 
     fflush(stdin);
     char ans[1];
-    while(!(ans[0]=='T'||ans[0]=='N'))
+    ans[0]=' ';
+    ans[1]=' ';
+    while((!(ans[0]=='T'||ans[0]=='N')))
     {
         printf("\n\t\t\tCzy na pewno chcesz zapisac ta osobe? T/N :");
         scanf("%s",ans);
         ans[0] = toupper(ans[0]);
+        if(ans[1]!=' ')
+        {
+            ans[0]=1;
+            fflush(stdin);
+        }
     }
     if(ans[0]=='T')
     {
@@ -1480,7 +1487,7 @@ void MainMenu(void)
             fflush(stdin);
             getch();
         }
-sleep(1);
+Sleep(1000);
     }
 
 }
