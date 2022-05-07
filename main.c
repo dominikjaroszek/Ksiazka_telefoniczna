@@ -24,7 +24,7 @@ void WelcomeScreen(void)
     printf("\n\t\t\t\t#         W KSIAZCE TELEFONICZNEJ       #");
     printf("\n\t\t\t\t#                                       #");
     printf("\n\t\t\t\t#########################################");
-    printf("\n\n\n\n\n Wcisnij dowolny klawisz zeby kontynuowac......\n");
+    printf("\n\n\n\n\n Wcisnij dowolny klawisz, zeby kontynuowac...\n");
     getch();
     system("cls");
 
