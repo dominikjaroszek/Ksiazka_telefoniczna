@@ -42,7 +42,7 @@ void writePersonFile()
 
     for(current_Person = head_Person; current_Person; current_Person = current_Person->next)
     {
-        fprintf (fp, "%d; %s; %s; %s; %s\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->contact, current_Person->adress );
+        fprintf (fp, "%d;%s;%s;%s;%s\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->contact, current_Person->adress );
     }
 
 
@@ -1060,7 +1060,7 @@ void readPersonFile()
 
     Person tl, *node;
 
-    while (fscanf (fp,"%d; %[^;]; %[^;]; %[^;]; %[^;\n]", &tl.personid, tl.name,tl.last_name,tl.contact,tl.adress)!=EOF)
+    while (fscanf (fp,"%d;%[^;];%[^;];%[^;];%[^;\n]", &tl.personid, tl.name,tl.last_name,tl.contact,tl.adress)!=EOF)
     {
 
         node = (Person*)malloc (sizeof (Person) );
@@ -1092,12 +1092,18 @@ void sort()
     int choose;
     printf("Po jakim polu chcesz posortowac?");
     printf("\n\n\n\n\n\t\t\t\t0. Wroc\n");
-    printf("\n\t\t\t\t1. Id\n");
-    printf("\n\t\t\t\t2. Imie\n");
-    printf("\n\t\t\t\t3. Nazwisko\n");
-    printf("\n\t\t\t\t4. Numer telefonu\n");
-    printf("\n\n\n \n\t\t\t\tWprowadz opcje od 0 a 4:");
-    scanf("%i", &choose);
+    printf("\n\t\t\t\t1. Id w gore\n");
+        printf("\n\t\t\t\t2. Id w dol\n");
+    printf("\n\t\t\t\t3. Imie alfabetycznie w gore\n");
+    printf("\n\t\t\t\t4. Imie alfabetycznie w dol\n");
+    printf("\n\t\t\t\t5. Nazwisko alfabetycznie w gore\n");
+    printf("\n\t\t\t\t6. Nazwisko alfabetycznie w dol\n");
+    printf("\n\t\t\t\t7. Numer telefonu w gore\n");
+    printf("\n\t\t\t\t8. Numer telefonu w dol\n");
+        printf("\n\t\t\t\t9. Adresy alfabetycznie w gore\n");
+    printf("\n\t\t\t\t10. Adresy alfabetycznie w dol\n");
+    printf("\n\n\n \n\t\t\t\tWprowadz opcje pomiedzy 0 a 10:");
+    scanf("%d", &choose);
     switch(choose)
     {
     case 0:
@@ -1105,11 +1111,38 @@ void sort()
         break;
     case 1:
     {
-    //printf("\n\n\n\n\n\t\t\t\t1. W gore\n");
-   // printf("\n\t\t\t\t2. W dol\n");
-   // scanf("%d",choose);
-    //switch(choose)
-    //case 2:
+        temp = head_Person;
+        //struct node* end = NULL;
+
+        while(temp->next != NULL)
+        {
+            temp = temp->next;
+
+        }
+        temp = head_Person;
+        for(current_Person = head_Person; current_Person; current_Person = current_Person->next)
+        {
+            temp = head_Person;
+            while(temp->next != NULL)
+            {
+
+                if(temp->personid<temp->next->personid)
+                {
+                    sort_help();
+                }
+                temp = temp->next;
+            }
+            //end = temp;
+        }
+        temp = head_Person;
+        valid=1;
+
+                    break;
+
+
+    }
+    case 2:
+    {
         temp = head_Person;
         //struct node* end = NULL;
 
@@ -1135,10 +1168,11 @@ void sort()
         }
         temp = head_Person;
         valid=1;
-        break;
+                    break;
     }
-    case 2:
+    case 3:
     {
+
         temp = head_Person;
         //struct node* end = NULL;
 
@@ -1163,9 +1197,42 @@ void sort()
         }
         temp = head_Person;
         valid=1;
-        break;
+
+
+    break;
     }
-    case 3:
+    case 4:
+    {
+
+        temp = head_Person;
+        //struct node* end = NULL;
+
+        while(temp->next != NULL)
+        {
+            temp = temp->next;
+
+        }
+        temp = head_Person;
+        for(current_Person = head_Person; current_Person; current_Person = current_Person->next)
+        {
+            temp = head_Person;
+            while(temp->next != NULL)
+            {
+                if(strcmp(temp->name,temp->next->name) < 0)
+                {
+                    sort_help();
+                }
+                temp = temp->next;
+            }
+            //end = temp;
+        }
+        temp = head_Person;
+        valid=1;
+
+
+    break;
+    }
+    case 5:
     {
         temp = head_Person;
         //struct node* end = NULL;
@@ -1193,7 +1260,35 @@ void sort()
         valid=1;
         break;
     }
-    case 4:
+    case 6:
+    {
+        temp = head_Person;
+        //struct node* end = NULL;
+
+        while(temp->next != NULL)
+        {
+            temp = temp->next;
+
+        }
+        temp = head_Person;
+        for(current_Person = head_Person; current_Person; current_Person = current_Person->next)
+        {
+            temp = head_Person;
+            while(temp->next != NULL)
+            {
+                if(strcmp(temp->last_name,temp->next->last_name) < 0)
+                {
+                    sort_help();
+                }
+                temp = temp->next;
+            }
+            //end = temp;
+        }
+        temp = head_Person;
+        valid=1;
+        break;
+    }
+    case 7:
     {
 
         for(current_Person = head_Person; current_Person; current_Person = current_Person->next)
@@ -1202,6 +1297,66 @@ void sort()
             while(temp->next != NULL)
             {
                 if(strcmp(temp->contact,temp->next->contact) > 0)
+                {
+                    sort_help();
+                }
+                temp = temp->next;
+            }
+            //end = temp;
+        }
+        temp = head_Person;
+        valid=1;
+        break;
+    }
+    case 8:
+    {
+
+        for(current_Person = head_Person; current_Person; current_Person = current_Person->next)
+        {
+            temp = head_Person;
+            while(temp->next != NULL)
+            {
+                if(strcmp(temp->contact,temp->next->contact) < 0)
+                {
+                    sort_help();
+                }
+                temp = temp->next;
+            }
+            //end = temp;
+        }
+        temp = head_Person;
+        valid=1;
+        break;
+    }
+        case 9:
+    {
+
+        for(current_Person = head_Person; current_Person; current_Person = current_Person->next)
+        {
+            temp = head_Person;
+            while(temp->next != NULL)
+            {
+                if(strcmp(temp->adress,temp->next->adress) > 0)
+                {
+                    sort_help();
+                }
+                temp = temp->next;
+            }
+            //end = temp;
+        }
+        temp = head_Person;
+        valid=1;
+        break;
+    }
+    case 10:
+    {
+
+        for(current_Person = head_Person; current_Person; current_Person = current_Person->next)
+        {
+            temp = head_Person;
+            while(temp->next != NULL)
+            {
+                if(strcmp(temp->adress,temp->next->adress) < 0)
                 {
                     sort_help();
                 }
@@ -1224,7 +1379,34 @@ system("cls");
     }
     }
     }
+    if(valid)
+    {
     displayPerson();
+ temp = head_Person;
+        //struct node* end = NULL;
+
+        while(temp->next != NULL)
+        {
+            temp = temp->next;
+
+        }
+        temp = head_Person;
+        for(current_Person = head_Person; current_Person; current_Person = current_Person->next)
+        {
+            temp = head_Person;
+            while(temp->next != NULL)
+            {
+
+                if(temp->personid>temp->next->personid)
+                {
+                    sort_help();
+                }
+                temp = temp->next;
+            }
+            //end = temp;
+        }
+        temp = head_Person;
+    }
     current_Person = head_Person;
     printf("\nWcisnij dowolny klawisz zeby kontynuowac......\n");
     getch();
