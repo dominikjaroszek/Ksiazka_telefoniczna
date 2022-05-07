@@ -1,13 +1,7 @@
-1;Joanna;Wysocka;451225395;Agrestowa 81, Gdynia
-2;Nikola;Kowalczyk;501023660;Witolda 31, Warszawa
-3;Jowita;Sawicka;550813221;Gromadzka 7, Kielce
-4;Michal;Jasinski;760401584;Wilanowska 132, Warszawa
 5;Weronika;Ostrowska;981974284;Jadzwingow 108, Krakow
-6;Adam;Adamczyk;901249729;Swidnicka 65, Warszawa
 7;Milena;Duda;700517678;Kopernika 119, Szczecin
 8;Jakub;Koralski;940121661;Kamienica 106, Kamienica
 9;Wiktor;Szczepanski;580672976;Husarii 34, Olsztyn
-10;Augustyna;Czarnecka;390457957;Kacik 10, Krakow
 11;Maciej;Szczepanski;691107769;Iglasta 32, Kielce
 12;Katarzyna;Kowalczyk;420995730;Jachowicza 132, Warszawa
 13;Miroslaw;Dabrowski;720698531;Wilhelma 13, Gdansk
@@ -22,8 +16,3 @@
 22;Sadas;Asdasd;222333444;Asdasdas
 23;Asdas;Asdasdas;222222222;Sadasda
 24;Asdasd;Asdasd;222222222;Asdasda
-25;Asdas;Sadasd;222222222;Asdasd
-26;Asdasd;Asdasd;333445555;Asdad
-27;Dominik;Asdasd;777777777;Asdasda
-28;Asdasd;Asdasda;333333333;Asdasda
-29;Pawel;Asdasd;222222222;Asdasd

@@ -66,7 +66,7 @@ int maxpersonid()
     int max=0;
     while (current_Person->next!=NULL)
     {
-        max=max+1;
+        max=current_Person->personid;
         current_Person = current_Person->next;
     }
     return max+1;
@@ -724,52 +724,64 @@ int deletePerson()
     system("cls");
     Title();
     displayPerson();
-    int pid, found=0,valid=0;
+    Person t;
+    int found=0,valid=0;
     printf("\n\t\t\t\tW przypadku checi powrotu wstecz wpisz 0");
     while(!valid)
     {
         printf ("\n\n\t\t\t\tWprowadz ID osoby do usuniecia : ");
 
-        scanf("%d", &pid) ;
-        if( pid==0)
+        scanf("%d", &t.personid) ;
+        if( t.personid==0)
         {
             valid=1;
             break;
             return 2;
 
         }
-        if(pid>=1&&pid<=maxpersonid())
+        current_Person=head_Person;
+        if(t.personid>=current_Person->personid&&t.personid<=maxpersonid())
         {
-            valid =1;
+            current_Person=head_Person;
+
+            while(current_Person)
+            {
+                if(t.personid==current_Person->personid)
+                {
+                    valid=1;
+                }
+                current_Person=current_Person->next;
+            }
+            if(!valid)
+            {
+                printf("Blad! Podaj id osoby ktora istnieje!");
+            }
         }
         else
         {
 
 
-            printf("Podaj poprawne id osoby");
+            printf("\n\t\t\t\tPodaj poprawne id osoby");
             fflush(stdin);
         }
 
     }
-    if(pid !=0)
+    if(t.personid !=0)
     {
-
-        char ans[1];
-        while((!(ans[0]=='T'||ans[0]=='N')))
+        char ans[2];
+        while(!(ans[0]=='T'||ans[0]=='N'))
         {
-            printf("Czy jestes pewien/pewna usuniecia? T/N :");
+            printf("\n\t\t\t\tCzy jestes pewny/pewna usuniecia? T/N :");
             fflush(stdin);
             scanf("%s",ans);
             if(ans[1]=='\0')
-            {
-                ans[0] = toupper(ans[0]);
+            ans[0] = toupper(ans[0]);
 
-            }
-
+        }
             if(ans[0]=='T')
             {
                 current_Person = head_Person;
-                if(current_Person->personid == pid)
+                if(current_Person->personid == t.personid)
                 {
                     head_Person = current_Person -> next;
                     free (current_Person);
@@ -780,7 +792,7 @@ int deletePerson()
                 while (current_Person->next!=NULL)
                 {
                     Person *tmp = current_Person -> next;
-                    if(tmp->personid==pid)
+                    if(tmp->personid==t.personid)
                     {
                         current_Person -> next=tmp->next;
                         free(tmp);
@@ -792,12 +804,12 @@ int deletePerson()
 
                 if (found)
                 {
-                    printf("\n\nOsoba usunieta poprawnie....!");
+                    printf("\n\n\t\t\t\tOsoba usunieta poprawnie....!");
                     writePersonFile();
                 }
                 else
                 {
-                    printf("Nie udalo sie usunac osoby");
+                    printf("\n\n\t\t\t\tNie udalo sie usunac osoby");
 
 
 
@@ -806,10 +818,11 @@ int deletePerson()
             else
                 fflush(stdin);
         }
-    }
-    return 1;
+
+
     printf("\nWcisnij dowolny klawisz zeby kontynuowac......\n");
     getch();
+        return 1;
 }
 int autoIncrementPerson()
 {
