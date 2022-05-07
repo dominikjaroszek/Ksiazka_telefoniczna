@@ -74,7 +74,7 @@ int maxpersonid()
 void modifyPerson()
 {
     system("cls");
-    int choose,valid=0,i;
+    int choose=-1,valid=0,i;
     while(!valid)
     {
         Title();
@@ -100,7 +100,7 @@ void modifyPerson()
             }
 
         }
-                current_Person=head_Person;
+        current_Person=head_Person;
         while (current_Person->next!=NULL&&waga==0)
         {
             if(current_Person->personid == idss)
@@ -138,9 +138,9 @@ void modifyPerson()
                 printf("\n\t\t\tWprowadz imie: ");
                 scanf("%s",t.name);
                 t.name[0]=toupper(t.name[0]);
-                if(strlen(t.name)>20||strlen(t.name)<2)
+                if(!(strlen(t.name)<=20&&strlen(t.name)>=2))
                 {
-                    printf("\n\t Blad! Wprowadz imie z przedzialu od 2 do 20 liter");
+                    printf("\n\tBlad! Wprowadz imie z przedzialu od 2 do 20 liter");
 
                 }
                 else
@@ -159,20 +159,26 @@ void modifyPerson()
                     }
                     if(!valid)
                     {
-                        printf("\n\t\t Uzyj poprawnych liter przy imieniu :(  Sproboj ponownie :)");
+                        printf("\n\tUzyj poprawnych liter przy imieniu  Sproboj ponownie :)");
 
                     }
                 }
             }
-            char ans;
-            while(!(ans=='T'||ans=='N'))
+            char ans[1];
+            while((!(ans[0]=='T'||ans[0]=='N')))
             {
                 printf("Czy na pewno chcesz zapisac ta osobe? T/N :");
                 fflush(stdin);
-                scanf("%c",&ans);
-                ans = toupper(ans);
+                scanf("%s",ans);
+                if(ans[1]=='\0')
+                {
+                    ans[0] = toupper(ans[0]);
 
-                if(ans=='T')
+                }
+                else
+                    fflush(stdin);
+
+                if(ans[0]=='T')
                 {
                     strcpy(current_Person->name,t.name);
                     writePersonFile();
@@ -192,10 +198,11 @@ void modifyPerson()
 
                 printf("\n\t\t\tWprowadz nazwisko: ");
                 scanf("%s",t.last_name);
+                fflush(stdin);
                 t.last_name[0]=toupper(t.last_name[0]);
-                if(strlen(t.last_name)>20||strlen(t.last_name)<2)
+                if(!(strlen(t.last_name)<=20&&strlen(t.last_name)>=2))
                 {
-                    printf("\n\t Blad! Wprowadz nazwisko z przedzialu od 2 do 20 liter :>");
+                    printf("\n\tBlad! Wprowadz nazwisko z przedzialu od 2 do 20 liter");
 
                 }
                 else
@@ -214,25 +221,33 @@ void modifyPerson()
                     }
                     if(!valid)
                     {
-                        printf("\n\t\t Uzyj poprawnych liter przy nazwisku :(  Sproboj ponownie :)");
+                        printf("\n\tUzyj poprawnych liter przy nazwisku  Sproboj ponownie :)");
 
                     }
                 }
             }
-            char ans;
-            while(!(ans=='T'||ans=='N'||valid==0))
+            char ans[1];
+            while((!(ans[0]=='T'||ans[0]=='N')))
             {
                 printf("Czy na pewno chcesz zapisac ta osobe? T/N :");
                 fflush(stdin);
-                scanf("%c",&ans);
-                ans = toupper(ans);
+                scanf("%s",ans);
+                if(ans[1]=='\0')
+                {
+                    ans[0] = toupper(ans[0]);
+
+                }
+                else
+                    fflush(stdin);
+
+                if(ans[0]=='T')
+                {
+                    strcpy(current_Person->last_name,t.last_name);
+                    writePersonFile();
+                }
+                else
+                    fflush(stdin);
             }
-            if(ans=='T')
-            {
-                strcpy(current_Person->last_name,t.last_name);
-                writePersonFile();
-            }
-            fflush(stdin);
             break;
         }
         case 3:
@@ -242,49 +257,45 @@ void modifyPerson()
             while(!valid)
             {
                 printf("\n\t\t\tWprowadz adres : ");
-                fgets(t.adress, 30, stdin);
+                fgets(t.adress, 32, stdin);
                 strtok(t.adress,"\n");
                 t.adress[0]=toupper(t.adress[0]);
-                if(strlen(t.adress)>30||strlen(t.adress)<4)
+                if(!(strlen(t.adress)<=30&&strlen(t.adress)>=4))
                 {
-                    printf("\n\t Blad! Wprowadz adres z przedzialu od 4 do 30 liter :>");
-
+                    printf("\n\tBlad! Wprowadz adres z przedzialu od 4 do 30 liter");
+                    fflush(stdin);
+                    valid=0;
                 }
                 else
                 {
-                    for (i=0; i<strlen(t.adress); i++)
-                    {
-                        if (isalnum(t.adress[i]))
-                        {
-                            valid=1;
-                        }
-                        else
-                        {
-                            valid=0;
-                            break;
-                        }
-                    }
-                    if(!valid)
-                    {
-                        printf("\n\t\t Uzyj poprawnych znakow przy adresie :(  Sproboj ponownie :)");
 
-                    }
+
+                    valid=1;
+
                 }
             }
-            char ans;
-            while(!(ans=='T'||ans=='N'))
+            char ans[1];
+            while((!(ans[0]=='T'||ans[0]=='N')))
             {
                 printf("Czy na pewno chcesz zapisac ta osobe? T/N :");
                 fflush(stdin);
-                scanf("%c",&ans);
-                ans = toupper(ans);
+                scanf("%s",ans);
+                if(ans[1]=='\0')
+                {
+                    ans[0] = toupper(ans[0]);
+
+                }
+                else
+                    fflush(stdin);
+
+                if(ans[0]=='T')
+                {
+                    strcpy(current_Person->adress,t.adress);
+                    writePersonFile();
+                }
+                else
+                    fflush(stdin);
             }
-            if(ans=='T')
-            {
-                strcpy(current_Person->adress,t.adress);
-                writePersonFile();
-            }
-            fflush(stdin);
             break;
         }
         case 4:
@@ -293,51 +304,69 @@ void modifyPerson()
 
             fflush(stdin);
             valid=0;
+            char pcontact[9];
             while(!valid)
             {
                 printf("\n\t\t\tWprowadz numer telefonu : ");
-                scanf ("%s", t.contact);
-                if(strlen(t.contact)>9||strlen(t.contact)!=9)
+                scanf("%s",pcontact);
+                if(!(strlen(pcontact)==9))
+
+
                 {
-                    printf("\n\t Blad! Wprowadz numer telefonu o dlugosci 9 cyfer :>");
+                    printf("\n\tBlad! Wprowadz numer telefonu o dlugosci 9 cyfr");
+                    fflush(stdin);
 
                 }
+
                 else
                 {
-                    for (i=0; i<strlen(t.contact); i++)
+                    for (i=0; i<strlen(pcontact); i++)
                     {
-                        if (!isalpha(t.contact[i]))
+                        if (!isalpha(pcontact[i]))
                         {
                             valid=1;
+
                         }
                         else
                         {
                             valid=0;
                             break;
                         }
+
+
+
                     }
                     if(!valid)
                     {
-                        printf("\n\t\t Uzyj cyfer przy wprowadzaniu numeru telefonu :(  Sproboj ponownie :)");
+                        printf("\n\tUzyj cyfr przy wprowadzaniu numeru telefonu  Sproboj ponownie :)");
+                        fflush(stdin);
 
                     }
                 }
 
             }
-            char ans;
-            while(!(ans=='T'||ans=='N'))
+            char ans[1];
+            while((!(ans[0]=='T'||ans[0]=='N')))
             {
                 printf("Czy na pewno chcesz zapisac ta osobe? T/N :");
                 fflush(stdin);
-                scanf("%c",&ans);
-                ans = toupper(ans);
+                scanf("%s",ans);
+                if(ans[1]=='\0')
+                {
+                    ans[0] = toupper(ans[0]);
+
+                }
+                else
+                    fflush(stdin);
+
+                if(ans[0]=='T')
+                {
+                    strcpy(current_Person->contact,t.contact);
+                    writePersonFile();
+                }
+                else
+                    fflush(stdin);
             }
-            if(ans=='T')
-            {
-                strcpy(current_Person->contact,t.contact);
-                writePersonFile();
-            }
-            fflush(stdin);
             break;
         }
         default:
@@ -367,7 +396,7 @@ void searchPerson()
     char plast_name[30];
     char padress[30];
     char pcontact[9];
-    int choose,valid=0;
+    int choose=-1,valid=0;
     while(!valid)
     {
         Title();
@@ -436,9 +465,9 @@ void searchPerson()
                 scanf("%s",pname);
                 fflush(stdin);
 
-                if(strlen(pname)>20)
+                if(!(strlen(pname)<=20&&strlen(pname)>=2))
                 {
-                    printf("\n\t Blad! Wprowadz imie do 20 liter");
+                    printf("\n\tBlad! Wprowadz imie z przedzialu od 2 do 20 liter");
 
                 }
                 else
@@ -457,7 +486,7 @@ void searchPerson()
                     }
                     if(!valid)
                     {
-                        printf("\n\t\t Uzyj poprawnych liter przy imieniu :(  Sproboj ponownie :)");
+                        printf("\n\tUzyj poprawnych liter przy imieniu  Sproboj ponownie :)");
 
                     }
                 }
@@ -495,9 +524,9 @@ void searchPerson()
                 printf("\n\t\t\tWprowadz nazwisko: ");
                 scanf("%s",plast_name);
                 fflush(stdin);
-                if(strlen(plast_name)>20)
+                if(!(strlen(plast_name)<=20&&strlen(plast_name)>=2))
                 {
-                    printf("\n\t Blad! Wprowadz nazwisko do 20 liter :>");
+                    printf("\n\tBlad! Wprowadz nazwisko z przedzialu od 2 do 20 liter");
 
                 }
                 else
@@ -516,7 +545,7 @@ void searchPerson()
                     }
                     if(!valid)
                     {
-                        printf("\n\t\t Uzyj poprawnych liter przy nazwisku :(  Sproboj ponownie :)");
+                        printf("\n\tUzyj poprawnych liter przy nazwisku  Sproboj ponownie :)");
 
                     }
                 }
@@ -549,36 +578,23 @@ void searchPerson()
         {
             fflush(stdin);
             valid=0;
-            int i;
             while(!valid)
             {
                 printf("\n\t\t\tWprowadz adres : ");
-                fgets(padress, 30, stdin);
+                fgets(padress, 32, stdin);
                 strtok(padress,"\n");
-                if(strlen(padress)>30)
+                if(!(strlen(padress)<=30&&strlen(padress)>=4))
                 {
-                    printf("\n\t Blad! Wprowadz adres do 30 liter :>");
-
+                    printf("\n\tBlad! Wprowadz adres z przedzialu od 4 do 30 liter");
+                    fflush(stdin);
+                    valid=0;
                 }
                 else
                 {
-                    for (i=0; i<strlen(padress); i++)
-                    {
-                        if (isalnum(padress[i]))
-                        {
-                            valid=1;
-                        }
-                        else
-                        {
-                            valid=0;
-                            break;
-                        }
-                    }
-                    if(!valid)
-                    {
-                        printf("\n\t\t Uzyj poprawnych znakow przy adresie :(  Sproboj ponownie :)");
 
-                    }
+
+                    valid=1;
+
                 }
             }
             current_Person = head_Person;
@@ -606,18 +622,15 @@ void searchPerson()
         {
             int i;
             valid=0;
-            while(!valid)
             {
                 printf("\n\t\t\tWprowadz numer telefonu : ");
-                scanf ("%s", pcontact);
-                fflush(stdin);
-                if(strlen(pcontact)>9||strlen(pcontact)!=9)
+                scanf("%s",pcontact);
+                if(!(strlen(pcontact)==9))
 
 
                 {
-                    printf("\n\t Blad! Wprowadz numer telefonu o dlugosci 9 cyfr");
-
-                    continue;
+                    printf("\n\tBlad! Wprowadz numer telefonu o dlugosci 9 cyfr");
+                    fflush(stdin);
 
                 }
 
@@ -641,12 +654,11 @@ void searchPerson()
                     }
                     if(!valid)
                     {
-                        printf("\n\t\t Uzyj cyfer przy wprowadzaniu numeru telefonu :(  Sproboj ponownie :)");
+                        printf("\n\tUzyj cyfr przy wprowadzaniu numeru telefonu  Sproboj ponownie :)");
+                        fflush(stdin);
 
                     }
                 }
-
-
 
             }
             current_Person = head_Person;
@@ -716,7 +728,7 @@ int deletePerson()
     printf("\n\t\t\t\tW przypadku checi powrotu wstecz wpisz 0");
     while(!valid)
     {
-        printf ("\n\n\t\t\t\tWprowadz ID osoby do modyfikacji : ");
+        printf ("\n\n\t\t\t\tWprowadz ID osoby do usuniecia : ");
 
         scanf("%d", &pid) ;
         if( pid==0)
@@ -742,15 +754,19 @@ int deletePerson()
     if(pid !=0)
     {
 
-        char ans;
-        while(!(ans=='T'||ans=='N'))
+        char ans[1];
+        while((!(ans[0]=='T'||ans[0]=='N')))
         {
-            printf("Czy jestes pewny/pewna usuniecia? T/N :");
+            printf("Czy jestes pewien/pewna usuniecia? T/N :");
             fflush(stdin);
-            scanf("%c",&ans);
-            ans = toupper(ans);
+            scanf("%s",ans);
+            if(ans[1]=='\0')
+            {
+                ans[0] = toupper(ans[0]);
 
-            if(ans=='T')
+            }
+
+            if(ans[0]=='T')
             {
                 current_Person = head_Person;
                 if(current_Person->personid == pid)
@@ -1020,8 +1036,6 @@ int addPerson()
 
     fflush(stdin);
     char ans[1];
-    ans[0]=' ';
-    ans[1]='!';
     while((!(ans[0]=='T'||ans[0]=='N')))
     {
         printf("\n\t\t\tCzy na pewno chcesz zapisac ta osobe? T/N :");
@@ -1033,7 +1047,7 @@ int addPerson()
 
         }
         else
-                fflush(stdin);
+            fflush(stdin);
     }
     if(ans[0]=='T')
     {
@@ -1104,7 +1118,7 @@ void sort()
     {
         Title();
 
-        int choose;
+        int choose=-1;
         printf("\t\t\t\tPo jakim polu chcesz posortowac?");
         printf("\n\n\t\t\t\t0. Wroc\n");
         printf("\n\t\t\t\t1. Id w gore\n");
@@ -1488,7 +1502,7 @@ void MainMenu(void)
             fflush(stdin);
             getch();
         }
-Sleep(1000);
+        Sleep(500);
     }
 
 }
