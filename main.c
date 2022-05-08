@@ -1504,7 +1504,6 @@ void MainMenu(void)
 
 
             addPerson();
-            break;
         }
 
         else  if(choose[0]==50&&choose[1]=='\0')
