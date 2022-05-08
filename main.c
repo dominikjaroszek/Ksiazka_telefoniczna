@@ -212,31 +212,46 @@ int modifyPerson()
         Person t;
         int waga=0;
         int idss;
-
-        while(!valid)
-        {
             printf ("\n\t\t\t\tWpisz 0 w przypadku checi powrotu do menu");
-            printf ("\n\n\t\t\t\tWprowadz ID osoby do modyfikacji: ");
-            scanf("%d", &idss);
-            if(idss>=1&&idss<=maxpersonid())
-            {
-                valid=1;
-            }
-           else if(idss==0)
-            {
-                    printf("\nWcisnij dowolny klawisz, zeby kontynuowac...\n");
-    getch();
-                return 2;
-            }
-            else
-            {
+while(!valid)
+    {
+        printf ("\n\n\t\t\t\tWprowadz ID osoby do usuniecia: ");
 
-
-                printf("\t\t\t\tPodaj poprawne id osoby");
-                fflush(stdin);
-            }
+        scanf("%d", &idss) ;
+        if( idss==0)
+        {
+            valid=1;
+            return 2;
 
         }
+        current_Person=head_Person;
+        if(idss>=current_Person->personid&&idss<=maxpersonid())
+        {
+            current_Person=head_Person;
+
+            while(current_Person)
+            {
+                if(idss==current_Person->personid)
+                {
+                    valid=1;
+                }
+                current_Person=current_Person->next;
+            }
+            if(!valid)
+            {
+
+                printf("\n\t\t\t\tPodaj poprawne id osoby");
+            }
+        }
+        else
+        {
+
+
+            printf("\n\t\t\t\tPodaj poprawne id osoby");
+            fflush(stdin);
+        }
+
+    }
         current_Person=head_Person;
         while (current_Person->next!=NULL&&waga==0)
         {
