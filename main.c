@@ -65,7 +65,7 @@ int maxpersonid()
 {
     current_Person=head_Person;
     int max=0;
-    while (current_Person->next!=NULL)
+    while (current_Person)
     {
         max=current_Person->personid;
         current_Person = current_Person->next;
