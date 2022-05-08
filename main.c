@@ -1440,7 +1440,7 @@ void sort()
             valid=1;
             break;
         }
-        else  if(choose[0]==58&&choose[1]=='\0')
+        else  if(choose[0]==56&&choose[1]=='\0')
         {
 
             for(current_Person = head_Person; current_Person; current_Person = current_Person->next)
@@ -1460,7 +1460,7 @@ void sort()
             valid=1;
             break;
         }
-        else  if(choose[0]==59&&choose[1]=='\0')
+        else  if(choose[0]==57&&choose[1]=='\0')
         {
 
             for(current_Person = head_Person; current_Person; current_Person = current_Person->next)
