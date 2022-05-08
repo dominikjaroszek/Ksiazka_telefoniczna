@@ -194,7 +194,7 @@ int maxpersonid()
         max=current_Person->personid;
         current_Person = current_Person->next;
     }
-    return max+1;
+    return max;
 }
 
 int modifyPerson()
@@ -222,7 +222,7 @@ int modifyPerson()
             {
                 valid=1;
             }
-            if(idss==0)
+           else if(idss==0)
             {
                     printf("\nWcisnij dowolny klawisz, zeby kontynuowac...\n");
     getch();
@@ -1330,11 +1330,11 @@ int valid=1;
         {
             current_Person = current_Person -> next = node;
         }
-      valid= checkFileid();
-      valid=checkFilename();
-      valid=checkFilelastname();
-     valid= checkFileadres();
-       valid=checkFilenumber();
+     // valid= checkFileid();
+      //valid=checkFilename();
+    //  valid=checkFilelastname();
+     //valid= checkFileadres();
+      // valid=checkFilenumber();
        if(!valid)
        {
           return valid;
