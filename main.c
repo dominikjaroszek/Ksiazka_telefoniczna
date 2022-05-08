@@ -36,6 +36,72 @@ void Title(void)
     printf("\n\t\t\t\t         KSIAZKA TELEFONICZNA        ");
     printf("\n\t\t----------------------------------------------------------------------------------\n\n\n");
 }
+int checkFileid()
+{
+    temp=head_Person;
+    while(temp)
+    {
+        if(temp->personid==current_Person->personid)
+        {
+
+
+            return 0;
+    }
+            temp=temp->next;
+    }
+    return 1;
+}
+
+int checkFileadres()
+{
+    int valid=0;
+        if(!(strlen(current_Person->adress)<=30&&strlen(current_Person->adress)>=4))
+        {
+            printf("\n\tBlad! Wprowadz adres z przedzialu od 4 do 30 liter");
+            fflush(stdin);
+            valid=0;
+        }
+        else
+        {
+            valid=1;
+
+        }
+
+return valid;
+}
+
+int checkFilenumber()
+{
+    int i=0,valid=0;
+        if(!(strlen(current_Person->contact)==9))
+
+
+        {
+            printf("\n\tBlad! Wprowadz numer telefonu o dlugosci 9 cyfr");
+            valid=0;
+
+        }
+
+        else
+        {
+            for (i=0; i<strlen(current_Person->contact); i++)
+            {
+                if (isdigit(current_Person->contact[i]))
+                {
+                    valid=1;
+
+
+                }
+                else
+                {
+                    valid=0;
+                    break;
+                }
+            }
+        }
+return valid;
+}
+
 int checkFilelastname()
 {
     int i=0,valid=0;
@@ -72,17 +138,10 @@ return valid;
 int checkFilename()
 {
     int i=0,valid=0;
-            while(current_Person->name[i])
-        {
-            current_Person->name[i]=tolower(current_Person->name[i]);
-            i++;
-        }
-
-        current_Person->name[0]=toupper(current_Person->name[0]);
         if(!(strlen(current_Person->name)<=20&&strlen(current_Person->name)>=2))
         {
             printf("\n\tBlad! Wprowadz imie z przedzialu od 2 do 20 liter");
-valid=0;
+return 0;
         }
         else
         {
@@ -94,7 +153,7 @@ valid=0;
                 }
                 else
                 {
-                   valid= 0;
+                   return 0;
                     break;
                 }
             }
@@ -1271,9 +1330,12 @@ int valid=1;
         {
             current_Person = current_Person -> next = node;
         }
-       valid=checkFilename();
-       valid=checkFilelastname();
-       if(valid)
+      valid= checkFileid();
+      valid=checkFilename();
+      valid=checkFilelastname();
+     valid= checkFileadres();
+       valid=checkFilenumber();
+       if(!valid)
        {
           return valid;
        }
@@ -1281,7 +1343,7 @@ int valid=1;
 
 
     fclose(fp);
-return valid;
+return 1;
 }
 
 void sort()
