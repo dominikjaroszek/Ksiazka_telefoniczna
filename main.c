@@ -36,6 +36,39 @@ void Title(void)
     printf("\n\t\t\t\t         KSIAZKA TELEFONICZNA        ");
     printf("\n\t\t----------------------------------------------------------------------------------\n\n\n");
 }
+int checkFilelastname()
+{
+    int i=0,valid=0;
+            while(current_Person->last_name[i])
+        {
+            current_Person->last_name[i]=tolower(current_Person->last_name[i]);
+            i++;
+        }
+
+        current_Person->last_name[0]=toupper(current_Person->last_name[0]);
+        if(!(strlen(current_Person->last_name)<=20&&strlen(current_Person->last_name)>=2))
+        {
+            printf("\n\tBlad! Wprowadz imie z przedzialu od 2 do 20 liter");
+valid=0;
+        }
+        else
+        {
+            for (i=0; i<strlen(current_Person->last_name); i++)
+            {
+                if (isalpha(current_Person->last_name[i]))
+                {
+                    valid= 1;
+                }
+                else
+                {
+                   valid= 0;
+                    break;
+                }
+            }
+
+        }
+return valid;
+}
 int checkFilename()
 {
     int i=0,valid=0;
@@ -1239,6 +1272,7 @@ int valid=1;
             current_Person = current_Person -> next = node;
         }
        valid=checkFilename();
+       valid=checkFilelastname();
        if(valid)
        {
           return valid;
