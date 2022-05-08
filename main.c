@@ -425,7 +425,6 @@ void searchPerson()
 
 
             valid=1;
-            break;
         }
         else if(choose[0]==49&&choose[1]=='\0')
         {
@@ -459,7 +458,6 @@ void searchPerson()
             }
             printf("--------------------------------------------------------------------------------------------\n");
             valid=1;
-            break;
         }
 
 
@@ -520,7 +518,6 @@ void searchPerson()
             }
             printf("--------------------------------------------------------------------------------------------\n");
             valid=1;
-            break;
         }
 
 
@@ -580,7 +577,6 @@ void searchPerson()
             }
             printf("--------------------------------------------------------------------------------------------\n");
             valid=1;
-            break;
         }
 
 
@@ -627,7 +623,6 @@ void searchPerson()
             }
             printf("--------------------------------------------------------------------------------------------\n");
             valid=1;
-            break;
         }
         else if(choose[0]==53&&choose[1]=='\0')
         {
@@ -688,7 +683,6 @@ void searchPerson()
             }
             printf("--------------------------------------------------------------------------------------------\n");
             valid=1;
-            break;
         }
         else
         {
@@ -1171,7 +1165,6 @@ void sort()
         {
             valid=1;
             falid=1;
-            break;
         }
         else  if(choose[0]==49&&choose[1]=='\0')
         {
@@ -1200,10 +1193,6 @@ void sort()
             }
             temp = head_Person;
             valid=1;
-
-            break;
-
-
         }
         else  if(choose[0]==50&&choose[1]=='\0')
         {
@@ -1232,7 +1221,6 @@ void sort()
             }
             temp = head_Person;
             valid=1;
-            break;
         }
         else  if(choose[0]==51&&choose[1]=='\0')
         {
@@ -1262,8 +1250,6 @@ void sort()
             temp = head_Person;
             valid=1;
 
-
-            break;
         }
         else  if(choose[0]==52&&choose[1]=='\0')
         {
@@ -1293,8 +1279,6 @@ void sort()
             temp = head_Person;
             valid=1;
 
-
-            break;
         }
         else  if(choose[0]==53&&choose[1]=='\0')
         {
@@ -1322,7 +1306,6 @@ void sort()
             }
             temp = head_Person;
             valid=1;
-            break;
         }
         else  if(choose[0]==54&&choose[1]=='\0')
         {
@@ -1350,7 +1333,6 @@ void sort()
             }
             temp = head_Person;
             valid=1;
-            break;
         }
         else  if(choose[0]==55&&choose[1]=='\0')
         {
@@ -1370,7 +1352,6 @@ void sort()
             }
             temp = head_Person;
             valid=1;
-            break;
         }
         else  if(choose[0]==58&&choose[1]=='\0')
         {
@@ -1390,7 +1371,6 @@ void sort()
             }
             temp = head_Person;
             valid=1;
-            break;
         }
         else  if(choose[0]==59&&choose[1]=='\0')
         {
@@ -1410,8 +1390,6 @@ void sort()
             }
             temp = head_Person;
             valid=1;
-            break;
-        }
         else  if(choose[1]==48&&choose[0]==49&&choose[2]=='\0')
         {
 
@@ -1430,7 +1408,6 @@ void sort()
             }
             temp = head_Person;
             valid=1;
-            break;
         }
         else
         {
