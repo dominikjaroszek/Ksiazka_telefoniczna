@@ -36,7 +36,39 @@ void Title(void)
     printf("\n\t\t\t\t         KSIAZKA TELEFONICZNA        ");
     printf("\n\t\t----------------------------------------------------------------------------------\n\n\n");
 }
+int checkFilename()
+{
+    int i=0,valid=0;
+            while(current_Person->name[i])
+        {
+            current_Person->name[i]=tolower(current_Person->name[i]);
+            i++;
+        }
 
+        current_Person->name[0]=toupper(current_Person->name[0]);
+        if(!(strlen(current_Person->name)<=20&&strlen(current_Person->name)>=2))
+        {
+            printf("\n\tBlad! Wprowadz imie z przedzialu od 2 do 20 liter");
+valid=0;
+        }
+        else
+        {
+            for (i=0; i<strlen(current_Person->name); i++)
+            {
+                if (isalpha(current_Person->name[i]))
+                {
+                    valid= 1;
+                }
+                else
+                {
+                   valid= 0;
+                    break;
+                }
+            }
+
+        }
+return valid;
+}
 void writePersonFile()
 {
     FILE *fp = fopen("Person.txt","w");
@@ -1179,7 +1211,7 @@ int addPerson()
     return 2;
 }
 
-void readPersonFile()
+int readPersonFile()
 {
 
     head_Person = NULL,current_Person = NULL;
@@ -1187,8 +1219,8 @@ void readPersonFile()
     FILE *fp = fopen("Person.txt","r");
 
     Person tl, *node;
-
-    while (fscanf (fp,"%d;%[^;];%[^;];%[^;];%[^;\n]", &tl.personid, tl.name,tl.last_name,tl.contact,tl.adress)!=EOF)
+int valid=1;
+    while ((fscanf (fp,"%d;%[^;];%[^;];%[^;];%[^;\n]", &tl.personid, tl.name,tl.last_name,tl.contact,tl.adress)!=EOF)&&valid)
     {
 
         node = (Person*)malloc (sizeof (Person) );
@@ -1206,9 +1238,16 @@ void readPersonFile()
         {
             current_Person = current_Person -> next = node;
         }
+       valid=checkFilename();
+       if(valid)
+       {
+          return valid;
+       }
     }
-    fclose(fp);
 
+
+    fclose(fp);
+return valid;
 }
 
 void sort()
@@ -1548,7 +1587,11 @@ void MainMenu(void)
 {
     WelcomeScreen();
 
-    readPersonFile();
+    if(!readPersonFile())
+    {
+        printf("Plik jest uszkodzony !");
+        exit(0);
+    }
     while(1)
     {
         system("cls");
