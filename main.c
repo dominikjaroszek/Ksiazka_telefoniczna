@@ -505,7 +505,7 @@ void searchPerson()
         pname[0]=toupper(pname[0]);
                 if(!(strlen(pname)<=20&&strlen(pname)>=1))
                 {
-                    printf("\n\tBlad! Wprowadz imie z przedzialu od 2 do 20 liter");
+                    printf("\n\tBlad! Wprowadz imie z przedzialu od 1 do 20 liter");
 
                 }
                 else
@@ -572,7 +572,7 @@ void searchPerson()
         plast_name[0]=toupper(plast_name[0]);
                 if(!(strlen(plast_name)<=20&&strlen(plast_name)>=1))
                 {
-                    printf("\n\tBlad! Wprowadz nazwisko z przedzialu od 2 do 20 liter");
+                    printf("\n\tBlad! Wprowadz nazwisko z przedzialu od 1 do 20 liter");
 
                 }
                 else
@@ -631,7 +631,7 @@ void searchPerson()
                 strtok(padress,"\n");
                 if(!(strlen(padress)<=30&&strlen(padress)>=1))
                 {
-                    printf("\n\tBlad! Wprowadz adres z przedzialu od 4 do 30 liter");
+                    printf("\n\tBlad! Wprowadz adres z przedzialu od 1 do 30 liter");
                     fflush(stdin);
                     valid=0;
                 }
@@ -647,14 +647,34 @@ void searchPerson()
 
             printf("%-5s%-21s%-21s%-31s%-10s\n","ID","Imie","Nazwisko","Adres","Numer_Telefonu");
             printf("--------------------------------------------------------------------------------------------\n");
-
+char currentAdress[30],currentAdress2[30];
+strcpy(currentAdress,padress);
+int i=0;
+while(currentAdress[i])
+{
+    if(isalpha(currentAdress[i]))
+    {
+        currentAdress[i]=tolower(currentAdress[i]);
+    }
+    i++;
+}
             while (current_Person!=NULL)
             {
-                if(!strcmp(current_Person->adress,padress))
+                strcpy(currentAdress2,current_Person->adress);
+                i=0;
+                while(currentAdress[i])
+{
+    if(isalpha(currentAdress2[i]))
+    {
+        currentAdress2[i]=tolower(currentAdress2[i]);
+    }
+    i++;
+}
+                if(!strcmp(currentAdress2,currentAdress))
                 {
                     printf ("%-5d%-21s%-21s%-31s%-10s\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->adress,current_Person->contact);
                 }
-                else if(!strncmp(current_Person->adress, padress,strlen(padress)))
+                else if(!strncmp(currentAdress2, currentAdress,strlen(currentAdress)))
                 {
                     printf ("%-5d%-21s%-21s%-31s%-10s\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->adress,current_Person->contact);
                 }
@@ -1053,7 +1073,6 @@ int addPerson()
         printf("\n\t\t\tWprowadz adres: ");
         fgets(t.adress, 32, stdin);
         strtok(t.adress,"\n");
-        t.adress[0]=toupper(t.adress[0]);
         if(!(strlen(t.adress)<=30&&strlen(t.adress)>=4))
         {
             printf("\n\tBlad! Wprowadz adres z przedzialu od 4 do 30 liter");
