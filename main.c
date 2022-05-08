@@ -73,7 +73,7 @@ int maxpersonid()
     return max+1;
 }
 
-void modifyPerson()
+int modifyPerson()
 {
 
     system("cls");
@@ -91,11 +91,18 @@ void modifyPerson()
 
         while(!valid)
         {
+            printf ("\n\t\t\t\tWpisz 0 w przypadku checi powrotu do menu");
             printf ("\n\n\t\t\t\tWprowadz ID osoby do modyfikacji: ");
             scanf("%d", &idss);
             if(idss>=1&&idss<=maxpersonid())
             {
                 valid=1;
+            }
+            if(idss==0)
+            {
+                    printf("\nWcisnij dowolny klawisz, zeby kontynuowac...\n");
+    getch();
+                return 2;
             }
             else
             {
@@ -391,6 +398,7 @@ void modifyPerson()
 
     printf("\nWcisnij dowolny klawisz, zeby kontynuowac...\n");
     getch();
+    return 1;
 }
 
 void searchPerson()
@@ -425,6 +433,7 @@ void searchPerson()
 
 
             valid=1;
+            break;
         }
         else if(choose[0]==49&&choose[1]=='\0')
         {
@@ -458,6 +467,7 @@ void searchPerson()
             }
             printf("--------------------------------------------------------------------------------------------\n");
             valid=1;
+            break;
         }
 
 
@@ -518,6 +528,7 @@ void searchPerson()
             }
             printf("--------------------------------------------------------------------------------------------\n");
             valid=1;
+            break;
         }
 
 
@@ -577,6 +588,7 @@ void searchPerson()
             }
             printf("--------------------------------------------------------------------------------------------\n");
             valid=1;
+            break;
         }
 
 
@@ -623,6 +635,7 @@ void searchPerson()
             }
             printf("--------------------------------------------------------------------------------------------\n");
             valid=1;
+            break;
         }
         else if(choose[0]==53&&choose[1]=='\0')
         {
@@ -683,6 +696,7 @@ void searchPerson()
             }
             printf("--------------------------------------------------------------------------------------------\n");
             valid=1;
+            break;
         }
         else
         {
@@ -919,6 +933,13 @@ int addPerson()
         printf("\n\n\n\t\t\tWprowadz imie: ");
         scanf("%s",t.name);
         fflush(stdin);
+        i=0;
+        while(t.name[i])
+        {
+            t.name[i]=tolower(t.name[i]);
+            i++;
+        }
+
         t.name[0]=toupper(t.name[0]);
         if( !strcmp(t.name,"0"))
         {
@@ -963,6 +984,13 @@ int addPerson()
         printf("\n\t\t\tWprowadz nazwisko: ");
         scanf("%s",t.last_name);
         fflush(stdin);
+        i=0;
+        while(t.last_name[i])
+        {
+            t.last_name[i]=tolower(t.last_name[i]);
+            i++;
+        }
+
         t.last_name[0]=toupper(t.last_name[0]);
         if(!(strlen(t.last_name)<=20&&strlen(t.last_name)>=2))
         {
@@ -1165,6 +1193,7 @@ void sort()
         {
             valid=1;
             falid=1;
+            break;
         }
         else  if(choose[0]==49&&choose[1]=='\0')
         {
@@ -1193,6 +1222,10 @@ void sort()
             }
             temp = head_Person;
             valid=1;
+
+            break;
+
+
         }
         else  if(choose[0]==50&&choose[1]=='\0')
         {
@@ -1221,6 +1254,7 @@ void sort()
             }
             temp = head_Person;
             valid=1;
+            break;
         }
         else  if(choose[0]==51&&choose[1]=='\0')
         {
@@ -1250,6 +1284,8 @@ void sort()
             temp = head_Person;
             valid=1;
 
+
+            break;
         }
         else  if(choose[0]==52&&choose[1]=='\0')
         {
@@ -1279,6 +1315,8 @@ void sort()
             temp = head_Person;
             valid=1;
 
+
+            break;
         }
         else  if(choose[0]==53&&choose[1]=='\0')
         {
@@ -1306,6 +1344,7 @@ void sort()
             }
             temp = head_Person;
             valid=1;
+            break;
         }
         else  if(choose[0]==54&&choose[1]=='\0')
         {
@@ -1333,6 +1372,7 @@ void sort()
             }
             temp = head_Person;
             valid=1;
+            break;
         }
         else  if(choose[0]==55&&choose[1]=='\0')
         {
@@ -1352,6 +1392,7 @@ void sort()
             }
             temp = head_Person;
             valid=1;
+            break;
         }
         else  if(choose[0]==58&&choose[1]=='\0')
         {
@@ -1371,6 +1412,7 @@ void sort()
             }
             temp = head_Person;
             valid=1;
+            break;
         }
         else  if(choose[0]==59&&choose[1]=='\0')
         {
@@ -1390,6 +1432,8 @@ void sort()
             }
             temp = head_Person;
             valid=1;
+            break;
+        }
         else  if(choose[1]==48&&choose[0]==49&&choose[2]=='\0')
         {
 
@@ -1408,6 +1452,7 @@ void sort()
             }
             temp = head_Person;
             valid=1;
+            break;
         }
         else
         {
