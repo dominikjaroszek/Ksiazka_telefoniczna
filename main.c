@@ -335,7 +335,7 @@ int modifyPerson()
                 {
                     for (i=0; i<strlen(pcontact); i++)
                     {
-                        if (!isalpha(pcontact[i]))
+                        if (isdigit(pcontact[i]))
                         {
                             valid=1;
 
@@ -658,7 +658,7 @@ void searchPerson()
                 {
                     for (i=0; i<strlen(pcontact); i++)
                     {
-                        if (!isalpha(pcontact[i]))
+                        if (isdigit(pcontact[i]))
                         {
                             valid=1;
 
@@ -1061,7 +1061,7 @@ int addPerson()
         {
             for (i=0; i<strlen(pcontact); i++)
             {
-                if (!isalpha(pcontact[i]))
+                if (isdigit(pcontact[i]))
                 {
                     valid=1;
                     strcpy(node->contact,pcontact);
