@@ -150,7 +150,14 @@ int modifyPerson()
 
                 printf("\n\t\t\tWprowadz imie: ");
                 scanf("%s",t.name);
-                t.name[0]=toupper(t.name[0]);
+                i=0;
+                        while(t.name[i])
+        {
+            t.name[i]=tolower(t.name[i]);
+            i++;
+        }
+
+        t.name[0]=toupper(t.name[0]);
                 if(!(strlen(t.name)<=20&&strlen(t.name)>=2))
                 {
                     printf("\n\tBlad! Wprowadz imie z przedzialu od 2 do 20 liter");
@@ -212,7 +219,14 @@ int modifyPerson()
                 printf("\n\t\t\tWprowadz nazwisko: ");
                 scanf("%s",t.last_name);
                 fflush(stdin);
-                t.last_name[0]=toupper(t.last_name[0]);
+                i=0;
+                        while(t.last_name[i])
+        {
+            t.last_name[i]=tolower(t.last_name[i]);
+            i++;
+        }
+
+        t.last_name[0]=toupper(t.last_name[0]);
                 if(!(strlen(t.last_name)<=20&&strlen(t.last_name)>=2))
                 {
                     printf("\n\tBlad! Wprowadz nazwisko z przedzialu od 2 do 20 liter");
@@ -482,8 +496,14 @@ void searchPerson()
                 printf("\n\n\n\t\t\tWprowadz imie: ");
                 scanf("%s",pname);
                 fflush(stdin);
+        while(pname[i])
+        {
+            pname[i]=tolower(pname[i]);
+            i++;
+        }
 
-                if(!(strlen(pname)<=20&&strlen(pname)>=2))
+        pname[0]=toupper(pname[0]);
+                if(!(strlen(pname)<=20&&strlen(pname)>=1))
                 {
                     printf("\n\tBlad! Wprowadz imie z przedzialu od 2 do 20 liter");
 
@@ -543,7 +563,14 @@ void searchPerson()
                 printf("\n\t\t\tWprowadz nazwisko: ");
                 scanf("%s",plast_name);
                 fflush(stdin);
-                if(!(strlen(plast_name)<=20&&strlen(plast_name)>=2))
+                        while(plast_name[i])
+        {
+            plast_name[i]=tolower(plast_name[i]);
+            i++;
+        }
+
+        plast_name[0]=toupper(plast_name[0]);
+                if(!(strlen(plast_name)<=20&&strlen(plast_name)>=1))
                 {
                     printf("\n\tBlad! Wprowadz nazwisko z przedzialu od 2 do 20 liter");
 
@@ -602,7 +629,7 @@ void searchPerson()
                 printf("\n\t\t\tWprowadz adres: ");
                 fgets(padress, 32, stdin);
                 strtok(padress,"\n");
-                if(!(strlen(padress)<=30&&strlen(padress)>=4))
+                if(!(strlen(padress)<=30&&strlen(padress)>=1))
                 {
                     printf("\n\tBlad! Wprowadz adres z przedzialu od 4 do 30 liter");
                     fflush(stdin);
