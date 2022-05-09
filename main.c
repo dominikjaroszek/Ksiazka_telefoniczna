@@ -1327,7 +1327,7 @@ int readPersonFile()
 
     Person tl, *node;
 int valid=1;
-    while ((fscanf (fp,"%d;%[^;];%[^;];%[^;];%[^;\n]", &tl.personid, tl.name,tl.last_name,tl.contact,tl.adress)!=EOF)&&valid)
+    while ((fscanf (fp,"%d;%[^;];%[^;];%[^;];%[^;\n];", &tl.personid, tl.name,tl.last_name,tl.contact,tl.adress)!=EOF)&&valid)
     {
 
         node = (Person*)malloc (sizeof (Person) );
