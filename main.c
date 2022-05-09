@@ -78,7 +78,7 @@ int checkFilenumber()
 
         {
             printf("\n\tBlad! Wprowadz numer telefonu o dlugosci 9 cyfr");
-            valid=0;
+            return 0;
 
         }
 
@@ -94,7 +94,7 @@ int checkFilenumber()
                 }
                 else
                 {
-                    valid=0;
+                    return 0;
                     break;
                 }
             }
@@ -1346,10 +1346,26 @@ int valid=1;
             current_Person = current_Person -> next = node;
         }
      // valid= checkFileid();
-      //valid=checkFilename();
-    //  valid=checkFilelastname();
-     //valid= checkFileadres();
-      // valid=checkFilenumber();
+            if(!valid)
+       {
+          return valid;
+       }
+      valid=checkFilename();
+             if(!valid)
+       {
+          return valid;
+       }
+      valid=checkFilelastname();
+             if(!valid)
+       {
+          return valid;
+       }
+     valid= checkFileadres();
+            if(!valid)
+       {
+          return valid;
+       }
+       valid=checkFilenumber();
        if(!valid)
        {
           return valid;
@@ -1358,7 +1374,7 @@ int valid=1;
 
 
     fclose(fp);
-return 1;
+return valid;
 }
 
 void sort()
