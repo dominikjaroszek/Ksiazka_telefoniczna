@@ -185,18 +185,26 @@ return valid;
 int checksign()
 {
     FILE *fp = fopen("Person.txt","r");
-    int znak;
+    char znak;
 int count=0;
     while((znak=fgetc(fp))!=EOF)
  {
 
  if(znak==59)
  {
+
      count++;
-     if(count>(maxpersonid()*5))
+
+ }
+ }
+ if(count!=(maxpersonid()*5))
+ {
+
+
         return 0;
  }
- }
+
+
  fclose(fp);
 return 1;
 }
