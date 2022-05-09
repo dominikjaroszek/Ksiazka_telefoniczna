@@ -80,6 +80,17 @@ int maxpersonid()
     }
     return max;
 }
+int maxcountpersonid()
+{
+    current_Person=head_Person;
+    int max=0;
+    while (current_Person)
+    {
+        max++;
+        current_Person = current_Person->next;
+    }
+    return max;
+}
 int checkFilenumber()
 {
     int i=0,valid=0;
@@ -197,7 +208,7 @@ int count=0;
 
  }
  }
- if(count!=(maxpersonid()*5))
+ if(count!=(maxcountpersonid()*5))
  {
 
 
@@ -208,17 +219,28 @@ int count=0;
  fclose(fp);
 return 1;
 }
-void writePersonFile()
+int writePersonFile()
 {
     FILE *fp = fopen("Person.txt","w");
-
+if(fp == NULL) {
+printf("B³¹d otwarcia pliku!\n");
+return 0;
+}
     for(current_Person = head_Person; current_Person; current_Person = current_Person->next)
     {
         fprintf (fp, "%d;%s;%s;%s;%s;\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->contact, current_Person->adress );
     }
-
-    fclose (fp);
+if(fseek(fp,0,SEEK_SET)==-1) {
+printf("B³¹d operacji przesuwania wskaŸnika pliku!\n");
+return 0;
+}
+    if(fclose(fp))
+    {
+printf("B³¹d zamkniêcia pliku!\n");
+return 0;
+}
     printf("\n\n\nZapis sie udal!\n");
+    return 1;
 }
 
 void displayPerson()
@@ -1359,7 +1381,10 @@ int readPersonFile()
     head_Person = NULL,current_Person = NULL;
 
     FILE *fp = fopen("Person.txt","r");
-
+if(fp == NULL) {
+printf("B³¹d otwarcia pliku!\n");
+return 0;
+}
     Person tl, *node;
 int valid=1;
     while ((fscanf (fp,"%d;%[^;];%[^;];%[^;];%[^;\n];", &tl.personid, tl.name,tl.last_name,tl.contact,tl.adress)!=EOF)&&valid)
@@ -1412,7 +1437,11 @@ valid=checksign();
        {
           return valid;
        }
-    fclose(fp);
+    if(fclose(fp))
+    {
+printf("B³¹d zamkniêcia pliku!\n");
+return 0;
+}
 return valid;
 }
 
