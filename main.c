@@ -69,7 +69,17 @@ int checkFileadres()
 
 return valid;
 }
-
+int maxpersonid()
+{
+    current_Person=head_Person;
+    int max=0;
+    while (current_Person)
+    {
+        max=current_Person->personid;
+        current_Person = current_Person->next;
+    }
+    return max;
+}
 int checkFilenumber()
 {
     int i=0,valid=0;
@@ -99,6 +109,17 @@ int checkFilenumber()
                 }
             }
         }
+          temp=head_Person;
+    while(temp->next!=NULL)
+    {
+        if(strcmp(temp->contact,current_Person->contact)==0)
+        {
+
+
+            return 0;
+    }
+            temp=temp->next;
+    }
 return valid;
 }
 
@@ -161,13 +182,31 @@ return 0;
         }
 return valid;
 }
+int checksign()
+{
+    FILE *fp = fopen("Person.txt","r");
+    int znak;
+int count=0;
+    while((znak=fgetc(fp))!=EOF)
+ {
+
+ if(znak==59)
+ {
+     count++;
+     if(count>(maxpersonid()*5))
+        return 0;
+ }
+ }
+ fclose(fp);
+return 1;
+}
 void writePersonFile()
 {
     FILE *fp = fopen("Person.txt","w");
 
     for(current_Person = head_Person; current_Person; current_Person = current_Person->next)
     {
-        fprintf (fp, "%d;%s;%s;%s;%s\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->contact, current_Person->adress );
+        fprintf (fp, "%d;%s;%s;%s;%s;\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->contact, current_Person->adress );
     }
 
     fclose (fp);
@@ -183,18 +222,6 @@ void displayPerson()
     for(current_Person =head_Person; current_Person; current_Person = current_Person->next)
         printf ("%-5d%-21s%-21s%-31s%-10s\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->adress,current_Person->contact);
     printf("--------------------------------------------------------------------------------------------\n");
-}
-
-int maxpersonid()
-{
-    current_Person=head_Person;
-    int max=0;
-    while (current_Person)
-    {
-        max=current_Person->personid;
-        current_Person = current_Person->next;
-    }
-    return max;
 }
 
 int modifyPerson()
@@ -1360,7 +1387,7 @@ int valid=1;
        {
           return valid;
        }
-     valid= checkFileadres();
+      checkFileadres();
             if(!valid)
        {
           return valid;
@@ -1372,7 +1399,11 @@ int valid=1;
        }
     }
 
-
+valid=checksign();
+            if(!valid)
+       {
+          return valid;
+       }
     fclose(fp);
 return valid;
 }
