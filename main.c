@@ -39,7 +39,7 @@ void Title(void)
 int checkFileid()
 {
     temp=head_Person;
-    while(temp)
+    while(temp->next!=NULL)
     {
         if(temp->personid==current_Person->personid)
         {
@@ -1345,7 +1345,7 @@ int valid=1;
         {
             current_Person = current_Person -> next = node;
         }
-     // valid= checkFileid();
+     valid= checkFileid();
             if(!valid)
        {
           return valid;
@@ -1712,13 +1712,14 @@ void sort()
 
 void MainMenu(void)
 {
-    WelcomeScreen();
-
     if(!readPersonFile())
     {
-        printf("Plik jest uszkodzony !");
+        printf("\n\nPlik jest uszkodzony !");
         exit(0);
     }
+    WelcomeScreen();
+
+
     while(1)
     {
         system("cls");
