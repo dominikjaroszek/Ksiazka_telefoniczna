@@ -59,7 +59,7 @@ int checkFileadres()
         {
             printf("\n\tBlad! Wprowadz adres z przedzialu od 4 do 30 liter");
             fflush(stdin);
-            valid=0;
+            return 0;
         }
         else
         {
@@ -1804,7 +1804,7 @@ void MainMenu(void)
         else  if(choose[0]==54&&choose[1]=='\0')
             sort();
 
-        else  if(choose[0]==51&&choose[1]=='\0')
+        else  if(choose[0]==55&&choose[1]=='\0')
         {
 
 
