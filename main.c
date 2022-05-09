@@ -44,7 +44,7 @@ int checkFileid()
         if(temp->personid==current_Person->personid)
         {
 
-
+printf("\n\t\tBlad! W pliku jest problem z id");
             return 0;
     }
             temp=temp->next;
@@ -57,7 +57,7 @@ int checkFileadres()
     int valid=0;
         if(!(strlen(current_Person->adress)<=30&&strlen(current_Person->adress)>=4))
         {
-            printf("\n\tBlad! Wprowadz adres z przedzialu od 4 do 30 liter");
+            printf("\n\tBlad! Adres z pliku powinien mieæ od 4 do 30 liter");
             fflush(stdin);
             return 0;
         }
@@ -98,7 +98,7 @@ int checkFilenumber()
 
 
         {
-            printf("\n\tBlad! Wprowadz numer telefonu o dlugosci 9 cyfr");
+            printf("\n\tBlad! Numer w pliku powinien mieæ 9 cyfr");
             return 0;
 
         }
@@ -115,6 +115,7 @@ int checkFilenumber()
                 }
                 else
                 {
+                    printf("\n\tUzyj cyfr w pliku przy numerze!  Sprobuj ponownie");
                     return 0;
                     break;
                 }
@@ -137,17 +138,11 @@ return valid;
 int checkFilelastname()
 {
     int i=0,valid=0;
-            while(current_Person->last_name[i])
-        {
-            current_Person->last_name[i]=tolower(current_Person->last_name[i]);
-            i++;
-        }
 
-        current_Person->last_name[0]=toupper(current_Person->last_name[0]);
         if(!(strlen(current_Person->last_name)<=20&&strlen(current_Person->last_name)>=2))
         {
-            printf("\n\tBlad! Wprowadz imie z przedzialu od 2 do 20 liter");
-valid=0;
+            printf("\n\tBlad! Nazwisko z pliku powinno mieæ od 2 do 20 liter");
+return 0;
         }
         else
         {
@@ -159,7 +154,8 @@ valid=0;
                 }
                 else
                 {
-                   valid= 0;
+                   printf("\n\tUzyj liter w pliku przy nazwisku!  Sprobuj ponownie");
+                   return 0;
                     break;
                 }
             }
@@ -172,7 +168,7 @@ int checkFilename()
     int i=0,valid=0;
         if(!(strlen(current_Person->name)<=20&&strlen(current_Person->name)>=2))
         {
-            printf("\n\tBlad! Wprowadz imie z przedzialu od 2 do 20 liter");
+            printf("\n\tBlad! Imie z pliku powinno mieæ od 2 do 20 liter");
 return 0;
         }
         else
@@ -185,6 +181,7 @@ return 0;
                 }
                 else
                 {
+                    printf("\n\tUzyj liter w pliku przy imieniu!  Sprobuj ponownie");
                    return 0;
                     break;
                 }
@@ -196,6 +193,10 @@ return valid;
 int checksign()
 {
     FILE *fp = fopen("Person.txt","r");
+    if(fp == NULL) {
+printf("Blad otwarcia pliku!\n");
+return 0;
+}
     char znak;
 int count=0;
     while((znak=fgetc(fp))!=EOF)
@@ -216,14 +217,18 @@ int count=0;
  }
 
 
- fclose(fp);
+    if(fclose(fp))
+    {
+printf("Blad zamkniêcia pliku!\n");
+return 0;
+}
 return 1;
 }
 int writePersonFile()
 {
     FILE *fp = fopen("Person.txt","w");
 if(fp == NULL) {
-printf("B³¹d otwarcia pliku!\n");
+printf("Blad otwarcia pliku!\n");
 return 0;
 }
     for(current_Person = head_Person; current_Person; current_Person = current_Person->next)
@@ -231,18 +236,21 @@ return 0;
         fprintf (fp, "%d;%s;%s;%s;%s;\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->contact, current_Person->adress );
     }
 if(fseek(fp,0,SEEK_SET)==-1) {
-printf("B³¹d operacji przesuwania wskaŸnika pliku!\n");
+printf("Blad operacji przesuwania wskaŸnika pliku!\n");
 return 0;
 }
     if(fclose(fp))
     {
-printf("B³¹d zamkniêcia pliku!\n");
+printf("Blad zamkniêcia pliku!\n");
 return 0;
 }
     printf("\n\n\nZapis sie udal!\n");
     return 1;
 }
+void checknumber()
+{
 
+}
 void displayPerson()
 {
     system("cls");
@@ -566,7 +574,16 @@ while(!valid)
 
                     }
                 }
-
+                temp=head_Person;
+while(temp)
+{
+    if(strcmp(temp->contact,pcontact)==0)
+    {
+        printf("Podaj numer, ktory sie nie powtorzyl");
+        valid=0;
+    }
+    temp=temp->next;
+}
             }
             char ans[1];
             while((!(ans[0]=='T'||ans[0]=='N')))
@@ -1325,7 +1342,16 @@ int addPerson()
 
             }
         }
-
+                temp=head_Person;
+while(temp)
+{
+    if(strcmp(temp->contact,pcontact)==0)
+    {
+        printf("\n\tPodaj numer, ktory sie nie powtorzyl");
+        valid=0;
+    }
+    temp=temp->next;
+}
     }
 
 
@@ -1382,7 +1408,7 @@ int readPersonFile()
 
     FILE *fp = fopen("Person.txt","r");
 if(fp == NULL) {
-printf("B³¹d otwarcia pliku!\n");
+printf("Blad otwarcia pliku!\n");
 return 0;
 }
     Person tl, *node;
@@ -1439,7 +1465,7 @@ valid=checksign();
        }
     if(fclose(fp))
     {
-printf("B³¹d zamkniêcia pliku!\n");
+printf("Blad zamkniêcia pliku!\n");
 return 0;
 }
 return valid;
@@ -1782,7 +1808,7 @@ void MainMenu(void)
 {
     if(!readPersonFile())
     {
-        printf("\n\nPlik jest uszkodzony !");
+        printf("\n\n\t\tPlik jest uszkodzony !");
         exit(0);
     }
     WelcomeScreen();
