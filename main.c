@@ -1395,7 +1395,7 @@ int valid=1;
        {
           return valid;
        }
-      checkFileadres();
+      valid=checkFileadres();
             if(!valid)
        {
           return valid;
