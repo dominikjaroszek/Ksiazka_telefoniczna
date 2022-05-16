@@ -1,11 +1,8 @@
 #include <stdio.h>
-#include <windows.h>
 #include <conio.h>
 #include <ctype.h>
 #include <string.h>
 #include <stdlib.h>
-#include <Windows.h>
-
 typedef struct Person
 {
     int personid;
@@ -25,16 +22,15 @@ void WelcomeScreen(void)
     printf("\n\t\t\t\t#         W KSIAZCE TELEFONICZNEJ       #");
     printf("\n\t\t\t\t#                                       #");
     printf("\n\t\t\t\t#########################################");
-    printf("\n\n\n\n\n Wcisnij dowolny klawisz, zeby kontynuowac...\n");
+    printf("\n\n\n\n\nWcisnij dowolny klawisz, zeby kontynuowac...\n");
     getch();
     system("cls");
 }
-
 void Title(void)
 {
-    printf("\n\n\t\t----------------------------------------------------------------------------------");
+    printf("\n\n\t--------------------------------------------------------------------------------------------");
     printf("\n\t\t\t\t         KSIAZKA TELEFONICZNA        ");
-    printf("\n\t\t----------------------------------------------------------------------------------\n\n\n");
+    printf("\n\t--------------------------------------------------------------------------------------------\n\n\n");
 }
 int checkFileid()
 {
@@ -44,32 +40,31 @@ int checkFileid()
         if(temp->personid==current_Person->personid)
         {
 
-printf("\n\t\tBlad! W pliku jest problem z id");
+            printf("\n\tBlad! W pliku wystepuje problem z id");
             return 0;
-    }
-            temp=temp->next;
+        }
+        temp=temp->next;
     }
     return 1;
 }
-
 int checkFileadres()
 {
     int valid=0;
-        if(!(strlen(current_Person->adress)<=30&&strlen(current_Person->adress)>=4))
-        {
-            printf("\n\tBlad! Adres z pliku powinien mieæ od 4 do 30 liter");
-            fflush(stdin);
-            return 0;
-        }
-        else
-        {
-            valid=1;
+    if(!(strlen(current_Person->adress)<=30&&strlen(current_Person->adress)>=4))
+    {
+        printf("\n\tBlad! Adres w pliku powinien miec od 4 do 30 liter");
+        fflush(stdin);
+        return 0;
+    }
+    else
+    {
+        valid=1;
 
-        }
+    }
 
-return valid;
+    return valid;
 }
-int maxpersonid()
+int lastpersonid()
 {
     current_Person=head_Person;
     int max=0;
@@ -94,34 +89,34 @@ int maxcountpersonid()
 int checkFilenumber()
 {
     int i=0,valid=0;
-        if(!(strlen(current_Person->contact)==9))
+    if(!(strlen(current_Person->contact)==9))
 
 
+    {
+        printf("\n\tBlad! Numer w pliku powinien miec 9 cyfr");
+        return 0;
+
+    }
+
+    else
+    {
+        for (i=0; i<strlen(current_Person->contact); i++)
         {
-            printf("\n\tBlad! Numer w pliku powinien mieæ 9 cyfr");
-            return 0;
-
-        }
-
-        else
-        {
-            for (i=0; i<strlen(current_Person->contact); i++)
+            if (isdigit(current_Person->contact[i]))
             {
-                if (isdigit(current_Person->contact[i]))
-                {
-                    valid=1;
+                valid=1;
 
 
-                }
-                else
-                {
-                    printf("\n\tUzyj cyfr w pliku przy numerze!  Sprobuj ponownie");
-                    return 0;
-                    break;
-                }
+            }
+            else
+            {
+                printf("\n\tUzyj cyfr przy numerze w pliku!  Sprobuj ponownie");
+                return 0;
+                break;
             }
         }
-          temp=head_Person;
+    }
+    temp=head_Person;
     while(temp->next!=NULL)
     {
         if(strcmp(temp->contact,current_Person->contact)==0)
@@ -129,139 +124,136 @@ int checkFilenumber()
 
 
             return 0;
+        }
+        temp=temp->next;
     }
-            temp=temp->next;
-    }
-return valid;
+    return valid;
 }
-
 int checkFilelastname()
 {
     int i=0,valid=0;
 
-        if(!(strlen(current_Person->last_name)<=20&&strlen(current_Person->last_name)>=2))
+    if(!(strlen(current_Person->last_name)<=20&&strlen(current_Person->last_name)>=2))
+    {
+        printf("\n\tBlad! Nazwisko w pliku powinno miec od 2 do 20 liter");
+        return 0;
+    }
+    else
+    {
+        for (i=0; i<strlen(current_Person->last_name); i++)
         {
-            printf("\n\tBlad! Nazwisko z pliku powinno mieæ od 2 do 20 liter");
-return 0;
-        }
-        else
-        {
-            for (i=0; i<strlen(current_Person->last_name); i++)
+            if (isalpha(current_Person->last_name[i]))
             {
-                if (isalpha(current_Person->last_name[i]))
-                {
-                    valid= 1;
-                }
-                else
-                {
-                   printf("\n\tUzyj liter w pliku przy nazwisku!  Sprobuj ponownie");
-                   return 0;
-                    break;
-                }
+                valid= 1;
             }
-
+            else
+            {
+                printf("\n\tUzyj liter przy nazwisku w pliku! Sprobuj ponownie");
+                return 0;
+                break;
+            }
         }
-return valid;
+
+    }
+    return valid;
 }
 int checkFilename()
 {
     int i=0,valid=0;
-        if(!(strlen(current_Person->name)<=20&&strlen(current_Person->name)>=2))
+    if(!(strlen(current_Person->name)<=20&&strlen(current_Person->name)>=2))
+    {
+        printf("\n\tBlad! Imie w pliku powinno miec od 2 do 20 liter");
+        return 0;
+    }
+    else
+    {
+        for (i=0; i<strlen(current_Person->name); i++)
         {
-            printf("\n\tBlad! Imie z pliku powinno mieæ od 2 do 20 liter");
-return 0;
-        }
-        else
-        {
-            for (i=0; i<strlen(current_Person->name); i++)
+            if (isalpha(current_Person->name[i]))
             {
-                if (isalpha(current_Person->name[i]))
-                {
-                    valid= 1;
-                }
-                else
-                {
-                    printf("\n\tUzyj liter w pliku przy imieniu!  Sprobuj ponownie");
-                   return 0;
-                    break;
-                }
+                valid= 1;
             }
-
+            else
+            {
+                printf("\n\tUzyj liter przy imieniu w pliku! Sprobuj ponownie");
+                return 0;
+                break;
+            }
         }
-return valid;
+
+    }
+    return valid;
 }
 int checksign()
 {
     FILE *fp = fopen("Person.txt","r");
-    if(fp == NULL) {
-printf("Blad otwarcia pliku!\n");
-return 0;
-}
-    char znak;
-int count=0;
-    while((znak=fgetc(fp))!=EOF)
- {
-
- if(znak==59)
- {
-
-     count++;
-
- }
- }
- if(count!=(maxcountpersonid()*5))
- {
-
-
+    if(fp == NULL)
+    {
+        printf("\n\tBlad otwarcia pliku!\n");
         return 0;
- }
+    }
+    char znak;
+    int count=0;
+    while((znak=fgetc(fp))!=EOF)
+    {
+
+        if(znak==59)
+        {
+
+            count++;
+
+        }
+    }
+    if(count!=(maxcountpersonid()*5))
+    {
+
+printf("\tBlad! Liczba ';' sie nie zgadza!");
+        return 0;
+    }
 
 
     if(fclose(fp))
     {
-printf("Blad zamkniêcia pliku!\n");
-return 0;
-}
-return 1;
+        printf("\tBlad zamkniecia pliku!\n");
+        return 0;
+    }
+    return 1;
 }
 int writePersonFile()
 {
     FILE *fp = fopen("Person.txt","w");
-if(fp == NULL) {
-printf("Blad otwarcia pliku!\n");
-return 0;
-}
+    if(fp == NULL)
+    {
+        printf("Blad otwarcia pliku!\n");
+        return 0;
+    }
     for(current_Person = head_Person; current_Person; current_Person = current_Person->next)
     {
         fprintf (fp, "%d;%s;%s;%s;%s;\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->contact, current_Person->adress );
     }
-if(fseek(fp,0,SEEK_SET)==-1) {
-printf("Blad operacji przesuwania wskaŸnika pliku!\n");
-return 0;
-}
+    if(fseek(fp,0,SEEK_SET)==-1)
+    {
+        printf("Blad operacji przesuwania wskaznika pliku!\n");
+        return 0;
+    }
     if(fclose(fp))
     {
-printf("Blad zamkniêcia pliku!\n");
-return 0;
-}
+        printf("Blad zamkniecia pliku!\n");
+        return 0;
+    }
     printf("\n\n\nZapis sie udal!\n");
     return 1;
-}
-void checknumber()
-{
-
 }
 void displayPerson()
 {
     system("cls");
     Title();
-    printf("%-5s%-21s%-21s%-31s%-10s\n","ID","Imie","Nazwisko","Adres","Numer_Telefonu");
-    printf("--------------------------------------------------------------------------------------------\n");
+    printf("\t%-5s%-21s%-21s%-31s%-10s\n","ID","Imie","Nazwisko","Adres","Numer_Telefonu");
+    printf("\t--------------------------------------------------------------------------------------------\n");
     for(current_Person =head_Person; current_Person; current_Person = current_Person->next)
-        printf ("%-5d%-21s%-21s%-31s%-10s\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->adress,current_Person->contact);
-    printf("--------------------------------------------------------------------------------------------\n");
+        printf ("\t%-5d%-21s%-21s%-31s%-10s\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->adress,current_Person->contact);
+    printf("\t--------------------------------------------------------------------------------------------\n");
 }
-
 int modifyPerson()
 {
 
@@ -277,46 +269,46 @@ int modifyPerson()
         Person t;
         int waga=0;
         int idss;
-            printf ("\n\t\t\t\tWpisz 0 w przypadku checi powrotu do menu");
-while(!valid)
-    {
-        printf ("\n\n\t\t\t\tWprowadz ID osoby do usuniecia: ");
-
-        scanf("%d", &idss) ;
-        if( idss==0)
+        printf ("\n\t\t\t\tWpisz 0 w przypadku checi powrotu do menu");
+        while(!valid)
         {
-            valid=1;
-            return 2;
+            printf ("\n\n\t\t\t\tWprowadz ID osoby do usuniecia: ");
 
-        }
-        current_Person=head_Person;
-        if(idss>=current_Person->personid&&idss<=maxpersonid())
-        {
-            current_Person=head_Person;
-
-            while(current_Person)
+            scanf("%d", &idss) ;
+            if( idss==0)
             {
-                if(idss==current_Person->personid)
-                {
-                    valid=1;
-                }
-                current_Person=current_Person->next;
+                valid=1;
+                return 2;
+
             }
-            if(!valid)
+            current_Person=head_Person;
+            if(idss>=current_Person->personid&&idss<=lastpersonid())
             {
+                current_Person=head_Person;
+
+                while(current_Person)
+                {
+                    if(idss==current_Person->personid)
+                    {
+                        valid=1;
+                    }
+                    current_Person=current_Person->next;
+                }
+                if(!valid)
+                {
+
+                    printf("\n\t\t\t\tPodaj poprawne id osoby");
+                }
+            }
+            else
+            {
+
 
                 printf("\n\t\t\t\tPodaj poprawne id osoby");
+                fflush(stdin);
             }
+
         }
-        else
-        {
-
-
-            printf("\n\t\t\t\tPodaj poprawne id osoby");
-            fflush(stdin);
-        }
-
-    }
         current_Person=head_Person;
         while (current_Person->next!=NULL&&waga==0)
         {
@@ -355,13 +347,13 @@ while(!valid)
                 printf("\n\t\t\tWprowadz imie: ");
                 scanf("%s",t.name);
                 i=0;
-                        while(t.name[i])
-        {
-            t.name[i]=tolower(t.name[i]);
-            i++;
-        }
+                while(t.name[i])
+                {
+                    t.name[i]=tolower(t.name[i]);
+                    i++;
+                }
 
-        t.name[0]=toupper(t.name[0]);
+                t.name[0]=toupper(t.name[0]);
                 if(!(strlen(t.name)<=20&&strlen(t.name)>=2))
                 {
                     printf("\n\tBlad! Wprowadz imie z przedzialu od 2 do 20 liter");
@@ -424,13 +416,13 @@ while(!valid)
                 scanf("%s",t.last_name);
                 fflush(stdin);
                 i=0;
-                        while(t.last_name[i])
-        {
-            t.last_name[i]=tolower(t.last_name[i]);
-            i++;
-        }
+                while(t.last_name[i])
+                {
+                    t.last_name[i]=tolower(t.last_name[i]);
+                    i++;
+                }
 
-        t.last_name[0]=toupper(t.last_name[0]);
+                t.last_name[0]=toupper(t.last_name[0]);
                 if(!(strlen(t.last_name)<=20&&strlen(t.last_name)>=2))
                 {
                     printf("\n\tBlad! Wprowadz nazwisko z przedzialu od 2 do 20 liter");
@@ -575,15 +567,15 @@ while(!valid)
                     }
                 }
                 temp=head_Person;
-while(temp)
-{
-    if(strcmp(temp->contact,pcontact)==0)
-    {
-        printf("Podaj numer, ktory sie nie powtorzyl");
-        valid=0;
-    }
-    temp=temp->next;
-}
+                while(temp)
+                {
+                    if(strcmp(temp->contact,pcontact)==0)
+                    {
+                        printf("Podaj numer, ktory sie nie powtorzyl");
+                        valid=0;
+                    }
+                    temp=temp->next;
+                }
             }
             char ans[1];
             while((!(ans[0]=='T'||ans[0]=='N')))
@@ -627,7 +619,6 @@ while(temp)
     getch();
     return 1;
 }
-
 void searchPerson()
 {
     system("cls");
@@ -668,7 +659,7 @@ void searchPerson()
             {
                 printf ("\n\nWprowadz ID szukanej osoby: ");
                 scanf("%d", &pid) ;
-                if(pid>=1&&pid<=maxpersonid())
+                if(pid>=1&&pid<=lastpersonid())
                 {
                     valid=1;
                 }
@@ -709,13 +700,13 @@ void searchPerson()
                 printf("\n\n\n\t\t\tWprowadz imie: ");
                 scanf("%s",pname);
                 fflush(stdin);
-        while(pname[i])
-        {
-            pname[i]=tolower(pname[i]);
-            i++;
-        }
+                while(pname[i])
+                {
+                    pname[i]=tolower(pname[i]);
+                    i++;
+                }
 
-        pname[0]=toupper(pname[0]);
+                pname[0]=toupper(pname[0]);
                 if(!(strlen(pname)<=20&&strlen(pname)>=1))
                 {
                     printf("\n\tBlad! Wprowadz imie z przedzialu od 1 do 20 liter");
@@ -776,13 +767,13 @@ void searchPerson()
                 printf("\n\t\t\tWprowadz nazwisko: ");
                 scanf("%s",plast_name);
                 fflush(stdin);
-                        while(plast_name[i])
-        {
-            plast_name[i]=tolower(plast_name[i]);
-            i++;
-        }
+                while(plast_name[i])
+                {
+                    plast_name[i]=tolower(plast_name[i]);
+                    i++;
+                }
 
-        plast_name[0]=toupper(plast_name[0]);
+                plast_name[0]=toupper(plast_name[0]);
                 if(!(strlen(plast_name)<=20&&strlen(plast_name)>=1))
                 {
                     printf("\n\tBlad! Wprowadz nazwisko z przedzialu od 1 do 20 liter");
@@ -860,29 +851,29 @@ void searchPerson()
 
             printf("%-5s%-21s%-21s%-31s%-10s\n","ID","Imie","Nazwisko","Adres","Numer_Telefonu");
             printf("--------------------------------------------------------------------------------------------\n");
-char currentAdress[30],currentAdress2[30];
-strcpy(currentAdress,padress);
-int i=0;
-while(currentAdress[i])
-{
-    if(isalpha(currentAdress[i]))
-    {
-        currentAdress[i]=tolower(currentAdress[i]);
-    }
-    i++;
-}
+            char currentAdress[30],currentAdress2[30];
+            strcpy(currentAdress,padress);
+            int i=0;
+            while(currentAdress[i])
+            {
+                if(isalpha(currentAdress[i]))
+                {
+                    currentAdress[i]=tolower(currentAdress[i]);
+                }
+                i++;
+            }
             while (current_Person!=NULL)
             {
                 strcpy(currentAdress2,current_Person->adress);
                 i=0;
                 while(currentAdress[i])
-{
-    if(isalpha(currentAdress2[i]))
-    {
-        currentAdress2[i]=tolower(currentAdress2[i]);
-    }
-    i++;
-}
+                {
+                    if(isalpha(currentAdress2[i]))
+                    {
+                        currentAdress2[i]=tolower(currentAdress2[i]);
+                    }
+                    i++;
+                }
                 if(!strcmp(currentAdress2,currentAdress))
                 {
                     printf ("%-5d%-21s%-21s%-31s%-10s\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->adress,current_Person->contact);
@@ -975,7 +966,6 @@ while(currentAdress[i])
     getch();
 
 }
-
 void sort_help()
 {
     char x[100];
@@ -1000,7 +990,6 @@ void sort_help()
     strcpy(temp->contact,temp->next->contact);
     strcpy(temp->next->contact,x);
 }
-
 int deletePerson()
 {
     system("cls");
@@ -1022,7 +1011,7 @@ int deletePerson()
 
         }
         current_Person=head_Person;
-        if(t.personid>=current_Person->personid&&t.personid<=maxpersonid())
+        if(t.personid>=current_Person->personid&&t.personid<=lastpersonid())
         {
             current_Person=head_Person;
 
@@ -1107,7 +1096,6 @@ int deletePerson()
     getch();
     return 1;
 }
-
 int autoIncrementPerson()
 {
     int id=1;
@@ -1148,7 +1136,6 @@ int autoIncrementPerson()
         }
     return id;
 }
-
 void id_sort()
 {
 
@@ -1177,7 +1164,6 @@ void id_sort()
     }
     temp = head_Person;
 }
-
 int addPerson()
 {
     system("cls");
@@ -1342,16 +1328,16 @@ int addPerson()
 
             }
         }
-                temp=head_Person;
-while(temp)
-{
-    if(strcmp(temp->contact,pcontact)==0)
-    {
-        printf("\n\tPodaj numer, ktory sie nie powtorzyl");
-        valid=0;
-    }
-    temp=temp->next;
-}
+        temp=head_Person;
+        while(temp)
+        {
+            if(strcmp(temp->contact,pcontact)==0)
+            {
+                printf("\n\tPodaj numer, ktory sie nie powtorzyl");
+                valid=0;
+            }
+            temp=temp->next;
+        }
     }
 
 
@@ -1400,19 +1386,19 @@ while(temp)
     getch();
     return 2;
 }
-
 int readPersonFile()
 {
 
     head_Person = NULL,current_Person = NULL;
 
     FILE *fp = fopen("Person.txt","r");
-if(fp == NULL) {
-printf("Blad otwarcia pliku!\n");
-return 0;
-}
+    if(fp == NULL)
+    {
+        printf("Blad otwarcia pliku!\n");
+        return 0;
+    }
     Person tl, *node;
-int valid=1;
+    int valid=1;
     while ((fscanf (fp,"%d;%[^;];%[^;];%[^;];%[^;\n];", &tl.personid, tl.name,tl.last_name,tl.contact,tl.adress)!=EOF)&&valid)
     {
 
@@ -1431,46 +1417,45 @@ int valid=1;
         {
             current_Person = current_Person -> next = node;
         }
-     valid= checkFileid();
-            if(!valid)
-       {
-          return valid;
-       }
-      valid=checkFilename();
-             if(!valid)
-       {
-          return valid;
-       }
-      valid=checkFilelastname();
-             if(!valid)
-       {
-          return valid;
-       }
-      valid=checkFileadres();
-            if(!valid)
-       {
-          return valid;
-       }
-       valid=checkFilenumber();
-       if(!valid)
-       {
-          return valid;
-       }
+        valid= checkFileid();
+        if(!valid)
+        {
+            return valid;
+        }
+        valid=checkFilename();
+        if(!valid)
+        {
+            return valid;
+        }
+        valid=checkFilelastname();
+        if(!valid)
+        {
+            return valid;
+        }
+        valid=checkFileadres();
+        if(!valid)
+        {
+            return valid;
+        }
+        valid=checkFilenumber();
+        if(!valid)
+        {
+            return valid;
+        }
     }
 
-valid=checksign();
-            if(!valid)
-       {
-          return valid;
-       }
+    valid=checksign();
+    if(!valid)
+    {
+        return valid;
+    }
     if(fclose(fp))
     {
-printf("Blad zamkniêcia pliku!\n");
-return 0;
+        printf("Blad zamkniecia pliku!\n");
+        return 0;
+    }
+    return valid;
 }
-return valid;
-}
-
 void sort()
 {
     system("cls");
@@ -1803,14 +1788,17 @@ void sort()
     printf("\nWcisnij dowolny klawisz, zeby kontynuowac...\n");
     getch();
 }
-
-void MainMenu(void)
+void beforestart()
 {
-    if(!readPersonFile())
+        if(!readPersonFile())
     {
-        printf("\n\n\t\tPlik jest uszkodzony !");
+        printf("\n\n\tPlik jest uszkodzony !\n");
         exit(0);
     }
+}
+void MainMenu(void)
+{
+    beforestart();
     WelcomeScreen();
 
 
@@ -1842,10 +1830,12 @@ void MainMenu(void)
         else  if(choose[0]==50&&choose[1]=='\0')
         {
 
-
             displayPerson();
-            printf("\n\nWcisnij dowolny klawisz, zeby kontynuowac...\n");
+            printf("\n\n\tWcisnij dowolny klawisz, zeby kontynuowac...\n");
             getch();
+            {
+
+            }
         }
         else  if(choose[0]==51&&choose[1]=='\0')
             searchPerson();
@@ -1877,9 +1867,8 @@ void MainMenu(void)
             getch();
         }
     }
-    Sleep(500);
-}
 
+}
 int main()
 {
     MainMenu();
