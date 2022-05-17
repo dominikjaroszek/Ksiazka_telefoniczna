@@ -3,6 +3,7 @@
 #include <ctype.h>
 #include <string.h>
 #include <stdlib.h>
+
 typedef struct Person
 {
     int personid;
@@ -1192,13 +1193,12 @@ int addPerson()
     Person t, * node;
     int valid=0;
    char question[1];
-    question[0]=' ';
-    question[1]=' ';
     do{
-             fflush(stdin);
+             question[0]=' ';
+    question[1]=' ';
     printf("\n\t\t\t\tWpisz '0', aby powrocic, '1' aby przejsc dalej: ");
     scanf("%s",question);
-    }while(!(question[0]==48&&question[1]=='\0'||question[0]==49&&question[1]=='\0'));
+    }while(!((question[0]==48&&question[1]=='\0')||(question[0]==49&&question[1]=='\0')));
     if(question[0]==48&&question[1]=='\0')
     {
         return 2;
