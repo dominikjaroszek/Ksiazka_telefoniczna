@@ -1201,6 +1201,8 @@ int addPerson()
         return 2;
     }
     fflush(stdin);
+     system("cls");
+     Title();
     node = (Person*)malloc (sizeof (Person));
     while(!valid)
     {
