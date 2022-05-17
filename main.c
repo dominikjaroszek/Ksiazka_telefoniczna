@@ -1190,13 +1190,17 @@ int addPerson()
     system("cls");
     Title();
     Person t, * node;
-    int valid=0,question;
+    int valid=0;
+   char question[1];
+    question[0]=' ';
+    question[1]=' ';
     printf("\n\t\t\t\tW przypadku checi powrotu wstecz wpisz 0 : ");
-    scanf("%d",&question);
-    if(question==0)
+    scanf("%s",question);
+    if(question[0]==48&&question[1]=='\0')
     {
         return 2;
     }
+    fflush(stdin);
     node = (Person*)malloc (sizeof (Person));
     while(!valid)
     {
