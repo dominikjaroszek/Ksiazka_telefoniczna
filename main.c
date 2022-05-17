@@ -1177,9 +1177,11 @@ int addPerson()
     {
 
 
+fflush(stdin);
         printf("\n\n\n\t\t\tWprowadz imie: ");
-        scanf("%s",t.name);
-        fflush(stdin);
+                fgets(t.name, 21, stdin);
+        strtok(t.adress,"\n");
+fflush(stdin);
         i=0;
         while(t.name[i])
         {
