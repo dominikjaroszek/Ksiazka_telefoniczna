@@ -1198,13 +1198,13 @@ int addPerson()
     question[1]=' ';
     printf("\n\t\t\t\tWpisz '0', aby powrocic, '1' aby przejsc dalej: ");
     scanf("%s",question);
-    }while(!((question[0]==48&&question[1]=='\0')||(question[0]==49&&question[1]=='\0')));
-    if(question[0]==48&&question[1]=='\0')
+       if(question[0]==48&&question[1]=='\0')
     {
         return 2;
     }
-    else if(question[0]==49&&question[1]=='\0')
-    {
+    }while(!((question[0]==48&&question[1]=='\0')||(question[0]==49&&question[1]=='\0')));
+
+
 
     fflush(stdin);
      system("cls");
@@ -1291,7 +1291,7 @@ if(valid)
 
     printf("\nWcisnij dowolny klawisz, zeby kontynuowac...\n");
     getch();
-    }
+
     return 2;
 
 }
