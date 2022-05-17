@@ -1194,12 +1194,18 @@ int addPerson()
    char question[1];
     question[0]=' ';
     question[1]=' ';
-    printf("\n\t\t\t\tW przypadku checi powrotu wstecz wpisz 0 : ");
+    do{
+             fflush(stdin);
+    printf("\n\t\t\t\tWpisz zero, aby powrocic, jeden aby przejsc dalej: ");
     scanf("%s",question);
+    }while(!(question[0]==48||question[0]==49));
     if(question[0]==48&&question[1]=='\0')
     {
         return 2;
     }
+    else if(question[0]==49&&question[1]=='\0')
+    {
+
     fflush(stdin);
      system("cls");
      Title();
@@ -1285,7 +1291,9 @@ if(valid)
 
     printf("\nWcisnij dowolny klawisz, zeby kontynuowac...\n");
     getch();
+    }
     return 2;
+
 }
 int readPersonFile()
 {
