@@ -13,4 +13,4 @@
 13;Miroslaw;Dabrowski;720698531;Wilhelma 13, Gdansk;
 14;Eliasz;Pawlowski;810291673;Tomickiego 69, Poznan;
 15;Andrzej;Ostrowski;870660458;Kolejowa 122, Raciborz;
-16;Mariusz;Niedopytalski;222222222;Kwiecinski 2222;
+
