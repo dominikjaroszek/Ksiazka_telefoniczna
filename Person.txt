@@ -14,3 +14,4 @@
 14;Eliasz;Pawlowski;810291673;Tomickiego 69, Poznan;
 15;Andrzej;Ostrowski;870660458;Kolejowa 122, Raciborz;
 16;Dominik;Jaroszek;222222222;Podraje 2;
+17;Dominik;Jaroszek;281922222;podraje 2;

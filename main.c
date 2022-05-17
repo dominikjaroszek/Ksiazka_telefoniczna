@@ -1196,9 +1196,9 @@ int addPerson()
     question[1]=' ';
     do{
              fflush(stdin);
-    printf("\n\t\t\t\tWpisz zero, aby powrocic, jeden aby przejsc dalej: ");
+    printf("\n\t\t\t\tWpisz '0', aby powrocic, '1' aby przejsc dalej: ");
     scanf("%s",question);
-    }while(!(question[0]==48||question[0]==49));
+    }while(!(question[0]==48&&question[1]=='\0'||question[0]==49&&question[1]=='\0'));
     if(question[0]==48&&question[1]=='\0')
     {
         return 2;
