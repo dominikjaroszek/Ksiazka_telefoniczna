@@ -1192,10 +1192,10 @@ int addPerson()
     Title();
     Person t, * node;
     int valid=0;
-   char question[1];
+   char question[2];
     do{
-             question[0]=' ';
-    question[1]=' ';
+             question[0]='\0';
+    question[1]='\0';
     printf("\n\t\t\t\tWpisz '0', aby powrocic, '1' aby przejsc dalej: ");
     scanf("%s",question);
        if(question[0]==48&&question[1]=='\0')
