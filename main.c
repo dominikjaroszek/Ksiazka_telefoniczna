@@ -7,7 +7,7 @@
 typedef struct Person
 {
     int personid;
-    char name[20];
+    char name[22];
     char last_name[20];
     char adress[30];
     char contact[9];
@@ -1175,40 +1175,44 @@ int addPerson()
     node = (Person*)malloc (sizeof (Person));
     while(!valid)
     {
-
-
-fflush(stdin);
+        char name[22];
+memset(name , '\0', 30*sizeof(char));
         printf("\n\n\n\t\t\tWprowadz imie: ");
-                fgets(t.name, 21, stdin);
-        strtok(t.adress,"\n");
-fflush(stdin);
+              scanf("%30s",name);
         i=0;
-        while(t.name[i])
-        {
-            t.name[i]=tolower(t.name[i]);
+        while(name[i])
+        {printf("chuj");
+            name[i]=tolower(name[i]);
             i++;
         }
 
-        t.name[0]=toupper(t.name[0]);
-        if( !strcmp(t.name,"0"))
+        name[0]=toupper(name[0]);
+        if( !strcmp(name,"0"))
         {
             printf("\nWcisnij dowolny klawisz, zeby kontynuowac...\n");
             getch();
             return 2;
         }
-        if(!(strlen(t.name)<=20&&strlen(t.name)>=2))
+        if(!(strlen(name)<=20&&strlen(name)>=2))
         {
             printf("\n\tBlad! Wprowadz imie z przedzialu od 2 do 20 liter");
-
+memset(name , '\0', 30*sizeof(char));
+fflush(stdin);
+        }
+        else if(name[22]!='\0')
+        {
+             printf("\n\tBlad! Wprowadz imie z przedzialu od 2 do 20 liter");
+memset(name , '\0', 30*sizeof(char));
+fflush(stdin);
         }
         else
         {
-            for (i=0; i<strlen(t.name); i++)
+            for (i=0; i<strlen(name); i++)
             {
-                if (isalpha(t.name[i]))
-                {
+                if (isalpha(name[i]))
+                {printf("chuj2");
                     valid=1;
-                    strcpy(node->name,t.name);
+                    strcpy(node->name,name);
                 }
                 else
                 {
@@ -1224,7 +1228,7 @@ fflush(stdin);
         }
     }
 
-    //fflush(stdin);
+    fflush(stdin);
     valid=0;
     while(!valid)
     {
