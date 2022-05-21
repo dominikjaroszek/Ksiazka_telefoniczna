@@ -676,10 +676,10 @@ void searchPerson()
     system("cls");
 
     int pid;
-    char pname[30];
-    char plast_name[30];
+    char name[22];
+    char last_name[22];
     char padress[30];
-    char pcontact[9];
+    char pcontact[11];
     int valid=0;
     char choose[2];
      memset(choose, '\0', 2*sizeof(char));
@@ -710,8 +710,26 @@ void searchPerson()
         {
             while(!valid)
             {
-                printf ("\n\nWprowadz ID szukanej osoby: ");
-                scanf("%d", &pid) ;
+         char array[10];
+
+
+        memset(array, '\0', 10*sizeof(char));
+            printf ("\n\n\t\t\t\tWprowadz ID osoby do modyfikacji: ");
+            scanf("%11s", array) ;
+            for (int i=0; i<strlen(array); i++)
+            {
+                if (isdigit(array[i]))
+                {
+pid=atoi(array);
+                }
+                else
+                {
+                    valid=0;
+                     memset(array, '\0', 10*sizeof(char));
+                     pid=-1;
+                    break;
+                }
+            }
                 if(pid>=1&&pid<=lastpersonid())
                 {
                     valid=1;
@@ -750,54 +768,56 @@ void searchPerson()
             while(!valid)
             {
 
-                printf("\n\n\n\t\t\tWprowadz imie: ");
-                scanf("%s",pname);
-                fflush(stdin);
-                while(pname[i])
-                {
-                    pname[i]=tolower(pname[i]);
-                    i++;
-                }
+               memset(name, '\0', 30*sizeof(char));
+        printf("\n\n\n\t\t\tWprowadz imie: ");
+        scanf("%30s",name);
+        i=0;
+        while(name[i])
+        {
+            name[i]=tolower(name[i]);
+            i++;
+        }
 
-                pname[0]=toupper(pname[0]);
-                if(!(strlen(pname)<=20&&strlen(pname)>=1))
+        name[0]=toupper(name[0]);
+        if(!(strlen(name)<=20&&strlen(name)>=1))
+        {
+            printf("\n\tBlad! Wprowadz imie z przedzialu od 1 do 20 liter");
+            memset(name, '\0', 30*sizeof(char));
+            fflush(stdin);
+        }
+        else
+        {
+            for (i=0; i<strlen(name); i++)
+            {
+                if (isalpha(name[i]))
                 {
-                    printf("\n\tBlad! Wprowadz imie z przedzialu od 1 do 20 liter");
-
+                    valid=1;
                 }
                 else
                 {
-                    for (i=0; i<strlen(pname); i++)
-                    {
-                        if (isalpha(pname[i]))
-                        {
-                            valid=1;
-                        }
-                        else
-                        {
-                            valid=0;
-                            break;
-                        }
-                    }
-                    if(!valid)
-                    {
-                        printf("\n\tUzyj poprawnych liter przy imieniu  Sprobuj ponownie");
-
-                    }
+                    valid=0;
+                    break;
                 }
+            }
+            if(!valid)
+            {
+                printf("\n\tUzyj poprawnych liter przy imieniu  Sprobuj ponownie");
+
+            }
+        }
             }
             current_Person = head_Person;
             printf("%-5s%-21s%-21s%-31s%-10s\n","ID","Imie","Nazwisko","Adres","Numer_Telefonu");
             printf("--------------------------------------------------------------------------------------------\n");
             while (current_Person!=NULL)
             {
-                if(!strcmp(current_Person->name, pname))
+                if(!strcmp(current_Person->name, name))
                 {
 
                     printf ("%-5d%-21s%-21s%-31s%-10s\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->adress,current_Person->contact);
 
                 }
-                else if(!strncmp(current_Person->name, pname,strlen(pname)))
+                else if(!strncmp(current_Person->name, name,strlen(name)))
                 {
                     printf ("%-5d%-21s%-21s%-31s%-10s\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->adress,current_Person->contact);
                 }
@@ -817,54 +837,59 @@ void searchPerson()
             {
 
 
-                printf("\n\t\t\tWprowadz nazwisko: ");
-                scanf("%s",plast_name);
-                fflush(stdin);
-                while(plast_name[i])
-                {
-                    plast_name[i]=tolower(plast_name[i]);
-                    i++;
-                }
+                memset(last_name, '\0', 30*sizeof(char));
+        printf("\n\t\t\tWprowadz nazwisko: ");
+        scanf("%30s",last_name);
+        i=0;
+        while(last_name[i])
+        {
+            last_name[i]=tolower(last_name[i]);
+            i++;
+        }
+        last_name[0]=toupper(last_name[0]);
+        if(!(strlen(last_name)<=20&&strlen(last_name)>=1))
+        {
+            printf("\n\tBlad! Wprowadz nazwisko z przedzialu od 1 do 20 liter");
 
-                plast_name[0]=toupper(plast_name[0]);
-                if(!(strlen(plast_name)<=20&&strlen(plast_name)>=1))
+            memset(last_name, '\0', 30*sizeof(char));
+            fflush(stdin);
+        }
+        else
+        {
+            for (i=0; i<strlen(last_name); i++)
+            {
+                if (isalpha(last_name[i]))
                 {
-                    printf("\n\tBlad! Wprowadz nazwisko z przedzialu od 1 do 20 liter");
 
+                    {
+                        valid=1;
+                    }
                 }
                 else
                 {
-                    for (i=0; i<strlen(plast_name); i++)
-                    {
-                        if (isalpha(plast_name[i]))
-                        {
-                            valid=1;
-                        }
-                        else
-                        {
-                            valid=0;
-                            break;
-                        }
-                    }
-                    if(!valid)
-                    {
-                        printf("\n\tUzyj poprawnych liter przy nazwisku  Sprobuj ponownie");
-
-                    }
+                    valid=0;
+                    break;
                 }
+            }
+            if(!valid)
+            {
+                printf("\n\tUzyj poprawnych liter przy nazwisku  Sprobuj ponownie");
+
+            }
+        }
             }
             current_Person = head_Person;
             printf("%-5s%-21s%-21s%-31s%-10s\n","ID","Imie","Nazwisko","Adres","Numer_Telefonu");
             printf("--------------------------------------------------------------------------------------------\n");
             while (current_Person!=NULL)
             {
-                if(!strcmp(current_Person->last_name, plast_name))
+                if(!strcmp(current_Person->last_name, last_name))
                 {
 
                     printf ("%-5d%-21s%-21s%-31s%-10s\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->adress,current_Person->contact);
 
                 }
-                else if(!strncmp(current_Person->last_name, plast_name,strlen(plast_name)))
+                else if(!strncmp(current_Person->last_name, last_name,strlen(last_name)))
                 {
                     printf ("%-5d%-21s%-21s%-31s%-10s\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->adress,current_Person->contact);
                 }
@@ -947,42 +972,39 @@ void searchPerson()
             valid=0;
             while(!valid)
             {
-                printf("\n\t\t\tWprowadz numer telefonu: ");
-                scanf("%s",pcontact);
-                if((strlen(pcontact)==9))
+               memset(pcontact, '\0', 9*sizeof(char));
+        printf("\n\t\t\tWprowadz numer telefonu: ");
+        scanf("%11s",pcontact);
+        if((strlen(pcontact)>9))
+        {
+            printf("\n\tBlad! Wprowadz numer telefonu o dlugosci 9 cyfr");
+             memset(pcontact, '\0', 11*sizeof(char));
+            fflush(stdin);
 
+        }
 
+        else
+        {
+            for (i=0; i<strlen(pcontact); i++)
+            {
+                if (isdigit(pcontact[i]))
                 {
-                    printf("\n\tBlad! Wprowadz numer telefonu o dlugosci 9 cyfr");
-                    fflush(stdin);
-
+                    valid=1;
                 }
-
                 else
                 {
-                    for (i=0; i<strlen(pcontact); i++)
-                    {
-                        if (isdigit(pcontact[i]))
-                        {
-                            valid=1;
-
-                        }
-                        else
-                        {
-                            valid=0;
-                            break;
-                        }
-
-
-
-                    }
-                    if(!valid)
-                    {
-                        printf("\n\tUzyj cyfr przy wprowadzaniu numeru telefonu  Sprobuj ponownie");
-                        fflush(stdin);
-
-                    }
+                    valid=0;
+                     memset(pcontact, '\0', 11*sizeof(char));
+                    break;
                 }
+            }
+            if(!valid)
+            {
+                printf("\n\tUzyj cyfr przy wprowadzaniu numeru telefonu  Sprobuj ponownie");
+                fflush(stdin);
+
+            }
+        }
 
             }
             current_Person = head_Person;
@@ -1361,7 +1383,7 @@ int readPersonFile()
     }
     Person tl, *node;
     int valid=1;
-    while ((fscanf (fp,"%d;%[^;];%[^;];%[^;];%[^;\n];", &tl.personid, tl.name,tl.last_name,tl.contact,tl.adress)!=EOF)&&valid)
+    while ((fscanf (fp,"%d;%[^;];%[^;];%[^;];%31[^;\n];", &tl.personid, tl.name,tl.last_name,tl.contact,tl.adress)!=EOF)&&valid)
     {
 
         node = (Person*)malloc (sizeof (Person) );
