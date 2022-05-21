@@ -435,14 +435,28 @@ int modifyPerson()
         Title();
         displayPerson();
         Person t;
-        int waga=0;
-        int idss;
+        int waga=0,i;
+         int idss;
+         char array[10];
         printf ("\n\t\t\t\tWpisz 0 w przypadku checi powrotu do menu");
         while(!valid)
-        {
+        {memset(array, '\0', 10*sizeof(char));
             printf ("\n\n\t\t\t\tWprowadz ID osoby do modyfikacji: ");
-
-            scanf("%d", &idss) ;
+            scanf("%11s", array) ;
+            for (i=0; i<strlen(array); i++)
+            {
+                if (isdigit(array[i]))
+                {
+idss=atoi(array);
+                }
+                else
+                {
+                    valid=0;
+                     memset(array, '\0', 10*sizeof(char));
+                     t.personid=-1;
+                    break;
+                }
+            }
             if( idss==0)
             {
                 valid=1;
@@ -1040,21 +1054,36 @@ int deletePerson()
     Title();
     displayPerson();
     Person t;
-    int found=0,valid=0;
+    char idss[10];
+    int found=0,valid=0,i;
     printf("\n\t\t\t\tW przypadku checi powrotu wstecz wpisz 0");
     while(!valid)
     {
+        memset(idss, '\0', 10*sizeof(char));
         printf ("\n\n\t\t\t\tWprowadz ID osoby do usuniecia: ");
-
-        scanf("%d", &t.personid) ;
-        if( t.personid==0)
+current_Person=head_Person;
+        scanf("%11s", idss) ;
+            for (i=0; i<strlen(idss); i++)
+            {
+                if (isdigit(idss[i]))
+                {
+t.personid=atoi(idss);
+                }
+                else
+                {
+                    valid=0;
+                     memset(idss, '\0', 10*sizeof(char));
+                     t.personid=-1;
+                    break;
+                }
+            }
+ if( t.personid==0)
         {
             valid=1;
             break;
             return 2;
 
         }
-        current_Person=head_Person;
         if(t.personid>=current_Person->personid&&t.personid<=lastpersonid())
         {
             current_Person=head_Person;
@@ -1397,7 +1426,8 @@ void sort()
     {
         Title();
 
-        char choose[2];
+        char choose[3];
+        memset(choose, '\0', 3*sizeof(char));
         printf("\t\t\t\tPo jakim polu chcesz posortowac?");
         printf("\n\n\t\t\t\t0. Wroc\n");
         printf("\n\t\t\t\t1. Id malejaco\n");
@@ -1411,7 +1441,7 @@ void sort()
         printf("\n\t\t\t\t9. Adresy alfabetycznie\n");
         printf("\n\t\t\t\t10. Adresy alfabetycznie odwrotnie\n");
         printf("\n\n\n \n\t\t\t\tWprowadz opcje pomiedzy 0 a 10 : ");
-        scanf("%s", choose);
+        scanf("%4s", choose);
 
         if(choose[0]==48&&choose[1]=='\0')
         {
@@ -1683,6 +1713,7 @@ void sort()
 
 
             printf("\n\t\t\t\tBlad! Podaj poprawna opcje z menu\n");
+            memset(choose, '\0', 4*sizeof(char));
             fflush(stdin);
             getch();
             system("cls");

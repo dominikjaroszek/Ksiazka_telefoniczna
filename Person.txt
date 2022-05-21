@@ -3,14 +3,8 @@
 3;Jowita;Sawicka;550813221;Gromadzka 7, Kielce;
 4;Michal;Jasinski;760401584;Wilanowska 132, Warszawa;
 5;Weronika;strowska;981974284;Jadzwingow 108, Krakow;
-6;Adam;Adamczyk;901249729;Swidnicka 65, Warszawa;
-7;Tekla;Duda;700517678;Kopernika 119, Szczecin;
 8;Jakub;Koralski;940121661;Kamienica 106, Kamienica;
-9;Wiktor;Szczepanski;580672976;Husarii 34, Olsztyn;
-10;Augustyna;Czarnecka;390457957;Kacik 10, Krakow;
-11;Maciej;Szczepanski;691107769;Iglasta 32, Kielce;
 12;Katarzyna;Kowalczyk;420995730;Jachowicza 132, Warszawa;
 13;Miroslaw;Dabrowski;720698531;Wilhelma 13, Gdansk;
 14;Eliasz;Pawlowski;810291673;Tomickiego 69, Poznan;
 15;Seweryn;Ostrowski;870660458;Kolejowa 122, Raciborz;
-16;Pawel;Gibson;999999993;Raciszek;
