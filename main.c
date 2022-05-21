@@ -932,7 +932,7 @@ void searchPerson()
             {
                 printf("\n\t\t\tWprowadz numer telefonu: ");
                 scanf("%s",pcontact);
-                if(!(strlen(pcontact)==9))
+                if((strlen(pcontact)==9))
 
 
                 {
@@ -978,6 +978,10 @@ void searchPerson()
                     printf ("%-5d%-21s%-21s%-31s%-10s\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->adress,current_Person->contact);
 
 
+                }
+                else if(!strncmp(current_Person->contact, pcontact,strlen(pcontact)))
+                {
+                    printf ("%-5d%-21s%-21s%-31s%-10s\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->adress,current_Person->contact);
                 }
                 current_Person = current_Person->next;
             }
