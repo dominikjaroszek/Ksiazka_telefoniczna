@@ -8,8 +8,8 @@ typedef struct Person
 {
     int personid;
     char name[22];
-    char last_name[20];
-    char adress[30];
+    char last_name[22];
+    char adress[32];
     char contact[9];
     struct Person *next;
 } Person;
@@ -33,6 +33,7 @@ void Title(void)
     printf("\n\t\t\t\t         KSIAZKA TELEFONICZNA        ");
     printf("\n\t--------------------------------------------------------------------------------------------\n\n\n");
 }
+
 int checkFileid()
 {
     temp=head_Person;
@@ -48,6 +49,7 @@ int checkFileid()
     }
     return 1;
 }
+
 int checkFileadres()
 {
     int valid=0;
@@ -65,6 +67,7 @@ int checkFileadres()
 
     return valid;
 }
+
 int lastpersonid()
 {
     current_Person=head_Person;
@@ -76,6 +79,7 @@ int lastpersonid()
     }
     return max;
 }
+
 int maxcountpersonid()
 {
     current_Person=head_Person;
@@ -208,7 +212,7 @@ int checksign()
     if(count!=(maxcountpersonid()*5))
     {
 
-printf("\tBlad! Liczba ';' sie nie zgadza!");
+        printf("\tBlad! Liczba ';' sie nie zgadza!");
         return 0;
     }
 
@@ -1176,12 +1180,13 @@ int addPerson()
     while(!valid)
     {
         char name[22];
-memset(name , '\0', 30*sizeof(char));
+        memset(name, '\0', 30*sizeof(char));
         printf("\n\n\n\t\t\tWprowadz imie: ");
-              scanf("%30s",name);
+        scanf("%30s",name);
         i=0;
         while(name[i])
-        {printf("chuj");
+        {
+            printf("chuj");
             name[i]=tolower(name[i]);
             i++;
         }
@@ -1196,21 +1201,22 @@ memset(name , '\0', 30*sizeof(char));
         if(!(strlen(name)<=20&&strlen(name)>=2))
         {
             printf("\n\tBlad! Wprowadz imie z przedzialu od 2 do 20 liter");
-memset(name , '\0', 30*sizeof(char));
-fflush(stdin);
+            memset(name, '\0', 30*sizeof(char));
+            fflush(stdin);
         }
         else if(name[22]!='\0')
         {
-             printf("\n\tBlad! Wprowadz imie z przedzialu od 2 do 20 liter");
-memset(name , '\0', 30*sizeof(char));
-fflush(stdin);
+            printf("\n\tBlad! Wprowadz imie z przedzialu od 2 do 20 liter");
+            memset(name, '\0', 30*sizeof(char));
+            fflush(stdin);
         }
         else
         {
             for (i=0; i<strlen(name); i++)
             {
                 if (isalpha(name[i]))
-                {printf("chuj2");
+                {
+                    printf("chuj2");
                     valid=1;
                     strcpy(node->name,name);
                 }
@@ -1234,30 +1240,64 @@ fflush(stdin);
     {
 
 
+        char last_name[22];
+        memset(last_name, '\0', 30*sizeof(char));
+
+
         printf("\n\t\t\tWprowadz nazwisko: ");
-        scanf("%s",t.last_name);
-        fflush(stdin);
+
+
+
+        scanf("%30s",last_name);
+
+
+
         i=0;
-        while(t.last_name[i])
+        while(last_name[i])
         {
-            t.last_name[i]=tolower(t.last_name[i]);
+            printf("chuj");
+            last_name[i]=tolower(last_name[i]);
             i++;
         }
 
-        t.last_name[0]=toupper(t.last_name[0]);
-        if(!(strlen(t.last_name)<=20&&strlen(t.last_name)>=2))
+
+
+        last_name[0]=toupper(last_name[0]);
+        if(!(strlen(last_name)<=20&&strlen(last_name)>=2))
         {
             printf("\n\tBlad! Wprowadz nazwisko z przedzialu od 2 do 20 liter");
+
+
+
+
+            memset(last_name, '\0', 30*sizeof(char));
+            fflush(stdin);
+        }
+        else if(last_name[22]!='\0')
+        {
+            printf("\n\tBlad! Wprowadz nazwisko z przedzialu od 2 do 20 liter");
+            memset(last_name, '\0', 30*sizeof(char));
+            fflush(stdin);
+
+
+
+
 
         }
         else
         {
-            for (i=0; i<strlen(t.last_name); i++)
+            for (i=0; i<strlen(last_name); i++)
             {
-                if (isalpha(t.last_name[i]))
+                if (isalpha(last_name[i]))
+
+
                 {
-                    valid=1;
-                    strcpy(node->last_name,t.last_name);
+
+                    {
+                        printf("chuj2");
+                        valid=1;
+                        strcpy(node->last_name,last_name);
+                    }
                 }
                 else
                 {
@@ -1276,28 +1316,51 @@ fflush(stdin);
     valid=0;
     while(!valid)
     {
+        char adress[32];
+        memset(adress, '\0', 30*sizeof(char));
         printf("\n\t\t\tWprowadz adres: ");
-        fgets(t.adress, 32, stdin);
-        strtok(t.adress,"\n");
-        if(!(strlen(t.adress)<=30&&strlen(t.adress)>=4))
+
+        scanf("%30s",adress);
+
+        if(!(strlen(adress)<=30&&strlen(adress)>=4))
         {
             printf("\n\tBlad! Wprowadz adres z przedzialu od 4 do 30 liter");
+/////////////////////////todo
             fflush(stdin);
             valid=0;
+/////////////////////////todo
+            memset(adress, '\0', 30*sizeof(char));
+            fflush(stdin);
+        }
+        else if(adress[32]!='\0')
+        {
+            printf("\n\tBlad! Wprowadz adres z przedzialu od 4 do 30 znakow");
+            memset(adress, '\0', 30*sizeof(char));
+            fflush(stdin);
+
+
+
+
+
         }
         else
         {
 
 
             valid=1;
-            strcpy(node->adress,t.adress);
+            strcpy(node->adress,adress);
         }
     }
     fflush(stdin);
     valid=0;
+
+
     char pcontact[9];
     while(!valid)
     {
+
+
+
         printf("\n\t\t\tWprowadz numer telefonu: ");
         scanf("%s",pcontact);
         if(!(strlen(pcontact)==9))
@@ -1797,7 +1860,7 @@ void sort()
 }
 void beforestart()
 {
-        if(!readPersonFile())
+    if(!readPersonFile())
     {
         printf("\n\n\tPlik jest uszkodzony !\n");
         exit(0);
