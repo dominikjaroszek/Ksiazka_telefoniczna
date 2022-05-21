@@ -426,7 +426,8 @@ int modifyPerson()
 
     system("cls");
     int valid=0;
-    char choose[1];
+    char choose[2];
+     memset(choose, '\0', 2*sizeof(char));
     while(!valid)
     {
         choose[0]=' ';
@@ -496,7 +497,7 @@ int modifyPerson()
         printf("\n\t\t\t\t3. Adres\n");
         printf("\n\t\t\t\t4. Numer telefonu\n");
         printf("\n\n\n \n\t\t\t\tWprowadz opcje od 0 a 4:");
-        scanf("%s", choose);
+        scanf("%3s", choose);
         fflush(stdin);
 
 
@@ -641,6 +642,7 @@ valid=insertadress(t.adress);
 
 
             printf("\n\t\t\t\tBlad! Podaj poprawna opcje z menu\n");
+             memset(choose, '\0', 3*sizeof(char));
             fflush(stdin);
             getch();
             system("cls");
@@ -665,7 +667,8 @@ void searchPerson()
     char padress[30];
     char pcontact[9];
     int valid=0;
-    char choose[1];
+    char choose[2];
+     memset(choose, '\0', 2*sizeof(char));
     while(!valid)
     {
         choose[0]=' ';
@@ -680,7 +683,7 @@ void searchPerson()
         printf("\n\t\t\t\t4. Adres\n");
         printf("\n\t\t\t\t5. Numer telefonu\n");
         printf("\n\n\n \n\t\t\t\tWprowadz opcje od 0 a 5:");
-        scanf("%s", choose);
+        scanf("%3s", choose);
 
         if(choose[0]==48&&choose[1]=='\0')
         {
@@ -994,6 +997,7 @@ void searchPerson()
 
 
             printf("\n\t\t\t\tBlad! Podaj poprawna opcje z menu\n");
+             memset(choose, '\0', 3*sizeof(char));
             fflush(stdin);
             getch();
 
@@ -1735,9 +1739,8 @@ void MainMenu(void)
     {
         system("cls");
 
-        char choose[1];
-        choose[0]=' ';
-        choose[1]=' ';
+        char choose[2];
+ memset(choose, '\0', 2*sizeof(char));
         Title();
         printf("\n\n\n\n\n\t\t\t\t1. Dodawanie osoby do ksiazki telefonicznej\n");
         printf("\n\t\t\t\t2. Lista osob w ksiazce telefonicznej\n");
@@ -1747,7 +1750,7 @@ void MainMenu(void)
         printf("\n\t\t\t\t6. Sortowanie osob w ksiazce telefoniczej po danym polu\n");
         printf("\n\t\t\t\t7. Wyjscie z programu\n");
         printf("\n\n\n \n\t\t\t\tWybierz od 1 do 7 : ");
-        scanf("%s", choose);
+        scanf("%3s", choose);
 
         if(choose[0]==49&&choose[1]=='\0')
         {
@@ -1792,6 +1795,7 @@ void MainMenu(void)
 
 
             printf("\n\t\t\t\tBlad! Podaj poprawna opcje z menu\n");
+             memset(choose, '\0', 3*sizeof(char));
             fflush(stdin);
             getch();
         }
