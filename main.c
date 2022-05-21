@@ -453,7 +453,7 @@ idss=atoi(array);
                 {
                     valid=0;
                      memset(array, '\0', 10*sizeof(char));
-                     t.personid=-1;
+                     idss=-1;
                     break;
                 }
             }
