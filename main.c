@@ -1,8 +1,8 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <conio.h>
 #include <ctype.h>
-#include <string.h>
-#include <stdlib.h>
 
 typedef struct Person
 {
@@ -27,12 +27,14 @@ void WelcomeScreen(void)
     getch();
     system("cls");
 }
+
 void Title(void)
 {
     printf("\n\n\t--------------------------------------------------------------------------------------------");
     printf("\n\t\t\t\t         KSIAZKA TELEFONICZNA        ");
     printf("\n\t--------------------------------------------------------------------------------------------\n\n\n");
 }
+
 int checkFileid()
 {
     temp=head_Person;
@@ -47,6 +49,7 @@ int checkFileid()
     }
     return 1;
 }
+
 int checkFileadres()
 {
     int valid=0;
@@ -60,9 +63,9 @@ int checkFileadres()
     {
         valid=1;
     }
-
     return valid;
 }
+
 int lastpersonid()
 {
     current_Person=head_Person;
@@ -74,6 +77,7 @@ int lastpersonid()
     }
     return max;
 }
+
 int maxcountpersonid()
 {
     current_Person=head_Person;
@@ -85,6 +89,7 @@ int maxcountpersonid()
     }
     return max;
 }
+
 int checkFilenumber()
 {
     int i=0,valid=0;
@@ -120,6 +125,7 @@ int checkFilenumber()
     }
     return valid;
 }
+
 int checkFilelastname()
 {
     int i=0,valid=0;
@@ -146,6 +152,7 @@ int checkFilelastname()
     }
     return valid;
 }
+
 int checkFilename()
 {
     int i=0,valid=0;
@@ -172,6 +179,7 @@ int checkFilename()
     }
     return valid;
 }
+
 int checksign()
 {
     FILE *fp = fopen("Person.txt","r");
@@ -194,8 +202,6 @@ int checksign()
         printf("\tBlad! Liczba ';' sie nie zgadza!");
         return 0;
     }
-
-
     if(fclose(fp))
     {
         printf("\tBlad zamkniecia pliku!\n");
@@ -203,6 +209,7 @@ int checksign()
     }
     return 1;
 }
+
 int writePersonFile()
 {
     FILE *fp = fopen("Person.txt","w");
@@ -228,6 +235,7 @@ int writePersonFile()
     printf("\n\n\nZapis sie udal!\n");
     return 1;
 }
+
 void displayPerson()
 {
     system("cls");
@@ -238,6 +246,7 @@ void displayPerson()
         printf ("\t%-5d%-21s%-21s%-31s%-10s\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->address,current_Person->contact);
     printf("\t--------------------------------------------------------------------------------------------\n");
 }
+
 int insertname(char name[22])
 {
     int i=0,valid=0;
@@ -250,7 +259,6 @@ int insertname(char name[22])
         name[i]=tolower(name[i]);
         i++;
     }
-
     name[0]=toupper(name[0]);
     if( !strcmp(name,"0"))
     {
@@ -285,6 +293,7 @@ int insertname(char name[22])
     }
     return valid;
 }
+
 int insertlastname(char last_name[22])
 {
     int i=0,valid=0;
@@ -310,9 +319,7 @@ int insertlastname(char last_name[22])
         {
             if (isalpha(last_name[i]))
             {
-                {
-                    valid=1;
-                }
+                valid=1;
             }
             else
             {
@@ -327,6 +334,7 @@ int insertlastname(char last_name[22])
     }
     return valid;
 }
+
 int insertaddress(char address[32])
 {
     int valid=0;
@@ -342,10 +350,10 @@ int insertaddress(char address[32])
     else
     {
         valid=1;
-
     }
     return valid;
 }
+
 int insertphonenumber(char pcontact[11])
 {
     int i=0,valid=0;
@@ -391,6 +399,7 @@ int insertphonenumber(char pcontact[11])
     }
     return valid;
 }
+
 int modifyPerson()
 {
     system("cls");
@@ -433,13 +442,11 @@ int modifyPerson()
                 printf("\nWcisnij dowolny klawisz, zeby kontynuowac...\n");
                 getch();
                 return 2;
-
             }
             current_Person=head_Person;
             if(idss>=current_Person->personid&&idss<=lastpersonid())
             {
                 current_Person=head_Person;
-
                 while(current_Person)
                 {
                     if(idss==current_Person->personid)
@@ -479,10 +486,8 @@ int modifyPerson()
         printf("\n\n\n \n\t\t\t\tWprowadz opcje od 0 a 4:");
         scanf("%3s", choose);
         fflush(stdin);
-
         if(choose[0]==48&&choose[1]=='\0')
             valid=1;
-
         else  if(choose[0]==49&&choose[1]=='\0')
         {
             while(!valid)
@@ -501,7 +506,6 @@ int modifyPerson()
                 }
                 else
                     fflush(stdin);
-
                 if(ans[0]=='T')
                 {
                     strcpy(current_Person->name,t.name);
@@ -531,7 +535,6 @@ int modifyPerson()
                 }
                 else
                     fflush(stdin);
-
                 if(ans[0]=='T')
                 {
                     strcpy(current_Person->last_name,t.last_name);
@@ -562,7 +565,6 @@ int modifyPerson()
                 }
                 else
                     fflush(stdin);
-
                 if(ans[0]=='T')
                 {
                     strcpy(current_Person->address,t.address);
@@ -593,7 +595,6 @@ int modifyPerson()
                 }
                 else
                     fflush(stdin);
-
                 if(ans[0]=='T')
                 {
                     strcpy(current_Person->contact,t.contact);
@@ -616,6 +617,7 @@ int modifyPerson()
     getch();
     return 1;
 }
+
 void searchPerson()
 {
     system("cls");
@@ -642,7 +644,6 @@ void searchPerson()
         printf("\n\t\t\t\t5. Numer telefonu\n");
         printf("\n\n\n \n\t\t\t\tWprowadz opcje od 0 a 5:");
         scanf("%3s", choose);
-
         if(choose[0]==48&&choose[1]=='\0')
         {
             valid=1;
@@ -743,9 +744,7 @@ void searchPerson()
             {
                 if(!strcmp(current_Person->name, name))
                 {
-
                     printf ("%-5d%-21s%-21s%-31s%-10s\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->address,current_Person->contact);
-
                 }
                 else if(!strncmp(current_Person->name, name,strlen(name)))
                 {
@@ -757,8 +756,6 @@ void searchPerson()
             valid=1;
             break;
         }
-
-
         else if(choose[0]==51&&choose[1]=='\0')
         {
             valid=0;
@@ -787,10 +784,7 @@ void searchPerson()
                     {
                         if (isalpha(last_name[i]))
                         {
-
-                            {
-                                valid=1;
-                            }
+                            valid=1;
                         }
                         else
                         {
@@ -844,7 +838,6 @@ void searchPerson()
                 }
             }
             current_Person = head_Person;
-
             printf("%-5s%-21s%-21s%-31s%-10s\n","ID","Imie","Nazwisko","Adres","Numer_Telefonu");
             printf("--------------------------------------------------------------------------------------------\n");
             char currentaddress[30],currentaddress2[30];
@@ -951,6 +944,7 @@ void searchPerson()
     printf("\nWcisnij dowolny, klawisz zeby kontynuowac...\n");
     getch();
 }
+
 void sort_help()
 {
     char x[100];
@@ -958,23 +952,20 @@ void sort_help()
     idd = temp->personid;
     temp->personid = temp->next->personid;
     temp->next->personid = idd;
-
     strcpy(x,temp->name);
     strcpy(temp->name,temp->next->name);
     strcpy(temp->next->name,x);
-
     strcpy(x,temp->last_name);
     strcpy(temp->last_name,temp->next->last_name);
     strcpy(temp->next->last_name,x);
-
     strcpy(x,temp->address);
     strcpy(temp->address,temp->next->address);
     strcpy(temp->next->address,x);
-
     strcpy(x,temp->contact);
     strcpy(temp->contact,temp->next->contact);
     strcpy(temp->next->contact,x);
 }
+
 int deletePerson()
 {
     system("cls");
@@ -1013,7 +1004,6 @@ int deletePerson()
         if(t.personid>=current_Person->personid&&t.personid<=lastpersonid())
         {
             current_Person=head_Person;
-
             while(current_Person)
             {
                 if(t.personid==current_Person->personid)
@@ -1043,7 +1033,6 @@ int deletePerson()
             scanf("%s",ans);
             if(ans[1]=='\0')
                 ans[0] = toupper(ans[0]);
-
         }
         if(ans[0]=='T')
         {
@@ -1054,7 +1043,6 @@ int deletePerson()
                 free (current_Person);
                 found=1;
             }
-
             while (current_Person->next!=NULL)
             {
                 Person *tmp = current_Person -> next;
@@ -1067,7 +1055,6 @@ int deletePerson()
                 }
                 current_Person = current_Person->next;
             }
-
             if (found)
             {
                 printf("\n\n\t\t\t\tOsoba usunieta poprawnie!");
@@ -1080,17 +1067,16 @@ int deletePerson()
         }
         else
             fflush(stdin);
-
     }
     printf("\nWcisnij dowolny klawisz, zeby kontynuowac...\n");
     getch();
     return 1;
 }
+
 int autoIncrementPerson()
 {
     int id=1;
     temp = head_Person;
-
     while(temp->next != NULL)
     {
         temp = temp->next;
@@ -1101,7 +1087,6 @@ int autoIncrementPerson()
         temp = head_Person;
         while(temp->next != NULL)
         {
-
             if(temp->personid>temp->next->personid)
             {
                 int idd;
@@ -1120,6 +1105,7 @@ int autoIncrementPerson()
         }
     return id;
 }
+
 void id_sort()
 {
     temp = head_Person;
@@ -1142,6 +1128,7 @@ void id_sort()
     }
     temp = head_Person;
 }
+
 int addPerson()
 {
     system("cls");
@@ -1149,7 +1136,6 @@ int addPerson()
     Person t, * node;
     int valid=0;
     char question[2];
-
     do
     {
         printf("\n\t\t\t\tWpisz '0', aby powrocic, '1' aby przejsc dalej: ");
@@ -1162,7 +1148,6 @@ int addPerson()
         }
     }
     while(!((question[0]==48&&question[1]=='\0')||(question[0]==49&&question[1]=='\0')));
-
     fflush(stdin);
     system("cls");
     Title();
@@ -1177,10 +1162,8 @@ int addPerson()
     while(!valid)
     {
         valid=insertlastname(t.last_name);
-
         if(valid)
             strcpy(node->last_name,t.last_name);
-
     }
     fflush(stdin);
     valid=0;
@@ -1189,7 +1172,6 @@ int addPerson()
         valid=insertaddress(t.address);
         if(valid)
             strcpy(node->address,t.address);
-
     }
     fflush(stdin);
     valid=0;
@@ -1200,33 +1182,23 @@ int addPerson()
         if(valid)
             strcpy(node->contact,pcontact);
     }
-
-
     fflush(stdin);
     char ans[1];
     while((!(ans[0]=='T'||ans[0]=='N')))
     {
         printf("\n\t\t\tCzy na pewno chcesz zapisac ta osobe? T/N :");
         scanf("%s",ans);
-
         if(ans[1]=='\0')
         {
             ans[0] = toupper(ans[0]);
-
         }
         else
             fflush(stdin);
     }
     if(ans[0]=='T')
     {
-
         node->personid = autoIncrementPerson();
-
-
-
-
         node->next = NULL;
-
         if(head_Person==NULL)
         {
             head_Person = node;
@@ -1242,18 +1214,14 @@ int addPerson()
         writePersonFile();
         fflush(stdin);
     }
-
     printf("\nWcisnij dowolny klawisz, zeby kontynuowac...\n");
     getch();
-
     return 2;
-
 }
+
 int readPersonFile()
 {
-
     head_Person = NULL,current_Person = NULL;
-
     FILE *fp = fopen("Person.txt","r");
     if(fp == NULL)
     {
@@ -1264,7 +1232,6 @@ int readPersonFile()
     int valid=1;
     while ((fscanf (fp,"%d;%[^;];%[^;];%[^;];%31[^;\n];", &tl.personid, tl.name,tl.last_name,tl.contact,tl.address)!=EOF)&&valid)
     {
-
         node = (Person*)malloc (sizeof (Person) );
         node->personid = tl.personid;
         strcpy(node->name,tl.name) ;
@@ -1306,7 +1273,6 @@ int readPersonFile()
             return valid;
         }
     }
-
     valid=checksign();
     if(!valid)
     {
@@ -1319,6 +1285,7 @@ int readPersonFile()
     }
     return valid;
 }
+
 void sort()
 {
     system("cls");
@@ -1326,7 +1293,6 @@ void sort()
     while(!valid&&!falid)
     {
         Title();
-
         char choose[3];
         memset(choose, '\0', 3*sizeof(char));
         printf("\t\t\t\tPo jakim polu chcesz posortowac?");
@@ -1343,7 +1309,6 @@ void sort()
         printf("\n\t\t\t\t10. Adresy alfabetycznie odwrotnie\n");
         printf("\n\n\n \n\t\t\t\tWprowadz opcje pomiedzy 0 a 10 : ");
         scanf("%4s", choose);
-
         if(choose[0]==48&&choose[1]=='\0')
         {
             valid=1;
@@ -1353,11 +1318,9 @@ void sort()
         else  if(choose[0]==49&&choose[1]=='\0')
         {
             temp = head_Person;
-
             while(temp->next != NULL)
             {
                 temp = temp->next;
-
             }
             temp = head_Person;
             for(current_Person = head_Person; current_Person; current_Person = current_Person->next)
@@ -1365,7 +1328,6 @@ void sort()
                 temp = head_Person;
                 while(temp->next != NULL)
                 {
-
                     if(temp->personid<temp->next->personid)
                     {
                         sort_help();
@@ -1375,19 +1337,14 @@ void sort()
             }
             temp = head_Person;
             valid=1;
-
             break;
-
-
         }
         else  if(choose[0]==50&&choose[1]=='\0')
         {
             temp = head_Person;
-
             while(temp->next != NULL)
             {
                 temp = temp->next;
-
             }
             temp = head_Person;
             for(current_Person = head_Person; current_Person; current_Person = current_Person->next)
@@ -1395,7 +1352,6 @@ void sort()
                 temp = head_Person;
                 while(temp->next != NULL)
                 {
-
                     if(temp->personid>temp->next->personid)
                     {
                         sort_help();
@@ -1409,13 +1365,10 @@ void sort()
         }
         else  if(choose[0]==51&&choose[1]=='\0')
         {
-
             temp = head_Person;
-
             while(temp->next != NULL)
             {
                 temp = temp->next;
-
             }
             temp = head_Person;
             for(current_Person = head_Person; current_Person; current_Person = current_Person->next)
@@ -1432,19 +1385,14 @@ void sort()
             }
             temp = head_Person;
             valid=1;
-
-
             break;
         }
         else  if(choose[0]==52&&choose[1]=='\0')
         {
-
             temp = head_Person;
-
             while(temp->next != NULL)
             {
                 temp = temp->next;
-
             }
             temp = head_Person;
             for(current_Person = head_Person; current_Person; current_Person = current_Person->next)
@@ -1461,18 +1409,14 @@ void sort()
             }
             temp = head_Person;
             valid=1;
-
-
             break;
         }
         else  if(choose[0]==53&&choose[1]=='\0')
         {
             temp = head_Person;
-
             while(temp->next != NULL)
             {
                 temp = temp->next;
-
             }
             temp = head_Person;
             for(current_Person = head_Person; current_Person; current_Person = current_Person->next)
@@ -1494,11 +1438,9 @@ void sort()
         else  if(choose[0]==54&&choose[1]=='\0')
         {
             temp = head_Person;
-
             while(temp->next != NULL)
             {
                 temp = temp->next;
-
             }
             temp = head_Person;
             for(current_Person = head_Person; current_Person; current_Person = current_Person->next)
@@ -1519,7 +1461,6 @@ void sort()
         }
         else  if(choose[0]==55&&choose[1]=='\0')
         {
-
             for(current_Person = head_Person; current_Person; current_Person = current_Person->next)
             {
                 temp = head_Person;
@@ -1538,7 +1479,6 @@ void sort()
         }
         else  if(choose[0]==56&&choose[1]=='\0')
         {
-
             for(current_Person = head_Person; current_Person; current_Person = current_Person->next)
             {
                 temp = head_Person;
@@ -1557,7 +1497,6 @@ void sort()
         }
         else  if(choose[0]==57&&choose[1]=='\0')
         {
-
             for(current_Person = head_Person; current_Person; current_Person = current_Person->next)
             {
                 temp = head_Person;
@@ -1576,7 +1515,6 @@ void sort()
         }
         else  if(choose[1]==48&&choose[0]==49&&choose[2]=='\0')
         {
-
             for(current_Person = head_Person; current_Person; current_Person = current_Person->next)
             {
                 temp = head_Person;
@@ -1595,25 +1533,20 @@ void sort()
         }
         else
         {
-
-
             printf("\n\t\t\t\tBlad! Podaj poprawna opcje z menu\n");
             memset(choose, '\0', 4*sizeof(char));
             fflush(stdin);
             getch();
             system("cls");
         }
-
     }
     if(!falid)
     {
         displayPerson();
         temp = head_Person;
-
         while(temp->next != NULL)
         {
             temp = temp->next;
-
         }
         temp = head_Person;
         for(current_Person = head_Person; current_Person; current_Person = current_Person->next)
@@ -1621,7 +1554,6 @@ void sort()
             temp = head_Person;
             while(temp->next != NULL)
             {
-
                 if(temp->personid>temp->next->personid)
                 {
                     sort_help();
@@ -1635,6 +1567,7 @@ void sort()
     printf("\nWcisnij dowolny klawisz, zeby kontynuowac...\n");
     getch();
 }
+
 void beforestart()
 {
     if(!readPersonFile())
@@ -1643,16 +1576,14 @@ void beforestart()
         exit(0);
     }
 }
+
 void MainMenu(void)
 {
     beforestart();
     WelcomeScreen();
-
-
     while(1)
     {
         system("cls");
-
         char choose[2];
         memset(choose, '\0', 2*sizeof(char));
         Title();
@@ -1665,43 +1596,30 @@ void MainMenu(void)
         printf("\n\t\t\t\t7. Wyjscie z programu\n");
         printf("\n\n\n \n\t\t\t\tWybierz od 1 do 7 : ");
         scanf("%3s", choose);
-
         if(choose[0]==49&&choose[1]=='\0')
         {
-
-
             addPerson();
         }
-
         else  if(choose[0]==50&&choose[1]=='\0')
         {
-
             displayPerson();
             printf("\n\n\tWcisnij dowolny klawisz, zeby kontynuowac...\n");
             getch();
-            {
-
-            }
         }
         else  if(choose[0]==51&&choose[1]=='\0')
             searchPerson();
-
         else  if(choose[0]==52&&choose[1]=='\0')
             modifyPerson();
-
         else  if(choose[0]==53&&choose[1]=='\0')
             deletePerson();
-
         else  if(choose[0]==54&&choose[1]=='\0')
             sort();
-
         else  if(choose[0]==55&&choose[1]=='\0')
         {
             printf("\n\t\t\t\tDziekuje za skorzystanie z ksiazki");
             getch();
             exit(0);
         }
-
         else
         {
             printf("\n\t\t\t\tBlad! Podaj poprawna opcje z menu\n");
@@ -1710,10 +1628,11 @@ void MainMenu(void)
             getch();
         }
     }
-
 }
+
 int main()
 {
     MainMenu();
     return 0;
 }
+
