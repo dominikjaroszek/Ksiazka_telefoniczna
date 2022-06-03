@@ -9,7 +9,7 @@ typedef struct Person
     int personid;
     char name[20];
     char last_name[20];
-    char adress[30];
+    char address[30];
     char contact[9];
     struct Person *next;
 } Person;
@@ -51,7 +51,7 @@ int checkFileid()
 int checkFileadres()
 {
     int valid=0;
-    if(!(strlen(current_Person->adress)<=30&&strlen(current_Person->adress)>=4))
+    if(!(strlen(current_Person->address)<=30&&strlen(current_Person->address)>=4))
     {
         printf("\n\tBlad! Adres w pliku powinien miec od 4 do 30 liter");
         fflush(stdin);
@@ -230,7 +230,7 @@ int writePersonFile()
     }
     for(current_Person = head_Person; current_Person; current_Person = current_Person->next)
     {
-        fprintf (fp, "%d;%s;%s;%s;%s;\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->contact, current_Person->adress );
+        fprintf (fp, "%d;%s;%s;%s;%s;\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->contact, current_Person->address );
     }
     if(fseek(fp,0,SEEK_SET)==-1)
     {
@@ -252,7 +252,7 @@ void displayPerson()
     printf("\t%-5s%-21s%-21s%-31s%-10s\n","ID","Imie","Nazwisko","Adres","Numer_Telefonu");
     printf("\t--------------------------------------------------------------------------------------------\n");
     for(current_Person =head_Person; current_Person; current_Person = current_Person->next)
-        printf ("\t%-5d%-21s%-21s%-31s%-10s\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->adress,current_Person->contact);
+        printf ("\t%-5d%-21s%-21s%-31s%-10s\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->address,current_Person->contact);
     printf("\t--------------------------------------------------------------------------------------------\n");
 }
 int insertname(char name[22])
@@ -350,13 +350,13 @@ int insertlastname(char last_name[22])
         }
         return valid;
 }
-int insertadress(char adress[32])
+int insertaddress(char address[32])
 {
     int valid=0;
             printf("\n\t\t\tWprowadz adres: ");
-        fgets(adress, 32, stdin);
-        strtok(adress,"\n");
-        if(!(strlen(adress)<=30&&strlen(adress)>=4))
+        fgets(address, 32, stdin);
+        strtok(address,"\n");
+        if(!(strlen(address)<=30&&strlen(address)>=4))
         {
             printf("\n\tBlad! Wprowadz adres z przedzialu od 4 do 30 liter");
             fflush(stdin);
@@ -592,7 +592,7 @@ valid=insertlastname(t.last_name);
             fflush(stdin);
             while(!valid)
             {
-valid=insertadress(t.adress);
+valid=insertaddress(t.address);
             }
             char ans[1];
             while((!(ans[0]=='T'||ans[0]=='N')))
@@ -610,7 +610,7 @@ valid=insertadress(t.adress);
 
                 if(ans[0]=='T')
                 {
-                    strcpy(current_Person->adress,t.adress);
+                    strcpy(current_Person->address,t.address);
                     writePersonFile();
                 }
                 else
@@ -678,7 +678,7 @@ void searchPerson()
     int pid;
     char name[22];
     char last_name[22];
-    char padress[30];
+    char paddress[30];
     char pcontact[11];
     int valid=0;
     char choose[2];
@@ -714,7 +714,7 @@ void searchPerson()
 
 
         memset(array, '\0', 10*sizeof(char));
-            printf ("\n\n\t\t\t\tWprowadz ID osoby do modyfikacji: ");
+            printf ("\n\n\t\t\t\tWprowadz ID osoby do znalezienia: ");
             scanf("%11s", array) ;
             for (int i=0; i<strlen(array); i++)
             {
@@ -738,7 +738,7 @@ pid=atoi(array);
                 {
 
 
-                    printf("Podaj poprawne id osoby");
+                    printf("\t\t\t\tPodaj poprawne id osoby");
                     fflush(stdin);
                 }
 
@@ -750,7 +750,7 @@ pid=atoi(array);
             {
                 if(current_Person->personid == pid)
                 {
-                    printf ("%-5d%-21s%-21s%-31s%-10s\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->adress,current_Person->contact);
+                    printf ("%-5d%-21s%-21s%-31s%-10s\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->address,current_Person->contact);
                 }
                 current_Person = current_Person->next;
             }
@@ -814,12 +814,12 @@ pid=atoi(array);
                 if(!strcmp(current_Person->name, name))
                 {
 
-                    printf ("%-5d%-21s%-21s%-31s%-10s\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->adress,current_Person->contact);
+                    printf ("%-5d%-21s%-21s%-31s%-10s\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->address,current_Person->contact);
 
                 }
                 else if(!strncmp(current_Person->name, name,strlen(name)))
                 {
-                    printf ("%-5d%-21s%-21s%-31s%-10s\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->adress,current_Person->contact);
+                    printf ("%-5d%-21s%-21s%-31s%-10s\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->address,current_Person->contact);
                 }
                 current_Person = current_Person->next;
             }
@@ -886,12 +886,12 @@ pid=atoi(array);
                 if(!strcmp(current_Person->last_name, last_name))
                 {
 
-                    printf ("%-5d%-21s%-21s%-31s%-10s\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->adress,current_Person->contact);
+                    printf ("%-5d%-21s%-21s%-31s%-10s\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->address,current_Person->contact);
 
                 }
                 else if(!strncmp(current_Person->last_name, last_name,strlen(last_name)))
                 {
-                    printf ("%-5d%-21s%-21s%-31s%-10s\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->adress,current_Person->contact);
+                    printf ("%-5d%-21s%-21s%-31s%-10s\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->address,current_Person->contact);
                 }
                 current_Person = current_Person->next;
             }
@@ -909,9 +909,9 @@ pid=atoi(array);
             while(!valid)
             {
                 printf("\n\t\t\tWprowadz adres: ");
-                fgets(padress, 32, stdin);
-                strtok(padress,"\n");
-                if(!(strlen(padress)<=30&&strlen(padress)>=1))
+                fgets(paddress, 32, stdin);
+                strtok(paddress,"\n");
+                if(!(strlen(paddress)<=30&&strlen(paddress)>=1))
                 {
                     printf("\n\tBlad! Wprowadz adres z przedzialu od 1 do 30 liter");
                     fflush(stdin);
@@ -929,36 +929,36 @@ pid=atoi(array);
 
             printf("%-5s%-21s%-21s%-31s%-10s\n","ID","Imie","Nazwisko","Adres","Numer_Telefonu");
             printf("--------------------------------------------------------------------------------------------\n");
-            char currentAdress[30],currentAdress2[30];
-            strcpy(currentAdress,padress);
+            char currentaddress[30],currentaddress2[30];
+            strcpy(currentaddress,paddress);
             int i=0;
-            while(currentAdress[i])
+            while(currentaddress[i])
             {
-                if(isalpha(currentAdress[i]))
+                if(isalpha(currentaddress[i]))
                 {
-                    currentAdress[i]=tolower(currentAdress[i]);
+                    currentaddress[i]=tolower(currentaddress[i]);
                 }
                 i++;
             }
             while (current_Person!=NULL)
             {
-                strcpy(currentAdress2,current_Person->adress);
+                strcpy(currentaddress2,current_Person->address);
                 i=0;
-                while(currentAdress[i])
+                while(currentaddress[i])
                 {
-                    if(isalpha(currentAdress2[i]))
+                    if(isalpha(currentaddress2[i]))
                     {
-                        currentAdress2[i]=tolower(currentAdress2[i]);
+                        currentaddress2[i]=tolower(currentaddress2[i]);
                     }
                     i++;
                 }
-                if(!strcmp(currentAdress2,currentAdress))
+                if(!strcmp(currentaddress2,currentaddress))
                 {
-                    printf ("%-5d%-21s%-21s%-31s%-10s\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->adress,current_Person->contact);
+                    printf ("%-5d%-21s%-21s%-31s%-10s\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->address,current_Person->contact);
                 }
-                else if(!strncmp(currentAdress2, currentAdress,strlen(currentAdress)))
+                else if(!strncmp(currentaddress2, currentaddress,strlen(currentaddress)))
                 {
-                    printf ("%-5d%-21s%-21s%-31s%-10s\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->adress,current_Person->contact);
+                    printf ("%-5d%-21s%-21s%-31s%-10s\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->address,current_Person->contact);
                 }
                 current_Person = current_Person->next;
             }
@@ -1014,13 +1014,13 @@ pid=atoi(array);
             {
                 if(!strcmp(current_Person->contact,pcontact))
                 {
-                    printf ("%-5d%-21s%-21s%-31s%-10s\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->adress,current_Person->contact);
+                    printf ("%-5d%-21s%-21s%-31s%-10s\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->address,current_Person->contact);
 
 
                 }
                 else if(!strncmp(current_Person->contact, pcontact,strlen(pcontact)))
                 {
-                    printf ("%-5d%-21s%-21s%-31s%-10s\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->adress,current_Person->contact);
+                    printf ("%-5d%-21s%-21s%-31s%-10s\n", current_Person->personid, current_Person->name, current_Person->last_name,current_Person->address,current_Person->contact);
                 }
                 current_Person = current_Person->next;
             }
@@ -1062,9 +1062,9 @@ void sort_help()
     strcpy(temp->last_name,temp->next->last_name);
     strcpy(temp->next->last_name,x);
 
-    strcpy(x,temp->adress);
-    strcpy(temp->adress,temp->next->adress);
-    strcpy(temp->next->adress,x);
+    strcpy(x,temp->address);
+    strcpy(temp->address,temp->next->address);
+    strcpy(temp->next->address,x);
 
     strcpy(x,temp->contact);
     strcpy(temp->contact,temp->next->contact);
@@ -1307,9 +1307,9 @@ strcpy(node->last_name,t.last_name);
     valid=0;
     while(!valid)
     {
-valid=insertadress(t.adress);
+valid=insertaddress(t.address);
 if(valid)
-    strcpy(node->adress,t.adress);
+    strcpy(node->address,t.address);
 
     }
     fflush(stdin);
@@ -1383,14 +1383,14 @@ int readPersonFile()
     }
     Person tl, *node;
     int valid=1;
-    while ((fscanf (fp,"%d;%[^;];%[^;];%[^;];%31[^;\n];", &tl.personid, tl.name,tl.last_name,tl.contact,tl.adress)!=EOF)&&valid)
+    while ((fscanf (fp,"%d;%[^;];%[^;];%[^;];%31[^;\n];", &tl.personid, tl.name,tl.last_name,tl.contact,tl.address)!=EOF)&&valid)
     {
 
         node = (Person*)malloc (sizeof (Person) );
         node->personid = tl.personid;
         strcpy(node->name,tl.name) ;
         strcpy(node->last_name,tl.last_name);
-        strcpy(node->adress,tl.adress) ;
+        strcpy(node->address,tl.address) ;
         strcpy(node->contact,tl.contact) ;
         node->next = NULL;
         if(head_Person == NULL)
@@ -1698,7 +1698,7 @@ void sort()
                 temp = head_Person;
                 while(temp->next != NULL)
                 {
-                    if(strcmp(temp->adress,temp->next->adress) > 0)
+                    if(strcmp(temp->address,temp->next->address) > 0)
                     {
                         sort_help();
                     }
@@ -1718,7 +1718,7 @@ void sort()
                 temp = head_Person;
                 while(temp->next != NULL)
                 {
-                    if(strcmp(temp->adress,temp->next->adress) < 0)
+                    if(strcmp(temp->address,temp->next->address) < 0)
                     {
                         sort_help();
                     }
